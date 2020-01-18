@@ -24,7 +24,8 @@ export default {
   ** Global CSS
   */
   css: [
-    '~/assets/css/buefy.scss'
+    '~/assets/css/buefy.scss',
+    '~/assets/css/transition.scss'
   ],
   /*
   ** Plugins to load before mounting the App
