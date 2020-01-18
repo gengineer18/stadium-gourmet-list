@@ -37,6 +37,15 @@
         No other internal dependency
       </card>
     </div>
+    <div>
+      <nuxt-link
+        v-scroll-to="'#anchor'"
+        to
+      >
+        アンカーへリンク
+      </nuxt-link>
+      <a id="anchor"> 到着！ </a>
+    </div>
   </section>
 </template>
 
@@ -51,3 +60,11 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style scoped>
+#anchor {
+  display: block;
+  margin-top: 200vh;
+  margin-bottom: 100vh;
+}
+</style>
