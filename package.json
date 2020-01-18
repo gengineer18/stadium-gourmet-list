@@ -5,10 +5,10 @@
   "author": "Gen Senoo",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "test": "jest",
     "glist": "gcloud config configurations list",
@@ -23,7 +23,9 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
     "nuxt": "^2.11.0",
-    "nuxt-buefy": "^0.3.20"
+    "nuxt-buefy": "^0.3.20",
+    "@nuxt/typescript-build": "^0.5.6",
+    "@nuxt/typescript-runtime": "^0.3.8"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
