@@ -3,5 +3,5 @@ steps:
     args: ['echo', '${_ENVIRONMENT}']
   - name: 'gcr.io/cloud-builders/yarn'
     args: ['install']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy', '--version', '1', 'app.yaml']
+  - name: 'gcr.io/$PROJECT_ID/gcloud'
+    args: ['source', 'repos', 'clone', 'default']
