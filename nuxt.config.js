@@ -52,7 +52,7 @@ export default {
     '@nuxtjs/dotenv'
   ],
   manifest: {
-    name: 'testapp',
+    name: 'スタグル名鑑',
     lang: 'ja'
   },
   /*
