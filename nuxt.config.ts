@@ -32,6 +32,7 @@ export default {
   */
   plugins: [
     '~/plugins/vue-scrollto',
+    { src: "~/plugins/vue2-touch-events.ts", ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -51,7 +52,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    'nuxt-user-agent'
   ],
   manifest: {
     name: 'スタグル名鑑',
