@@ -12,15 +12,36 @@
       </a>
     </h3>
     <p>{{ value }}</p>
+    <validation-provider
+      ref="messageForm"
+      v-slot="{ errors }"
+      rules="required|max:4"
+      name="メッセージ"
+    >
+      <input
+        v-model="message"
+        type="text"
+      >
+      <p v-if="errors.length">
+        <span v-for="(error, i) in errors" :key="`errors${i}`">
+          {{ error }}
+        </span>
+      </p>
+    </validation-provider>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import { ValidationProvider } from 'vee-validate'
 export default Vue.extend({
+  components: {
+    ValidationProvider
+  },
   data () {
     return {
-      value: 'hoge'
+      value: 'hoge',
+      message: 'message'
     }
   },
   created () :void {

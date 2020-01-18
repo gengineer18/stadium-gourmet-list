@@ -33,6 +33,7 @@ export default {
   plugins: [
     '~/plugins/vue-scrollto',
     { src: "~/plugins/vue2-touch-events.ts", ssr: false },
+    { src: '~/plugins/vee-validate.js', ssr: true },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -73,10 +74,13 @@ export default {
     ** You can extend webpack config here
     */
     extend (config: any, ctx: any) {
-    }
+    },
+    transpile: [
+      'vee-validate/dist/rules',
+    ],
   },
   typescript: {
     typeCheck: true,
     ignoreNotFoundWarnings: true
-  }
+  },
 }
