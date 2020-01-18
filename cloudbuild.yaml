@@ -1,7 +1,8 @@
 steps:
   - name: 'alpine'
     args: ['echo', '${_ENVIRONMENT}']
-  - name: 'gcr.io/cloud-builders/yarn'
+  - name: node:10.15.1
+    entrypoint: yarn
     args: ['install']
   - name: 'gcr.io/$PROJECT_ID/gcloud'
     args: ['source', 'repos', 'clone', 'default']
