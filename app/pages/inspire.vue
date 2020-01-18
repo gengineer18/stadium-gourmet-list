@@ -11,7 +11,7 @@
         Antério Vieira
       </a>
     </h3>
-    <p>aaaaa{{ value }}</p>
+    <p>aaaaa{{ value }}bbbbbbbbbb</p>
     <validation-provider
       ref="messageForm"
       v-slot="{ errors }"
