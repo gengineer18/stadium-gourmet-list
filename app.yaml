@@ -11,11 +11,11 @@ handlers:
 
   - url: /(.*\.(gif|png|jpg|ico|txt))$
     static_files: static/\1
-    upload: static/.*\.(gif|png|jpg|ico|txt)$
+    upload: app/static/.*\.(gif|png|jpg|ico|txt)$
 
   - url: /sw.js
-    static_files: static/sw.js
-    upload: static/sw.js
+    static_files: app/static/sw.js
+    upload: app/static/sw.js
 
   - url: /.*
     script: auto
