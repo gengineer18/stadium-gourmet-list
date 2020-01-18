@@ -1,6 +1,10 @@
 <template>
   <section class="section">
-    <div class="columns is-mobile">
+    <div
+      v-touch:swipe.left="() => $router.push('/inspire')"
+      v-touch:swipe.right="() => $router.push('/inspire')"
+      class="columns is-mobile"
+    >
       <card
         title="Free"
         icon="github-circle"
@@ -37,10 +41,23 @@
         No other internal dependency
       </card>
     </div>
+    <div>
+      <p>{{ deviceType }}</p>
+    </div>
+    <div>
+      <nuxt-link
+        v-scroll-to="'#anchor'"
+        to
+      >
+        アンカーへリンク
+      </nuxt-link>
+      <a id="anchor"> 到着！ </a>
+    </div>
   </section>
 </template>
 
 <script lang="ts">
+import { Context } from 'vm'
 import Vue from 'vue'
 import Card from '~/components/Card.vue'
 
@@ -48,6 +65,18 @@ export default Vue.extend({
   name: 'HomePage',
   components: {
     Card
+  },
+  async asyncData (context: Context): Promise<any> {
+    const deviceType: string = await context.$ua.deviceType()
+    return { deviceType }
   }
 })
 </script>
+
+<style scoped>
+#anchor {
+  display: block;
+  margin-top: 200vh;
+  margin-bottom: 100vh;
+}
+</style>

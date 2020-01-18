@@ -19,13 +19,18 @@
     "deploy:prod": "yarn switch:prod && gcloud app deploy && yarn switch:dev"
   },
   "dependencies": {
+    "@nuxt/typescript-build": "^0.5.6",
+    "@nuxt/typescript-runtime": "^0.3.8",
     "@nuxtjs/axios": "^5.9.3",
     "@nuxtjs/dotenv": "^1.4.1",
+    "@nuxtjs/google-analytics": "^2.2.3",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
     "nuxt": "^2.11.0",
     "nuxt-buefy": "^0.3.20",
-    "@nuxt/typescript-build": "^0.5.6",
-    "@nuxt/typescript-runtime": "^0.3.8"
+    "nuxt-user-agent": "^1.2.2",
+    "vee-validate": "^3.2.1",
+    "vue-scrollto": "^2.17.1",
+    "vue2-touch-events": "^2.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",
