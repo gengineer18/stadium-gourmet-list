@@ -11,5 +11,20 @@
         Antério Vieira
       </a>
     </h3>
+    <p>{{ value }}</p>
   </section>
 </template>
+
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  data () {
+    return {
+      value: 'hoge'
+    }
+  },
+  created () :void {
+    console.log('created')
+  }
+})
+</script>
