@@ -1,8 +1,12 @@
 steps:
-  - name: 'alpine'
-    args: ['echo', '${_ENVIRONMENT}']
-  - name: node:10.15.1
+  - id: 'install packages'
+    name: node:10.18.0
     entrypoint: yarn
     args: ['install']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['app', 'deploy', '--version', '1', 'app.yaml']
+  - id: 'Build App'
+    name: node:10.18.0
+    entrypoint: yarn
+    args: ['build']
+  - id: 'Deploy'
+    name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
