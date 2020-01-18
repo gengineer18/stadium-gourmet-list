@@ -7,3 +7,7 @@ steps:
     name: node:10.18.0
     entrypoint: yarn
     args: ['build']
+    - id: 'Deploy'
+    name: node:10.18.0
+    entrypoint: yarn
+    args: ['deploy:dev']
