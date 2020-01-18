@@ -9,4 +9,4 @@ steps:
     args: ['build']
   - id: 'Deploy'
     name: "gcr.io/cloud-builders/gcloud"
-    args: ["deploy"]
+    args: ["app", "deploy"]
