@@ -6,7 +6,7 @@ steps:
   - id: 'Build App'
     name: node:10.18.0
     entrypoint: yarn
-    args: ['build']
+    args: ['build:dev']
     env:
       - 'TEST=${_TEST}'
   - id: 'Deploy'
