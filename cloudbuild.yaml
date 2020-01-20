@@ -14,3 +14,5 @@ steps:
   - id: 'Deploy'
     name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy"]
+    env:
+      - 'TEST=$_TEST'
