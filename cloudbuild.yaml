@@ -3,6 +3,8 @@ steps:
     name: node:10.18.0
     entrypoint: yarn
     args: ['install']
+    env:
+      - 'TEST=$_TEST'
   - id: 'Build App'
     name: node:10.18.0
     entrypoint: yarn
