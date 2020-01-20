@@ -1,4 +1,5 @@
-
+const envPath = `.env.${process.env.NODE_ENV || 'development'}`
+require('dotenv').config({ path: envPath })
 export default {
   mode: 'universal',
   srcDir: 'app',
@@ -82,5 +83,8 @@ export default {
   typescript: {
     typeCheck: true,
     ignoreNotFoundWarnings: true
+  },
+  dotenv: {
+    filename: envPath
   },
 }

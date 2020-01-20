@@ -1,0 +1,12 @@
+steps:
+  - id: 'install packages'
+    name: node:10.18.0
+    entrypoint: yarn
+    args: ['install']
+  - id: 'Build App'
+    name: node:10.18.0
+    entrypoint: yarn
+    args: ['build:prod']
+  - id: 'Deploy'
+    name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]

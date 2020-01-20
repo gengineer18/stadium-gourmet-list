@@ -6,7 +6,7 @@ steps:
   - id: 'Build App'
     name: node:10.18.0
     entrypoint: yarn
-    args: ['build']
+    args: ['build:dev']
   - id: 'Deploy'
     name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy"]
