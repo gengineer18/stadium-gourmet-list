@@ -69,6 +69,9 @@ export default Vue.extend({
   async asyncData (context: Context): Promise<any> {
     const deviceType: string = await context.$ua.deviceType()
     return { deviceType }
+  },
+  mounted () {
+    console.info(process.env.TEST)
   }
 })
 </script>

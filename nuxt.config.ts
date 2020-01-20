@@ -1,3 +1,6 @@
+const envPath = `.env.${process.env.NODE_ENV || 'development'}`;
+require('dotenv').config({ path: envPath });
+console.info(process.env.TEST)
 
 export default {
   mode: 'universal',
@@ -82,5 +85,8 @@ export default {
   typescript: {
     typeCheck: true,
     ignoreNotFoundWarnings: true
+  },
+  dotenv: {
+    filename: envPath
   },
 }
