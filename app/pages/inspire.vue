@@ -34,6 +34,8 @@
 <script lang="ts">
 import Vue from 'vue'
 import { ValidationProvider } from 'vee-validate'
+import { db } from '~/plugins/firebase.js'
+
 export default Vue.extend({
   components: {
     ValidationProvider
@@ -46,6 +48,24 @@ export default Vue.extend({
   },
   created () :void {
     console.log('created')
+
+    db.collection('users').add({
+      first: 'Adaaa',
+      last: 'Lovelaceaaa',
+      born: 1816
+    })
+      .then(function (docRef) {
+        console.log('Document written with ID: ', docRef.id)
+      })
+      .catch(function (error) {
+        console.error('Error adding document: ', error)
+      })
+
+    db.collection('users').get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data().first}`)
+      })
+    })
   }
 })
 </script>

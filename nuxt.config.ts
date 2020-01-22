@@ -67,6 +67,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    BaseUrl: process.env.FB_DATABASE_URL
   },
   /*
   ** Build configuration
