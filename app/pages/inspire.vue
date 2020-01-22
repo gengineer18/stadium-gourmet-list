@@ -49,17 +49,17 @@ export default Vue.extend({
   created () :void {
     console.log('created')
 
-    db.collection('users').add({
-      first: 'Adaaa',
-      last: 'Lovelaceaaa',
-      born: 1816
-    })
-      .then(function (docRef) {
-        console.log('Document written with ID: ', docRef.id)
-      })
-      .catch(function (error) {
-        console.error('Error adding document: ', error)
-      })
+    // db.collection('users').add({
+    //   first: 'Adaaa',
+    //   last: 'Lovelaceaaa',
+    //   born: 1816
+    // })
+    //   .then(function (docRef) {
+    //     console.log('Document written with ID: ', docRef.id)
+    //   })
+    //   .catch(function (error) {
+    //     console.error('Error adding document: ', error)
+    //   })
 
     db.collection('users').get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
