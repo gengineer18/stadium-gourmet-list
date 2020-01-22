@@ -35,6 +35,7 @@ export default {
     '~/plugins/vue-scrollto',
     { src: "~/plugins/vue2-touch-events.ts", ssr: false },
     { src: '~/plugins/vee-validate.js', ssr: true },
+    '~/plugins/firebase'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -66,6 +67,7 @@ export default {
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    BaseUrl: process.env.FB_DATABASE_URL
   },
   /*
   ** Build configuration
