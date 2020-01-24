@@ -33,7 +33,7 @@ export default {
   */
   plugins: [
     '~/plugins/vue-scrollto',
-    { src: "~/plugins/vue2-touch-events.ts", ssr: false },
+    { src: '~/plugins/vue2-touch-events.ts', ssr: false },
     { src: '~/plugins/vee-validate.js', ssr: true },
     '~/plugins/firebase'
   ],
@@ -79,8 +79,8 @@ export default {
     extend (config: any, ctx: any) {
     },
     transpile: [
-      'vee-validate/dist/rules',
-    ],
+      'vee-validate/dist/rules'
+    ]
   },
   typescript: {
     typeCheck: true,
@@ -88,5 +88,5 @@ export default {
   },
   dotenv: {
     filename: envPath
-  },
+  }
 }
