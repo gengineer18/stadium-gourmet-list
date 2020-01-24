@@ -10,7 +10,7 @@
     "build:prod": "NODE_ENV=production nuxt-ts build",
     "start": "NODE_ENV=production nuxt-ts start",
     "generate": "nuxt-ts generate",
-    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "eslint --fix --ext .js,.ts,.vue --ignore-path .gitignore .",
     "test": "jest",
     "glist": "gcloud config configurations list",
     "switch:dev": "gcloud config configurations activate develop && yarn glist",
