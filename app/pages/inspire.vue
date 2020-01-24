@@ -28,6 +28,72 @@
         </span>
       </p>
     </validation-provider>
+    <h2 class="subtitle is-4 has-text-grey">
+      北海道・東北
+    </h2>
+    <ul>
+      <template>
+        <li v-for="club in clubsHokkaidoTohoku" :key="club.id">
+          {{ club.name }}: {{ club.stadium[0].name }}
+        </li>
+      </template>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      関東
+    </h2>
+    <ul>
+      <li v-for="club in clubsKanto" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      北信越
+    </h2>
+    <ul>
+      <li v-for="club in clubsHokushinetsu" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      東海
+    </h2>
+    <ul>
+      <li v-for="club in clubsTokai" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      関西
+    </h2>
+    <ul>
+      <li v-for="club in clubsKansai" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      中国
+    </h2>
+    <ul>
+      <li v-for="club in clubsChugoku" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      四国
+    </h2>
+    <ul>
+      <li v-for="club in clubsShikoku" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
+    <h2 class="subtitle is-4 has-text-grey">
+      九州・沖縄
+    </h2>
+    <ul>
+      <li v-for="club in clubsKyushuOkinawa" :key="club.id">
+        {{ club.name }}: {{ club.stadium[0].name }}
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -39,6 +105,18 @@ import { db } from '~/plugins/firebase.js'
 export default Vue.extend({
   components: {
     ValidationProvider
+  },
+  asyncData () {
+    return {
+      clubsHokkaidoTohoku: require('~/assets/json/ClubsHokkaidoTohoku.json'),
+      clubsKanto: require('~/assets/json/ClubsKanto.json'),
+      clubsHokushinetsu: require('~/assets/json/ClubsHokushinetsu.json'),
+      clubsTokai: require('~/assets/json/ClubsTokai.json'),
+      clubsKansai: require('~/assets/json/ClubsKansai.json'),
+      clubsChugoku: require('~/assets/json/ClubsChugoku.json'),
+      clubsShikoku: require('~/assets/json/ClubsShikoku.json'),
+      clubsKyushuOkinawa: require('~/assets/json/ClubsKyushuOkinawa.json')
+    }
   },
   data () {
     return {
