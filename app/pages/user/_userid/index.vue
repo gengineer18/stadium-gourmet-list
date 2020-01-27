@@ -1,7 +1,6 @@
 <template lang="pug">
 div
   section(v-if="matchName")
-    h1 FILE: {{fileName}}
     ul
       li ROUTE NAME: {{JSON.stringify($route.name)}}
       li PATH: {{JSON.stringify($route.path)}}

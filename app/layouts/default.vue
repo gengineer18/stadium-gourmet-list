@@ -66,6 +66,36 @@ export default {
           title: 'Inspire',
           icon: 'lightbulb',
           to: { name: 'inspire' }
+        },
+        {
+          title: 'Clubname',
+          icon: 'lightbulb',
+          to: { path: '/club/fctokyo' }
+        },
+        {
+          title: 'Menuid',
+          icon: 'lightbulb',
+          to: { path: '/club/fctokyo/curry' }
+        },
+        {
+          title: 'MenuEdit',
+          icon: 'lightbulb',
+          to: { path: '/club/fctokyo/curry/edit' }
+        },
+        {
+          title: 'User',
+          icon: 'lightbulb',
+          to: { path: '/user/test' }
+        },
+        {
+          title: 'UserEdit',
+          icon: 'lightbulb',
+          to: { path: '/user/test/edit' }
+        },
+        {
+          title: 'post',
+          icon: 'lightbulb',
+          to: { path: '/post' }
         }
       ]
     }
