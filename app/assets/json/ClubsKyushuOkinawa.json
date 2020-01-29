@@ -2,6 +2,7 @@
   {
     "id": 52,
     "name": "アビスパ福岡",
+    "link": "fukuoka",
     "division": "J2",
     "stadium": [
       {
@@ -14,6 +15,7 @@
   {
     "id": 53,
     "name": "ギラヴァンツ北九州",
+    "link": "kitakyushu",
     "division": "J2",
     "stadium": [
       {
@@ -26,6 +28,7 @@
   {
     "id": 54,
     "name": "サガン鳥栖",
+    "link": "tosu",
     "division": "J1",
     "stadium": [
       {
@@ -38,6 +41,7 @@
   {
     "id": 55,
     "name": "V・ファーレン長崎",
+    "link": "nagasaki",
     "division": "J1",
     "stadium": [
       {
@@ -50,6 +54,7 @@
   {
     "id": 56,
     "name": "ロアッソ熊本",
+    "link": "kumamoto",
     "division": "J3",
     "stadium": [
       {
@@ -62,6 +67,7 @@
   {
     "id": 57,
     "name": "大分トリニータ",
+    "link": "oita",
     "division": "J1",
     "stadium": [
       {
@@ -74,6 +80,7 @@
   {
     "id": 58,
     "name": "鹿児島ユナイテッドFC",
+    "link": "kagoshima",
     "division": "J3",
     "stadium": [
       {
@@ -86,6 +93,7 @@
   {
     "id": 59,
     "name": "FC琉球",
+    "link": "ryukyu",
     "division": "J2",
     "stadium": [
       {

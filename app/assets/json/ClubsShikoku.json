@@ -2,6 +2,7 @@
   {
     "id": 48,
     "name": "徳島ヴォルティス",
+    "link": "tokushima",
     "division": "J2",
     "stadium": [
       {
@@ -14,6 +15,7 @@
   {
     "id": 49,
     "name": "カマタマーレ讃岐",
+    "link": "sanuki",
     "division": "J3",
     "stadium": [
       {
@@ -26,6 +28,7 @@
   {
     "id": 50,
     "name": "愛媛FC",
+    "link": "ehime",
     "division": "J2",
     "stadium": [
       {
@@ -38,6 +41,7 @@
   {
     "id": 51,
     "name": "FC今治",
+    "link": "imabari",
     "division": "J3",
     "stadium": [
       {

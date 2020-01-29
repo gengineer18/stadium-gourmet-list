@@ -2,6 +2,7 @@
   {
     "id": 44,
     "name": "ガイナーレ鳥取",
+    "link": "tottori",
     "division": "J3",
     "stadium": [
       {
@@ -14,6 +15,7 @@
   {
     "id": 45,
     "name": "ファジアーノ岡山",
+    "link": "okayama",
     "division": "J2",
     "stadium": [
       {
@@ -26,6 +28,7 @@
   {
     "id": 46,
     "name": "サンフレッチェ広島",
+    "link": "hiroshima",
     "division": "J1",
     "stadium": [
       {
@@ -38,6 +41,7 @@
   {
     "id": 47,
     "name": "レノファ山口FC",
+    "link": "yamaguchi",
     "division": "J2",
     "stadium": [
       {
