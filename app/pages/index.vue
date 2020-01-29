@@ -1,82 +1,39 @@
 <template>
-  <section class="section">
-    <div
-      v-touch:swipe.left="() => $router.push('/inspire')"
-      v-touch:swipe.right="() => $router.push('/inspire')"
-      class="columns is-mobile"
-    >
-      <card
-        title="Free"
-        icon="github-circle"
-      >
-        Open source on <a href="https://github.com/buefy/buefy">
-          GitHub
-        </a>
-      </card>
-
-      <card
-        title="Responsive"
-        icon="cellphone-link"
-      >
-        <b class="has-text-grey">
-          Every
-        </b> component is responsive
-      </card>
-
-      <card
-        title="Modern"
-        icon="alert-decagram"
-      >
-        Built with <a href="https://vuejs.org/">
-          Vue.js
-        </a> and <a href="http://bulma.io/">
-          Bulma
-        </a>
-      </card>
-
-      <card
-        title="Lightweight"
-        icon="arrange-bring-to-front"
-      >
-        No other internal dependency
-      </card>
-    </div>
-    <div>
-      <p>{{ deviceType }}</p>
-    </div>
-    <div>
-      <nuxt-link
-        v-scroll-to="'#anchor'"
-        to
-      >
-        アンカーへリンク
-      </nuxt-link>
-      <a id="anchor"> 到着！ </a>
-    </div>
+  <section id="toppage">
+    <Menu area-name="北海道・東北" :club-json="clubsHokkaidoTohoku" />
+    <Menu area-name="関東" :club-json="clubsKanto" />
+    <Menu area-name="北信越" :club-json="clubsHokushinetsu" />
+    <Menu area-name="東海" :club-json="clubsTokai" />
+    <Menu area-name="関西" :club-json="clubsKansai" />
+    <Menu area-name="中国" :club-json="clubsChugoku" />
+    <Menu area-name="四国" :club-json="clubsShikoku" />
+    <Menu area-name="九州・沖縄" :club-json="clubsKyushuOkinawa" />
   </section>
 </template>
 
 <script lang="ts">
-import { Context } from 'vm'
 import Vue from 'vue'
-import Card from '~/components/Card.vue'
+import Menu from '~/components/Menu.vue'
 
 export default Vue.extend({
-  name: 'HomePage',
+  name: 'TopPage',
   components: {
-    Card
+    Menu
   },
-  async asyncData (context: Context): Promise<any> {
-    const deviceType: string = await context.$ua.deviceType()
-    return { deviceType }
+  asyncData () {
+    return {
+      clubsHokkaidoTohoku: require('~/assets/json/ClubsHokkaidoTohoku.json'),
+      clubsKanto: require('~/assets/json/ClubsKanto.json'),
+      clubsHokushinetsu: require('~/assets/json/ClubsHokushinetsu.json'),
+      clubsTokai: require('~/assets/json/ClubsTokai.json'),
+      clubsKansai: require('~/assets/json/ClubsKansai.json'),
+      clubsChugoku: require('~/assets/json/ClubsChugoku.json'),
+      clubsShikoku: require('~/assets/json/ClubsShikoku.json'),
+      clubsKyushuOkinawa: require('~/assets/json/ClubsKyushuOkinawa.json')
+    }
   }
 })
 </script>
 
 <style scoped>
-#anchor {
-  display: block;
-  margin-top: 200vh;
-  margin-bottom: 100vh;
-}
 </style>

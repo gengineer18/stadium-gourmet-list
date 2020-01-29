@@ -2,6 +2,7 @@
   {
     "id": 27,
     "name": "AC長野パルセイロ",
+    "link": "nagano",
     "division": "J3",
     "stadium": [
       {
@@ -14,6 +15,7 @@
   {
     "id": 28,
     "name": "松本山雅FC",
+    "link": "matsumoto",
     "division": "J2",
     "stadium": [
       {
@@ -26,6 +28,7 @@
   {
     "id": 29,
     "name": "アルビレックス新潟",
+    "link": "niigata",
     "division": "J2",
     "stadium": [
       {
@@ -38,6 +41,7 @@
   {
     "id": 30,
     "name": "カターレ富山",
+    "link": "toyama",
     "division": "J3",
     "stadium": [
       {
@@ -50,6 +54,7 @@
   {
     "id": 31,
     "name": "ツエーゲン金沢",
+    "link": "kanazawa",
     "division": "J2",
     "stadium": [
       {

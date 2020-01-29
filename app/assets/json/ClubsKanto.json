@@ -2,6 +2,7 @@
   {
     "id": 8,
     "name": "鹿島アントラーズ",
+    "link": "kashima",
     "division": "J1",
     "stadium": [
       {
@@ -14,6 +15,7 @@
   {
     "id": 9,
     "name": "水戸ホーリーホック",
+    "link": "mito",
     "division": "J2",
     "stadium": [
       {
@@ -26,6 +28,7 @@
   {
     "id": 10,
     "name": "栃木SC",
+    "link": "tochigi",
     "division": "J2",
     "stadium": [
       {
@@ -38,6 +41,7 @@
   {
     "id": 11,
     "name": "ザスパクサツ群馬",
+    "link": "kusatsu",
     "division": "J2",
     "stadium": [
       {
@@ -50,6 +54,7 @@
   {
     "id": 12,
     "name": "浦和レッズ",
+    "link": "urawa",
     "division": "J1",
     "stadium": [
       {
@@ -66,6 +71,7 @@
   {
     "id": 13,
     "name": "大宮アルディージャ",
+    "link": "omiya",
     "division": "J2",
     "stadium": [
       {
@@ -78,6 +84,7 @@
   {
     "id": 14,
     "name": "ジェフユナイテッド千葉",
+    "link": "chiba",
     "division": "J2",
     "stadium": [
       {
@@ -90,6 +97,7 @@
   {
     "id": 15,
     "name": "柏レイソル",
+    "link": "kashiwa",
     "division": "J1",
     "stadium": [
       {
@@ -102,6 +110,7 @@
   {
     "id": 16,
     "name": "FC東京",
+    "link": "ftokyo",
     "division": "J1",
     "stadium": [
       {
@@ -114,6 +123,7 @@
   {
     "id": 17,
     "name": "FC東京 U-23",
+    "link": "ftokyou23",
     "division": "J3",
     "stadium": [
       {
@@ -134,6 +144,7 @@
   {
     "id": 18,
     "name": "東京ヴェルディ",
+    "link": "tokyov",
     "division": "J2",
     "stadium": [
       {
@@ -154,6 +165,7 @@
   {
     "id": 19,
     "name": "FC町田ゼルビア",
+    "link": "machida",
     "division": "J2",
     "stadium": [
       {
@@ -166,6 +178,7 @@
   {
     "id": 20,
     "name": "川崎フロンターレ",
+    "link": "kawasaki",
     "division": "J1",
     "stadium": [
       {
@@ -178,6 +191,7 @@
   {
     "id": 21,
     "name": "横浜F・マリノス",
+    "link": "yokohamafm",
     "division": "J1",
     "stadium": [
       {
@@ -194,6 +208,7 @@
   {
     "id": 22,
     "name": "横浜FC",
+    "link": "yokohamafc",
     "division": "J1",
     "stadium": [
       {
@@ -206,6 +221,7 @@
   {
     "id": 23,
     "name": "Y.S.C.C.横浜",
+    "link": "ysyokohama",
     "division": "J3",
     "stadium": [
       {
@@ -218,6 +234,7 @@
   {
     "id": 24,
     "name": "SC相模原",
+    "link": "sagamihara",
     "division": "J3",
     "stadium": [
       {
@@ -230,6 +247,7 @@
   {
     "id": 25,
     "name": "湘南ベルマーレ",
+    "link": "shonan",
     "division": "J1",
     "stadium": [
       {
@@ -242,6 +260,7 @@
   {
     "id": 26,
     "name": "ヴァンフォーレ甲府",
+    "link": "kofu",
     "division": "J2",
     "stadium": [
       {
