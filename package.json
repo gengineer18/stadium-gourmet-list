@@ -29,7 +29,7 @@
     "core-js": "2.6.11",
     "firebase": "^7.7.0",
     "nuxt": "^2.11.0",
-    "nuxt-buefy": "^0.3.20",
+    "nuxt-buefy": "^0.3.21",
     "nuxt-user-agent": "^1.2.2",
     "pug": "^2.0.4",
     "vee-validate": "^3.2.1",
