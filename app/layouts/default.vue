@@ -26,7 +26,7 @@
     </nav>
 
     <section class="main-content columns">
-      <aside class="column is-2 section">
+      <!-- <aside class="column is-2 section">
         <p class="menu-label is-hidden-touch">
           General
         </p>
@@ -43,9 +43,9 @@
             </nuxt-link>
           </li>
         </ul>
-      </aside>
+      </aside> -->
 
-      <div class="container column is-10">
+      <div class="container column is-8">
         <nuxt />
       </div>
     </section>
@@ -57,48 +57,54 @@ export default {
   data () {
     return {
       items: [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' }
-        },
-        {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
-        },
-        {
-          title: 'Clubname',
-          icon: 'lightbulb',
-          to: { path: '/club/fctokyo' }
-        },
-        {
-          title: 'Menuid',
-          icon: 'lightbulb',
-          to: { path: '/club/fctokyo/curry' }
-        },
-        {
-          title: 'MenuEdit',
-          icon: 'lightbulb',
-          to: { path: '/club/fctokyo/curry/edit' }
-        },
-        {
-          title: 'User',
-          icon: 'lightbulb',
-          to: { path: '/user/test' }
-        },
-        {
-          title: 'UserEdit',
-          icon: 'lightbulb',
-          to: { path: '/user/test/edit' }
-        },
-        {
-          title: 'post',
-          icon: 'lightbulb',
-          to: { path: '/post' }
-        }
+        // {
+        //   title: 'Home',
+        //   icon: 'home',
+        //   to: { name: 'index' }
+        // },
+        // {
+        //   title: 'Inspire',
+        //   icon: 'lightbulb',
+        //   to: { name: 'inspire' }
+        // },
+        // {
+        //   title: 'Clubname',
+        //   icon: 'lightbulb',
+        //   to: { path: '/club/fctokyo' }
+        // },
+        // {
+        //   title: 'Menuid',
+        //   icon: 'lightbulb',
+        //   to: { path: '/club/fctokyo/curry' }
+        // },
+        // {
+        //   title: 'MenuEdit',
+        //   icon: 'lightbulb',
+        //   to: { path: '/club/fctokyo/curry/edit' }
+        // },
+        // {
+        //   title: 'User',
+        //   icon: 'lightbulb',
+        //   to: { path: '/user/test' }
+        // },
+        // {
+        //   title: 'UserEdit',
+        //   icon: 'lightbulb',
+        //   to: { path: '/user/test/edit' }
+        // },
+        // {
+        //   title: 'post',
+        //   icon: 'lightbulb',
+        //   to: { path: '/post' }
+        // }
       ]
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.container {
+  margin-top: 32px;
+}
+</style>

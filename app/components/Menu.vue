@@ -2,7 +2,7 @@
   <b-menu>
     <b-menu-list>
       <b-menu-item
-        icon="settings"
+        icon="soccer"
         :active="isActive"
         :expanded="isActive"
         @click="isActive = !isActive"
@@ -14,29 +14,32 @@
             :icon="props.expanded ? 'menu-down' : 'menu-up'"
           />
         </template>
-        <b-menu-item
+        <div
           v-for="club in clubJson"
           :key="club.id"
-          icon="account"
-          :label="club.name"
-          tag="nuxt-link"
-          :to="getClubPageLink(club.link)"
-        />
+        >
+          <mark-circle :color1="club.color1" :color2="club.color2" class="DisplayInlineBlock" />
+          <b-menu-item
+            :label="club.name"
+            tag="nuxt-link"
+            :to="getClubPageLink(club.link)"
+            class="DisplayInlineBlock MenuItem"
+          />
+        </div>
       </b-menu-item>
     </b-menu-list>
   </b-menu>
-  <!-- <div>
-    <span v-for="club in clubJson" :key="club.id">
-      <p>{{ club }}</p>
-    </span>
-  </div> -->
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import MarkCircle from '@/components/MarkCircle.vue'
+
 export default Vue.extend({
+  components: {
+    MarkCircle
+  },
   props: {
-    // eslint-disable-next-line vue/require-prop-types
     areaName: {
       type: String,
       required: true
@@ -61,6 +64,11 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+.DisplayInlineBlock {
+  display: inline-block;
+}
+.MenuItem {
+  width: calc(100% - 24px);
+}
 </style>
