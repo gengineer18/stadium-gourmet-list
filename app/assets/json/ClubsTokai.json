@@ -2,8 +2,10 @@
   {
     "id": 32,
     "name": "清水エスパルス",
-    "link": "shimizu",
+    "link": "spulse",
     "division": "J1",
+    "color1": "#FF8706",
+    "color2": "#FF8706",
     "stadium": [
       {
         "id": 34,
@@ -19,8 +21,10 @@
   {
     "id": 33,
     "name": "ジュビロ磐田",
-    "link": "iwata",
+    "link": "jubilo",
     "division": "J2",
+    "color1": "#7399D1",
+    "color2": "#7399D1",
     "stadium": [
       {
         "id": 35,
@@ -36,8 +40,10 @@
   {
     "id": 34,
     "name": "藤枝MYFC",
-    "link": "fujieda",
+    "link": "fujiedamyfc",
     "division": "J3",
+    "color1": "#803376",
+    "color2": "#803376",
     "stadium": [
       {
         "id": 37,
@@ -49,8 +55,10 @@
   {
     "id": 35,
     "name": "アスルクラロ沼津",
-    "link": "numazu",
+    "link": "azulclaro",
     "division": "J3",
+    "color1": "#00A0E9",
+    "color2": "#122A88",
     "stadium": [
       {
         "id": 38,
@@ -62,8 +70,10 @@
   {
     "id": 36,
     "name": "名古屋グランパス",
-    "link": "nagoya",
+    "link": "grampus",
     "division": "J1",
+    "color1": "#D70C17",
+    "color2": "#F39800",
     "stadium": [
       {
         "id": 39,
@@ -79,8 +89,10 @@
   {
     "id": 37,
     "name": "FC岐阜",
-    "link": "gifu",
+    "link": "fcgifu",
     "division": "J3",
+    "color1": "#016427",
+    "color2": "#45B158",
     "stadium": [
       {
         "id": 41,

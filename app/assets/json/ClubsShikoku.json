@@ -2,8 +2,10 @@
   {
     "id": 48,
     "name": "徳島ヴォルティス",
-    "link": "tokushima",
+    "link": "vortis",
     "division": "J2",
+    "color1": "#0A308F",
+    "color2": "#6BB131",
     "stadium": [
       {
         "id": 52,
@@ -15,8 +17,10 @@
   {
     "id": 49,
     "name": "カマタマーレ讃岐",
-    "link": "sanuki",
+    "link": "kamatamare",
     "division": "J3",
+    "color1": "#65AADD",
+    "color2": "#004471",
     "stadium": [
       {
         "id": 53,
@@ -28,8 +32,10 @@
   {
     "id": 50,
     "name": "愛媛FC",
-    "link": "ehime",
+    "link": "ehimefc",
     "division": "J2",
+    "color1": "#FF951B",
+    "color2": "#FF951B",
     "stadium": [
       {
         "id": 53,
@@ -41,8 +47,10 @@
   {
     "id": 51,
     "name": "FC今治",
-    "link": "imabari",
+    "link": "fcimabari",
     "division": "J3",
+    "color1": "#161B60",
+    "color2": "#FFF102",
     "stadium": [
       {
         "id": 54,
