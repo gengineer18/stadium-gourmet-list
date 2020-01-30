@@ -22,14 +22,14 @@ export default Vue.extend({
   },
   asyncData () {
     return {
-      clubsHokkaidoTohoku: require('~/assets/json/ClubsHokkaidoTohoku.json'),
-      clubsKanto: require('~/assets/json/ClubsKanto.json'),
-      clubsHokushinetsu: require('~/assets/json/ClubsHokushinetsu.json'),
-      clubsTokai: require('~/assets/json/ClubsTokai.json'),
-      clubsKansai: require('~/assets/json/ClubsKansai.json'),
-      clubsChugoku: require('~/assets/json/ClubsChugoku.json'),
-      clubsShikoku: require('~/assets/json/ClubsShikoku.json'),
-      clubsKyushuOkinawa: require('~/assets/json/ClubsKyushuOkinawa.json')
+      clubsHokkaidoTohoku: require('~/static/json/ClubsHokkaidoTohoku.json'),
+      clubsKanto: require('~/static/json/ClubsKanto.json'),
+      clubsHokushinetsu: require('~/static/json/ClubsHokushinetsu.json'),
+      clubsTokai: require('~/static/json/ClubsTokai.json'),
+      clubsKansai: require('~/static/json/ClubsKansai.json'),
+      clubsChugoku: require('~/static/json/ClubsChugoku.json'),
+      clubsShikoku: require('~/static/json/ClubsShikoku.json'),
+      clubsKyushuOkinawa: require('~/static/json/ClubsKyushuOkinawa.json')
     }
   }
 })
