@@ -18,12 +18,12 @@
           v-for="club in clubJson"
           :key="club.id"
         >
-          <mark-circle :color1="club.color1" :color2="club.color2" class="DisplayInlineBlock" />
+          <mark-circle :color1="club.color1" :color2="club.color2" class="is-inline-block" />
           <b-menu-item
             :label="club.name"
             tag="nuxt-link"
             :to="getClubPageLink(club.link)"
-            class="DisplayInlineBlock MenuItem"
+            class="is-inline-block MenuItem"
           />
         </div>
       </b-menu-item>
@@ -65,9 +65,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.DisplayInlineBlock {
-  display: inline-block;
-}
 .MenuItem {
   width: calc(100% - 24px);
 }
