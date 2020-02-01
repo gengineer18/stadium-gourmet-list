@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "北海道コンサドーレ札幌",
-    "link": "consadole",
+    "spell": "consadole",
     "division": "J1",
     "color1": "#d7000f",
     "color2": "#000000",
@@ -21,7 +21,7 @@
   {
     "id": 2,
     "name": "ヴァンラーレ八戸",
-    "link": "vanraure",
+    "spell": "vanraure",
     "division": "J3",
     "color1": "#008836",
     "color2": "#008836",
@@ -36,7 +36,7 @@
   {
     "id": 3,
     "name": "いわてグルージャ盛岡",
-    "link": "grulla",
+    "spell": "grulla",
     "division": "J3",
     "color1": "#FFFFFF",
     "color2": "#000000",
@@ -51,7 +51,7 @@
   {
     "id": 4,
     "name": "ベガルタ仙台",
-    "link": "vegalta",
+    "spell": "vegalta",
     "division": "J1",
     "color1": "#fcc800",
     "color2": "#fcc800",
@@ -66,7 +66,7 @@
   {
     "id": 5,
     "name": "ブラウブリッツ秋田",
-    "link": "blaublitz",
+    "spell": "blaublitz",
     "division": "J3",
     "color1": "#005BAB",
     "color2": "#005BAB",
@@ -81,7 +81,7 @@
   {
     "id": 6,
     "name": "モンテディオ山形",
-    "link": "montedio",
+    "spell": "montedio",
     "division": "J2",
     "color1": "#004099",
     "color2": "#FFFFFF",
@@ -96,7 +96,7 @@
   {
     "id": 7,
     "name": "福島ユナイテッドFC",
-    "link": "fukushima",
+    "spell": "fukushima",
     "division": "J3",
     "color1": "#E60012",
     "color2": "#211612",

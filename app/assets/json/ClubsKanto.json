@@ -2,7 +2,7 @@
   {
     "id": 8,
     "name": "鹿島アントラーズ",
-    "link": "antlers",
+    "spell": "antlers",
     "division": "J1",
     "color1": "#B8183F",
     "color2": "#B8183F",
@@ -17,7 +17,7 @@
   {
     "id": 9,
     "name": "水戸ホーリーホック",
-    "link": "hollyhock",
+    "spell": "hollyhock",
     "division": "J2",
     "color1": "#1C2088",
     "color2": "#1C2088",
@@ -32,7 +32,7 @@
   {
     "id": 10,
     "name": "栃木SC",
-    "link": "tochigisc",
+    "spell": "tochigisc",
     "color1": "#FFEA02",
     "color2": "#FFEA02",
     "division": "J2",
@@ -47,7 +47,7 @@
   {
     "id": 11,
     "name": "ザスパクサツ群馬",
-    "link": "thespa",
+    "spell": "thespa",
     "division": "J2",
     "color1": "#00063A",
     "color2": "#FDD448",
@@ -62,7 +62,7 @@
   {
     "id": 12,
     "name": "浦和レッズ",
-    "link": "reds",
+    "spell": "reds",
     "division": "J1",
     "color1": "#E6002D",
     "color2": "#E6002D",
@@ -81,7 +81,7 @@
   {
     "id": 13,
     "name": "大宮アルディージャ",
-    "link": "ardija",
+    "spell": "ardija",
     "division": "J2",
     "color1": "#ED6C00",
     "color2": "#ED6C00",
@@ -96,7 +96,7 @@
   {
     "id": 14,
     "name": "ジェフユナイテッド千葉",
-    "link": "jef",
+    "spell": "jef",
     "division": "J2",
     "color1": "#FFE100",
     "color2": "#009260",
@@ -111,7 +111,7 @@
   {
     "id": 15,
     "name": "柏レイソル",
-    "link": "reysol",
+    "spell": "reysol",
     "color1": "#FFE850",
     "color2": "#FFE850",
     "division": "J1",
@@ -126,7 +126,7 @@
   {
     "id": 16,
     "name": "FC東京",
-    "link": "fctokyo",
+    "spell": "fctokyo",
     "color1": "#0B2F8E",
     "color2": "#E5002C",
     "division": "J1",
@@ -141,7 +141,7 @@
   {
     "id": 17,
     "name": "FC東京 U-23",
-    "link": "fctokyou23",
+    "spell": "fctokyou23",
     "color1": "#0B2F8E",
     "color2": "#E5002C",
     "division": "J3",
@@ -164,7 +164,7 @@
   {
     "id": 18,
     "name": "東京ヴェルディ",
-    "link": "verdy",
+    "spell": "verdy",
     "division": "J2",
     "color1": "#006937",
     "color2": "#006937",
@@ -187,7 +187,7 @@
   {
     "id": 19,
     "name": "FC町田ゼルビア",
-    "link": "zelvia",
+    "spell": "zelvia",
     "division": "J2",
     "color1": "#0054A7",
     "color2": "#BEAF71",
@@ -202,7 +202,7 @@
   {
     "id": 20,
     "name": "川崎フロンターレ",
-    "link": "frontale",
+    "spell": "frontale",
     "color1": "#20AEF4",
     "color2": "#212121",
     "division": "J1",
@@ -217,7 +217,7 @@
   {
     "id": 21,
     "name": "横浜F・マリノス",
-    "link": "fmarinos",
+    "spell": "fmarinos",
     "color1": "#003F98",
     "color2": "#FFFFFF",
     "division": "J1",
@@ -236,7 +236,7 @@
   {
     "id": 22,
     "name": "横浜FC",
-    "link": "yokohamafc",
+    "spell": "yokohamafc",
     "division": "J1",
     "color1": "#00A0E9",
     "color2": "#00A0E9",
@@ -251,7 +251,7 @@
   {
     "id": 23,
     "name": "Y.S.C.C.横浜",
-    "link": "yscc",
+    "spell": "yscc",
     "color1": "#005BAB",
     "color2": "#EE7A00",
     "division": "J3",
@@ -266,7 +266,7 @@
   {
     "id": 24,
     "name": "SC相模原",
-    "link": "scsagamihara",
+    "spell": "scsagamihara",
     "color1": "#2E8D47",
     "color2": "#373333",
     "division": "J3",
@@ -281,7 +281,7 @@
   {
     "id": 25,
     "name": "湘南ベルマーレ",
-    "link": "bellmare",
+    "spell": "bellmare",
     "color1": "#6FBA2B",
     "color2": "#004081",
     "division": "J1",
@@ -296,7 +296,7 @@
   {
     "id": 26,
     "name": "ヴァンフォーレ甲府",
-    "link": "ventforet",
+    "spell": "ventforet",
     "division": "J2",
     "color1": "#0060B5",
     "color2": "#CA1944",

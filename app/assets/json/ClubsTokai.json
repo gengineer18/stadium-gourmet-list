@@ -2,7 +2,7 @@
   {
     "id": 32,
     "name": "清水エスパルス",
-    "link": "spulse",
+    "spell": "spulse",
     "division": "J1",
     "color1": "#FF8706",
     "color2": "#FF8706",
@@ -21,7 +21,7 @@
   {
     "id": 33,
     "name": "ジュビロ磐田",
-    "link": "jubilo",
+    "spell": "jubilo",
     "division": "J2",
     "color1": "#7399D1",
     "color2": "#7399D1",
@@ -40,7 +40,7 @@
   {
     "id": 34,
     "name": "藤枝MYFC",
-    "link": "fujiedamyfc",
+    "spell": "fujiedamyfc",
     "division": "J3",
     "color1": "#803376",
     "color2": "#803376",
@@ -55,7 +55,7 @@
   {
     "id": 35,
     "name": "アスルクラロ沼津",
-    "link": "azulclaro",
+    "spell": "azulclaro",
     "division": "J3",
     "color1": "#00A0E9",
     "color2": "#122A88",
@@ -70,7 +70,7 @@
   {
     "id": 36,
     "name": "名古屋グランパス",
-    "link": "grampus",
+    "spell": "grampus",
     "division": "J1",
     "color1": "#D70C17",
     "color2": "#F39800",
@@ -89,7 +89,7 @@
   {
     "id": 37,
     "name": "FC岐阜",
-    "link": "fcgifu",
+    "spell": "fcgifu",
     "division": "J3",
     "color1": "#016427",
     "color2": "#45B158",

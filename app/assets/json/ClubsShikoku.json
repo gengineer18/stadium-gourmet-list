@@ -2,7 +2,7 @@
   {
     "id": 48,
     "name": "徳島ヴォルティス",
-    "link": "vortis",
+    "spell": "vortis",
     "division": "J2",
     "color1": "#0A308F",
     "color2": "#6BB131",
@@ -17,7 +17,7 @@
   {
     "id": 49,
     "name": "カマタマーレ讃岐",
-    "link": "kamatamare",
+    "spell": "kamatamare",
     "division": "J3",
     "color1": "#65AADD",
     "color2": "#004471",
@@ -32,7 +32,7 @@
   {
     "id": 50,
     "name": "愛媛FC",
-    "link": "ehimefc",
+    "spell": "ehimefc",
     "division": "J2",
     "color1": "#FF951B",
     "color2": "#FF951B",
@@ -47,7 +47,7 @@
   {
     "id": 51,
     "name": "FC今治",
-    "link": "fcimabari",
+    "spell": "fcimabari",
     "division": "J3",
     "color1": "#161B60",
     "color2": "#FFF102",

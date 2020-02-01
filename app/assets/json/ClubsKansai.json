@@ -2,7 +2,7 @@
   {
     "id": 38,
     "name": "京都サンガF.C.",
-    "link": "sanga",
+    "spell": "sanga",
     "division": "J2",
     "color1": "#842178",
     "color2": "#842178",
@@ -21,7 +21,7 @@
   {
     "id": 39,
     "name": "ガンバ大阪",
-    "link": "gamba",
+    "spell": "gamba",
     "division": "J1",
     "color1": "#013981",
     "color2": "#000000",
@@ -36,7 +36,7 @@
   {
     "id": 40,
     "name": "ガンバ大阪 U-23",
-    "link": "gambau23",
+    "spell": "gambau23",
     "division": "J3",
     "color1": "#013981",
     "color2": "#000000",
@@ -51,7 +51,7 @@
   {
     "id": 41,
     "name": "セレッソ大阪",
-    "link": "cerezo",
+    "spell": "cerezo",
     "division": "J1",
     "color1": "#DA005C",
     "color2": "#DA005C",
@@ -70,7 +70,7 @@
   {
     "id": 42,
     "name": "セレッソ大阪 U-23",
-    "link": "cerezou23",
+    "spell": "cerezou23",
     "division": "J3",
     "color1": "#DA005C",
     "color2": "#DA005C",
@@ -89,7 +89,7 @@
   {
     "id": 43,
     "name": "ヴィッセル神戸",
-    "link": "kobe",
+    "spell": "vissel",
     "division": "J1",
     "color1": "#9B001F",
     "color2": "#9B001F",

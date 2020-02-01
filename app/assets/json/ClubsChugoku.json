@@ -2,7 +2,7 @@
   {
     "id": 44,
     "name": "ガイナーレ鳥取",
-    "link": "gainare",
+    "spell": "gainare",
     "division": "J3",
     "color1": "#6DBA3C",
     "color2": "#023458",
@@ -17,7 +17,7 @@
   {
     "id": 45,
     "name": "ファジアーノ岡山",
-    "link": "fagiano",
+    "spell": "fagiano",
     "division": "J2",
     "color1": "#B6003D",
     "color2": "#1D2368",
@@ -32,7 +32,7 @@
   {
     "id": 46,
     "name": "サンフレッチェ広島",
-    "link": "sanfrecce",
+    "spell": "sanfrecce",
     "division": "J1",
     "color1": "#51308F",
     "color2": "#51308F",
@@ -47,7 +47,7 @@
   {
     "id": 47,
     "name": "レノファ山口FC",
-    "link": "renofa",
+    "spell": "renofa",
     "division": "J2",
     "color1": "#EB5C00",
     "color2": "#EB5C00",
