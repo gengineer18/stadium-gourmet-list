@@ -22,7 +22,7 @@
           <b-menu-item
             :label="club.name"
             tag="nuxt-link"
-            :to="getClubPageLink(club.link)"
+            :to="getClubPageLink(club.spell)"
             class="is-inline-block MenuItem"
           />
         </div>

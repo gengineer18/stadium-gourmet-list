@@ -2,7 +2,7 @@
   {
     "id": 27,
     "name": "AC長野パルセイロ",
-    "link": "parceiro",
+    "spell": "parceiro",
     "division": "J3",
     "color1": "#DA7600",
     "color2": "#1A2260",
@@ -17,7 +17,7 @@
   {
     "id": 28,
     "name": "松本山雅FC",
-    "link": "yamaga",
+    "spell": "yamaga",
     "color1": "#007343",
     "color2": "#003E20",
     "division": "J2",
@@ -32,7 +32,7 @@
   {
     "id": 29,
     "name": "アルビレックス新潟",
-    "link": "albirex",
+    "spell": "albirex",
     "color1": "#E95405",
     "color2": "#004099",
     "division": "J2",
@@ -47,7 +47,7 @@
   {
     "id": 30,
     "name": "カターレ富山",
-    "link": "kataller",
+    "spell": "kataller",
     "color1": "#0D267E",
     "color2": "#9B0337",
     "division": "J3",
@@ -62,7 +62,7 @@
   {
     "id": 31,
     "name": "ツエーゲン金沢",
-    "link": "zweigen",
+    "spell": "zweigen",
     "color1": "#D70C1E",
     "color2": "#000000",
     "division": "J2",
