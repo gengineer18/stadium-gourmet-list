@@ -6,16 +6,20 @@
       aria-label="main navigation"
     >
       <div class="navbar-brand">
-        <a
+        <nuxt-link
           class="navbar-item"
-          href="/"
+          to="/"
         >
           <img
             src="~assets/buefy.png"
             alt="Buefy"
             height="28"
           >
-        </a>
+        </nuxt-link>
+
+        <nuxt-link class="navbar-item" to="/post">
+          投稿
+        </nuxt-link>
 
         <div class="navbar-burger">
           <span />
