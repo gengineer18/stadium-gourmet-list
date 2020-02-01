@@ -1,0 +1,238 @@
+[
+  {
+    "name": "北海道コンサドーレ札幌",
+    "spell": "consadole"
+  },
+  {
+    "name": "ヴァンラーレ八戸",
+    "spell": "vanraure"
+  },
+  {
+    "name": "いわてグルージャ盛岡",
+    "spell": "grulla"
+  },
+  {
+    "name": "ベガルタ仙台",
+    "spell": "vegalta"
+  },
+  {
+    "name": "ブラウブリッツ秋田",
+    "spell": "blaublitz"
+  },
+  {
+    "name": "モンテディオ山形",
+    "spell": "montedio"
+  },
+  {
+    "name": "福島ユナイテッドFC",
+    "spell": "fukushima"
+  },
+  {
+    "name": "鹿島アントラーズ",
+    "spell": "antlers"
+  },
+  {
+    "name": "水戸ホーリーホック",
+    "spell": "hollyhock"
+  },
+  {
+    "name": "栃木SC",
+    "spell": "tochigisc"
+  },
+  {
+    "name": "ザスパクサツ群馬",
+    "spell": "thespa"
+  },
+  {
+    "name": "浦和レッズ",
+    "spell": "reds"
+  },
+  {
+    "name": "大宮アルディージャ",
+    "spell": "ardija"
+  },
+  {
+    "name": "ジェフユナイテッド千葉",
+    "spell": "jef"
+  },
+  {
+    "name": "柏レイソル",
+    "spell": "reysol"
+  },
+  {
+    "name": "FC東京",
+    "spell": "fctokyo"
+  },
+  {
+    "name": "FC東京 U-23",
+    "spell": "fctokyou23"
+  },
+  {
+    "name": "東京ヴェルディ",
+    "spell": "verdy"
+  },
+  {
+    "name": "FC町田ゼルビア",
+    "spell": "zelvia"
+  },
+  {
+    "name": "川崎フロンターレ",
+    "spell": "frontale"
+  },
+  {
+    "name": "横浜F・マリノス",
+    "spell": "fmarinos"
+  },
+  {
+    "name": "横浜FC",
+    "spell": "yokohamafc"
+  },
+  {
+    "name": "Y.S.C.C.横浜",
+    "spell": "yscc"
+  },
+  {
+    "name": "SC相模原",
+    "spell": "scsagamihara"
+  },
+  {
+    "name": "湘南ベルマーレ",
+    "spell": "bellmare"
+  },
+  {
+    "name": "ヴァンフォーレ甲府",
+    "spell": "ventforet"
+  },
+  {
+    "name": "AC長野パルセイロ",
+    "spell": "parceiro"
+  },
+  {
+    "name": "松本山雅FC",
+    "spell": "yamaga"
+  },
+  {
+    "name": "アルビレックス新潟",
+    "spell": "albirex"
+  },
+  {
+    "name": "カターレ富山",
+    "spell": "kataller"
+  },
+  {
+    "name": "ツエーゲン金沢",
+    "spell": "zweigen"
+  },
+  {
+    "name": "清水エスパルス",
+    "spell": "spulse"
+  },
+  {
+    "name": "ジュビロ磐田",
+    "spell": "jubilo"
+  },
+  {
+    "name": "藤枝MYFC",
+    "spell": "fujiedamyfc"
+  },
+  {
+    "name": "アスルクラロ沼津",
+    "spell": "azulclaro"
+  },
+  {
+    "name": "名古屋グランパス",
+    "spell": "grampus"
+  },
+  {
+    "name": "FC岐阜",
+    "spell": "fcgifu"
+  },
+  {
+    "name": "京都サンガF.C.",
+    "spell": "sanga"
+  },
+  {
+    "name": "ガンバ大阪",
+    "spell": "gamba"
+  },
+  {
+    "name": "ガンバ大阪 U-23",
+    "spell": "gambau23"
+  },
+  {
+    "name": "セレッソ大阪",
+    "spell": "cerezo"
+  },
+  {
+    "name": "セレッソ大阪 U-23",
+    "spell": "cerezou23"
+  },
+  {
+    "name": "ヴィッセル神戸",
+    "spell": "vissel"
+  },
+  {
+    "name": "ガイナーレ鳥取",
+    "spell": "gainare"
+  },
+  {
+    "name": "ファジアーノ岡山",
+    "spell": "fagiano"
+  },
+  {
+    "name": "サンフレッチェ広島",
+    "spell": "sanfrecce"
+  },
+  {
+    "name": "レノファ山口FC",
+    "spell": "renofa"
+  },
+  {
+    "name": "徳島ヴォルティス",
+    "spell": "vortis"
+  },
+  {
+    "name": "カマタマーレ讃岐",
+    "spell": "kamatamare"
+  },
+  {
+    "name": "愛媛FC",
+    "spell": "ehimefc"
+  },
+  {
+    "name": "FC今治",
+    "spell": "fcimabari"
+  },
+  {
+    "name": "アビスパ福岡",
+    "spell": "avispa"
+  },
+  {
+    "name": "ギラヴァンツ北九州",
+    "spell": "giravanz"
+  },
+  {
+    "name": "サガン鳥栖",
+    "spell": "sagan"
+  },
+  {
+    "name": "V・ファーレン長崎",
+    "spell": "v-varen"
+  },
+  {
+    "name": "ロアッソ熊本",
+    "spell": "roasso"
+  },
+  {
+    "name": "大分トリニータ",
+    "spell": "trinita"
+  },
+  {
+    "name": "鹿児島ユナイテッドFC",
+    "spell": "kagoshima"
+  },
+  {
+    "name": "FC琉球",
+    "spell": "fcryukyu"
+  }
+]
