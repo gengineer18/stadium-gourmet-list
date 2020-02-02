@@ -6,6 +6,8 @@
       :placeholder="label"
       :month-names="monthNames"
       :day-names="dayNames"
+      v-bind="$attrs"
+      v-on="$listeners"
     >
       <button
         class="button is-primary"

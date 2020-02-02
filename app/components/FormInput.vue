@@ -1,6 +1,12 @@
 <template>
   <b-field :label="label" label-position="on-border">
-    <b-input value="" :maxlength="maxLength" :placeholder="label" type="search" />
+    <b-input
+      v-bind="$attrs"
+      :maxlength="maxLength"
+      :placeholder="label"
+      type="search"
+      v-on="$listeners"
+    />
   </b-field>
 </template>
 

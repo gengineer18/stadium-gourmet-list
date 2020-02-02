@@ -1,6 +1,12 @@
 <template>
   <b-field :label="label" label-position="on-border">
-    <b-input value="" :maxlength="maxLength" type="textarea" :placeholder="label" />
+    <b-input
+      v-bind="$attrs"
+      :maxlength="maxLength"
+      type="textarea"
+      :placeholder="label"
+      v-on="$listeners"
+    />
   </b-field>
 </template>
 
