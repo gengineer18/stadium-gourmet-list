@@ -1,8 +1,14 @@
 <template>
   <b-field :label="label" label-position="on-border">
-    <b-select :placeholder="label" expanded required>
+    <b-select
+      v-bind="$attrs"
+      :placeholder="label"
+      expanded
+      required
+      v-on="$listeners"
+    >
       <template v-for="item in listItems">
-        <option :key="item" :value="item.name">
+        <option :key="item.spell" :value="item.name">
           {{ item.name }}
         </option>
       </template>
@@ -19,7 +25,7 @@ export default Vue.extend({
       required: true
     },
     listItems: {
-      type: Object,
+      type: Array,
       required: true
     }
   }
