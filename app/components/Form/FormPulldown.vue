@@ -8,7 +8,7 @@
       v-on="$listeners"
     >
       <template v-for="item in listItems">
-        <option :key="item" :value="item.name">
+        <option :key="item.spell" :value="item.name">
           {{ item.name }}
         </option>
       </template>
@@ -25,7 +25,7 @@ export default Vue.extend({
       required: true
     },
     listItems: {
-      type: Object,
+      type: Array,
       required: true
     }
   }
