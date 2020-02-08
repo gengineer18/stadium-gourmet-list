@@ -20,7 +20,7 @@ jobs:
     - name: yarn install, build
       run: |
         yarn install
-        NODE_ENV=production yarn run build
+        NODE_ENV=production yarn run build:prod
     - name: GAE deploy
       run: |
         echo 'github-actions@stadium-gourmet-list.iam.gserviceaccount.com' | gcloud auth activate-service-account --key-file stadium-gourmet-list-eda668c12250.json
