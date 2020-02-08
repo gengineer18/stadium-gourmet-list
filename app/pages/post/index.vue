@@ -54,7 +54,7 @@ export default Vue.extend({
   },
   asyncData () {
     return {
-      listItems: require('~/assets/json/AllClubsNameList.json')
+      listItems: require('~/static/json/AllClubsNameList.json')
     }
   },
   data () {

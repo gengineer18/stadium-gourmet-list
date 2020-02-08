@@ -3,7 +3,7 @@ runtime: nodejs10
 instance_class: F2
 
 automatic_scaling:
-  min_instances: 1
+  min_instances: 0
   max_instances: 1
   max_pending_latency: 2000ms
 
@@ -11,7 +11,7 @@ handlers:
   - url: /_nuxt
     static_dir: .nuxt/dist/client
 
-  - url: /(.*\.(gif|png|jpg|ico|txt))$
+  - url: /(.*\.(gif|png|jpg|ico|txt|json))$
     static_files: static/\1
     upload: app/static/.*\.(gif|png|jpg|ico|txt)$
 
