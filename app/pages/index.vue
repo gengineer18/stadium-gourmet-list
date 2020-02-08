@@ -1,5 +1,6 @@
 <template>
   <section id="toppage">
+    <h1>デプロイ</h1>
     <b-button
       type="is-sub"
       icon-left="soccer"
