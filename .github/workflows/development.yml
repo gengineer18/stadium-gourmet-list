@@ -1,19 +1,14 @@
 name: CI
-
 on:
   push:
     branches:
       - develop
-
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.18.0]
-
     steps:
     - uses: actions/checkout@v1
     - name: Run tests with ${{ matrix.node-version }}
@@ -26,8 +21,6 @@ jobs:
         NODE_ENV=development yarn run build
     - name: GAE deploy
           run: |
-            echo 'github-actions@stadium-gourmet-list-dev.iam.gserviceaccount.com' | gcloud auth activate-service-account --key-file stadium-gourmet-list-dev-e8d8b69a811a.json
-            gcloud app deploy app.yaml --project stadium-gourmet-list-dev
-
+            echo 'github-actions@stadium-gourmet-list-dev.iam.gserviceaccount.com'
           env:
             CI: true
