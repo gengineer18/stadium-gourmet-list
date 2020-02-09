@@ -38,11 +38,11 @@ import Vue from 'vue'
 import 'buefy'
 import { mapGetters } from 'vuex'
 import { db } from '~/plugins/firebase.js'
-import FormInput from '@/components/form/FormInput.vue'
-import FormPulldown from '@/components/form/FormPulldown.vue'
-import FormTextArea from '@/components/form/FormTextArea.vue'
-import FormDate from '@/components/form/FormDate.vue'
-import FormFileUpload from '@/components/form/FormFileUpload.vue'
+import FormInput from '@/components/Form/FormInput.vue'
+import FormPulldown from '@/components/Form/FormPulldown.vue'
+import FormTextArea from '@/components/Form/FormTextArea.vue'
+import FormDate from '@/components/Form/FormDate.vue'
+import FormFileUpload from '@/components/Form/FormFileUpload.vue'
 
 export default Vue.extend({
   components: {
