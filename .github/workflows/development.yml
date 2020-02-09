@@ -1,4 +1,4 @@
-name: CI
+name: devCI
 
 on:
   push:
@@ -18,6 +18,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: yarn install, build
+      env:
+        SECRET_VARIABLE: ${{ secrets.SECRET_VARIABLE }}
       run: |
         yarn install
         NODE_ENV=production yarn run build:prod
@@ -26,4 +28,5 @@ jobs:
         echo 'github-actions@stadium-gourmet-list.iam.gserviceaccount.com' | gcloud auth activate-service-account --key-file stadium-gourmet-list-eda668c12250.json
         gcloud app deploy app.yaml --project stadium-gourmet-list
       env:
+        SECRET_VARIABLE: ${{ secrets.SECRET_VARIABLE }}
         CI: true
