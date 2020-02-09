@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "stadium-gourmet-list",
+  "private_key_id": "eda668c122509290e8fed4edb9c607790d9f7bef",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCp9XE59n+J6h6j\nvfm6mf3j/I0TIGFkYzpESJwIBggH2RFi+8YTKXzDxyNrlWZ/VJxVK8OB9ySIhdsf\neBJMm398cURwxcECJ9LhBVJO99+2Lgfunn20gCScxLiADdKyH0CKQCR+YF2Dc8cR\nWWqVj6bIBiKLwkyNjO1PnjXJ0hXdc9rhGlFUsoadi5uqMUc7V5jEz84Gd6cWSjtA\na7vspEUPsOotbasxeRH6Tsajl+15KxPGNlL8WFUnOi3VpAcmc+6QCUYubL16YgNz\nE8K8SI6mz9qUdMVqNzTBc271V4664QC387WxR6JSM2MuygxXsJc+I60AY3b4clvG\nhCNvvS37AgMBAAECggEAQCtTXLcc4E1s1BXeO/34RiQMf7QyEV0FmtJvVvgwAAaM\n8fpthr6bRK/jR7NYx6qCfAXSAzf0qzcezHrhLdtn/uwlEw8XGGFA1YTU1svvwzEN\n/aIJhCT9rdL4diDB9E6oZ4pgPPbVV9RWzM4d1+os5kiqsmnhzW/wCaeKV3DioIGH\n+vleqJr/a2MI6LAIUWMtdORKHnnIXQNH269n5Ei4shuN/3hGrhxcdw2I/zmueNOD\niY9D2aPsGE7epTjrjexxTfQx55nBUYFG8ER71Bol9Yk8LnewAuLrGBwvmNq/9wkn\nD9bqJR22dUBAvVGGyhNmJPfC/dlU9z4pFSdA3NQNgQKBgQDYmjYg7tt61ktCQN4u\nBBwShO2vSagPn6no2lhlJajT966dNz6ob62GLmy1hug8o8OqR/NWzUKsrKeh6Jn7\nhUfa53cut6RyjJ1qezSMIZl6g1kGVOXLqc9qL2eDonDddpFWpowbOnHD84LmPNmD\nZfJbWijKE8tb9ioqaDcoO2reuQKBgQDI31XP3tQ7TbklOrd8MOfw76nZLyfAR738\nKmhjEktX/GdGo9kI0NPL0rtp9IQtyWHSTqQuVOlmooS8OEeIntrOmwXNWQfucZb8\n73ocm/JDu66YvdJdNidA5ZEDMQZiScMlDN+YhNMZrvy83eLrJvCjGQ5BI2yfmLiW\nedvbyxK4UwKBgQCqFX4HokhKTtfN8K4GqEd661LQ4B/OFOwQ4tOiqU3HFKjS3zye\newNhaDcI3CSk6VuN7O3R7WA7w1/mrYWskd34sOVPk/jX0j8SDCkZGJEyOM3BQQ0p\nPfCXSx4XqYjC/oXl6uX9w4jt+9t/+6w5l+YVgdihxaVcUxKNNkSJnQ6wUQKBgBCa\nbTReXbp9JSWPoeTxAernVGmwPR/mjiyOsMwnkfS21y5+kozo/eimBXmvjVFfiOdi\nOq3dtOEX49LO8BK51qonJCaiCkbKOsmzXauJtE+m7rqPThkIRdxWXVMfNUDgifHB\nC6ZGrFA+J4PQ71WyhUdl5ci6jdrvO6qsbeDP+z8jAoGAR+mTWpMcZ1SnLrCmxcjo\nWcZis/ayFA2VdvaU9qPTfez4eSeN75NOWDfOSH1jkTJH+Zd+E5/2Gd/c6KXk5nN9\nTZyufyhChx3ZiWF0b587xvIccjEWuIqRBsEAHOOYhTHqq3Iqjfg+uNnV9ftE52+T\nvH2D8fx6QncZ5Y6/C6Fen9U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "stadium-gourmet-list@appspot.gserviceaccount.com",
+  "client_id": "112943430664731000982",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/stadium-gourmet-list%40appspot.gserviceaccount.com"
+}
