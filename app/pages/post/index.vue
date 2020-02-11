@@ -21,7 +21,7 @@
     <p>スタグル名：{{ gourmet }}</p>
     <p>チーム名：{{ team }}</p>
     <p>店舗名：{{ shop }}</p>
-    <p>コメント：{{ comment }}</p>
+    <p>寸評：{{ comment }}</p>
     <p>観戦日：{{ date }}</p>
     <p>写真：{{ file }}</p>
     <p>{{ posts }}</p>
@@ -44,6 +44,16 @@ import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
 import FormFileUpload from '@/components/Form/FormFileUpload.vue'
 
+export type DataType = {
+  gourmet: string,
+  team: string,
+  shop: string,
+  comment: string,
+  date: Date | null,
+  file: File | null,
+  docRefId: string
+}
+
 export default Vue.extend({
   components: {
     FormInput,
@@ -57,14 +67,15 @@ export default Vue.extend({
       listItems: require('~/static/json/AllClubsNameList.json')
     }
   },
-  data () {
+  data (): DataType {
     return {
       gourmet: '',
       team: '',
       shop: '',
       comment: '',
       date: null,
-      file: null
+      file: null,
+      docRefId: ''
     }
   },
   computed: {
@@ -81,24 +92,25 @@ export default Vue.extend({
         message: '投稿してよろしいですか?',
         cancelText: 'キャンセル',
         confirmText: 'OK',
-        onConfirm: () => {
-          console.log('pushed')
+        onConfirm: async () => {
           const dbdata = {
             gourmet: this.gourmet,
             team: this.team,
             shop: this.shop,
+            comment: this.comment,
             date: this.date,
             file: this.file
           }
           // データの登録
-          db.collection('posts').add(dbdata)
-            .then(function (docRef) {
+          await db.collection('posts').add(dbdata)
+            .then((docRef) => {
+              this.docRefId = docRef.id
               console.log('Document written with ID: ', docRef.id)
             })
-            .catch(function (error) {
+            .catch((error) => {
               console.error('Error adding document: ', error)
             })
-          this.$router.push('/post/complete')
+          await this.$router.push(`/post/complete?docRefId=${this.docRefId}`)
         }
       })
     }

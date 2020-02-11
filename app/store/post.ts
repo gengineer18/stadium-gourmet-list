@@ -1,9 +1,6 @@
 import { firestoreAction } from 'vuexfire'
 import { db } from '~/plugins/firebase'
 
-const projects = db.collection('post')
-
-
 export const state = () => {
   posts: []
 }
