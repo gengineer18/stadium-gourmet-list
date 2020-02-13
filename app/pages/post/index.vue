@@ -72,7 +72,7 @@ export default Vue.extend({
         cancelText: 'キャンセル',
         confirmText: 'OK',
         onConfirm: async () => {
-          const dbdata = {
+          const postData = {
             gourmet: this.gourmet,
             team: this.team,
             shop: this.shop,
@@ -80,11 +80,23 @@ export default Vue.extend({
             date: this.date,
             file: this.file
           }
+          const clubData = {
+            docRefId: this.docRefId,
+            team: this.team
+          }
           // データの登録
-          await db.collection('posts').add(dbdata)
+          await db.collection('posts').add(postData)
             .then((docRef) => {
               this.docRefId = docRef.id
-              console.log('Document written with ID: ', docRef.id)
+              console.log('post', this.docRefId)
+            })
+            .catch((error) => {
+              console.error('Error adding document: ', error)
+            })
+          // データの登録
+          await db.collection('clubs').doc('fctokyo').set(clubData)
+            .then((doc) => {
+              console.log('club', this.docRefId)
             })
             .catch((error) => {
               console.error('Error adding document: ', error)
