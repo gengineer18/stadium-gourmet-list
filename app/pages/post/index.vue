@@ -18,18 +18,6 @@
         </b-button>
       </span>
     </validation-observer>
-    <p>スタグル名：{{ gourmet }}</p>
-    <p>チーム名：{{ team }}</p>
-    <p>店舗名：{{ shop }}</p>
-    <p>寸評：{{ comment }}</p>
-    <p>観戦日：{{ date }}</p>
-    <p>写真：{{ file }}</p>
-    <p>{{ posts }}</p>
-    <ul>
-      <li v-for="post in posts" :key="post.id">
-        {{ post.id }}
-      </li>
-    </ul>
   </section>
 </template>
 
