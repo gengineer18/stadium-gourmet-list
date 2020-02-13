@@ -33,7 +33,9 @@ export default Vue.extend({
     const query = url.slice(1)
     const array = query.split('=')
     const docRefId = array[1]
+    // ドキュメントIDを元にfirebaseからデータをstateにセット
     await this.$store.dispatch('post/setPostsRef', db.collection('posts').doc(docRefId))
+    // storeからデータ読み込み
     const storedPosts = await this.$store.state.post.posts
     if (storedPosts !== null) {
       this.gourmet = storedPosts.gourmet ? storedPosts.gourmet : ''
