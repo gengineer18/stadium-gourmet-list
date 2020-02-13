@@ -5,19 +5,27 @@
     <p>チーム名：{{ teamName }}</p>
     <p>店舗名：{{ shop }}</p>
     <p>寸評：{{ comment }}</p>
+    <p>観戦日：{{ date }}</p>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
+import { completePost } from '@/types/post'
+import 'dayjs/locale/ja'
+
+dayjs.locale('ja')
+
 export default Vue.extend({
-  data () {
+  data (): completePost {
     return {
       gourmet: '',
       teamName: '',
       shop: '',
-      comment: ''
+      comment: '',
+      date: ''
     }
   },
   async mounted () {
@@ -32,6 +40,7 @@ export default Vue.extend({
       this.teamName = storedPosts.team ? storedPosts.team.name : ''
       this.shop = storedPosts.shop ? storedPosts.shop : ''
       this.comment = storedPosts.comment ? storedPosts.comment : ''
+      this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
     }
   }
 })
