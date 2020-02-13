@@ -5,7 +5,7 @@
       <form-input v-model="gourmet" label="スタグル名" :max-length="20" class="Form" :required="true" />
       <form-pulldown v-model="team" label="ホームチーム" :list-items="listItems" class="Form" />
       <form-input v-model="shop" label="店舗名" :max-length="20" class="Form" />
-      <form-text-area v-model="comment" label="コメント" :max-length="140" class="Form" :required="true" />
+      <form-text-area v-model="comment" label="寸評" :max-length="140" class="Form" :required="true" />
       <form-date v-model="date" label="観戦した日" class="Form" />
       <form-file-upload v-model="file" label="写真" class="Form" />
       <span @click="sendData()">
@@ -18,18 +18,6 @@
         </b-button>
       </span>
     </validation-observer>
-    <p>スタグル名：{{ gourmet }}</p>
-    <p>チーム名：{{ team }}</p>
-    <p>店舗名：{{ shop }}</p>
-    <p>コメント：{{ comment }}</p>
-    <p>観戦日：{{ date }}</p>
-    <p>写真：{{ file }}</p>
-    <p>{{ posts }}</p>
-    <ul>
-      <li v-for="post in posts" :key="post.id">
-        {{ post.id }}
-      </li>
-    </ul>
   </section>
 </template>
 
@@ -43,6 +31,7 @@ import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
 import FormFileUpload from '@/components/Form/FormFileUpload.vue'
+import { newPost } from '@/types/post'
 
 export default Vue.extend({
   components: {
@@ -57,14 +46,15 @@ export default Vue.extend({
       listItems: require('~/static/json/AllClubsNameList.json')
     }
   },
-  data () {
+  data (): newPost {
     return {
       gourmet: '',
       team: '',
       shop: '',
       comment: '',
       date: null,
-      file: null
+      file: null,
+      docRefId: ''
     }
   },
   computed: {
@@ -81,24 +71,25 @@ export default Vue.extend({
         message: '投稿してよろしいですか?',
         cancelText: 'キャンセル',
         confirmText: 'OK',
-        onConfirm: () => {
-          console.log('pushed')
+        onConfirm: async () => {
           const dbdata = {
             gourmet: this.gourmet,
             team: this.team,
             shop: this.shop,
+            comment: this.comment,
             date: this.date,
             file: this.file
           }
           // データの登録
-          db.collection('posts').add(dbdata)
-            .then(function (docRef) {
+          await db.collection('posts').add(dbdata)
+            .then((docRef) => {
+              this.docRefId = docRef.id
               console.log('Document written with ID: ', docRef.id)
             })
-            .catch(function (error) {
+            .catch((error) => {
               console.error('Error adding document: ', error)
             })
-          this.$router.push('/post/complete')
+          await this.$router.push(`/post/complete?docRefId=${this.docRefId}`)
         }
       })
     }
