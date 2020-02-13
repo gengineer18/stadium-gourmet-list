@@ -5,7 +5,7 @@
       <form-input v-model="gourmet" label="スタグル名" :max-length="20" class="Form" :required="true" />
       <form-pulldown v-model="team" label="ホームチーム" :list-items="listItems" class="Form" />
       <form-input v-model="shop" label="店舗名" :max-length="20" class="Form" />
-      <form-text-area v-model="comment" label="コメント" :max-length="140" class="Form" :required="true" />
+      <form-text-area v-model="comment" label="寸評" :max-length="140" class="Form" :required="true" />
       <form-date v-model="date" label="観戦した日" class="Form" />
       <form-file-upload v-model="file" label="写真" class="Form" />
       <span @click="sendData()">
@@ -43,16 +43,7 @@ import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
 import FormFileUpload from '@/components/Form/FormFileUpload.vue'
-
-export type DataType = {
-  gourmet: string,
-  team: string,
-  shop: string,
-  comment: string,
-  date: Date | null,
-  file: File | null,
-  docRefId: string
-}
+import { newPost } from '@/types/post'
 
 export default Vue.extend({
   components: {
@@ -67,7 +58,7 @@ export default Vue.extend({
       listItems: require('~/static/json/AllClubsNameList.json')
     }
   },
-  data (): DataType {
+  data (): newPost {
     return {
       gourmet: '',
       team: '',
