@@ -13,13 +13,13 @@
 import Vue from 'vue'
 import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
-import { completePost } from '@/types/post'
+import { CompletePost } from '@/types/post'
 import 'dayjs/locale/ja'
 
 dayjs.locale('ja')
 
 export default Vue.extend({
-  data (): completePost {
+  data (): CompletePost {
     return {
       gourmet: '',
       teamName: '',

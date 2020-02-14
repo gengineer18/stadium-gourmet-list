@@ -3,7 +3,7 @@
     <h1>投稿</h1>
     <validation-observer v-slot="{ invalid }">
       <form-input v-model="gourmet" label="スタグル名" :max-length="20" class="Form" :required="true" />
-      <form-pulldown v-model="team" label="ホームチーム" :list-items="listItems" class="Form" />
+      <form-pulldown v-model="club" label="ホームチーム" :list-items="listItems" class="Form" />
       <form-input v-model="shop" label="店舗名" :max-length="20" class="Form" />
       <form-text-area v-model="comment" label="寸評" :max-length="140" class="Form" :required="true" />
       <form-date v-model="date" label="観戦した日" class="Form" />
@@ -31,7 +31,7 @@ import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
 import FormFileUpload from '@/components/Form/FormFileUpload.vue'
-import { newPost } from '@/types/post'
+import { NewPost } from '@/types/post'
 
 export default Vue.extend({
   components: {
@@ -46,10 +46,13 @@ export default Vue.extend({
       listItems: require('~/static/json/AllClubsNameList.json')
     }
   },
-  data (): newPost {
+  data (): NewPost {
     return {
       gourmet: '',
-      team: '',
+      club: {
+        id: '',
+        name: ''
+      },
       shop: '',
       comment: '',
       date: null,
@@ -72,36 +75,36 @@ export default Vue.extend({
         cancelText: 'キャンセル',
         confirmText: 'OK',
         onConfirm: async () => {
+          const docId: string = await db.collection('posts').doc().id
+          console.log('id', docId)
+          const postRef = db.collection('posts')
+          const clubRef = db.collection('clubs')
           const postData = {
             gourmet: this.gourmet,
-            team: this.team,
+            club: this.club,
             shop: this.shop,
             comment: this.comment,
             date: this.date,
             file: this.file
           }
-          const clubData = {
-            docRefId: this.docRefId,
-            team: this.team
-          }
           // データの登録
-          await db.collection('posts').add(postData)
+          await postRef.doc(docId).set(postData)
             .then((docRef) => {
-              this.docRefId = docRef.id
-              console.log('post', this.docRefId)
+              // this.docRefId = docRef.id
+              console.log('post', docId)
             })
             .catch((error) => {
               console.error('Error adding document: ', error)
             })
           // データの登録
-          await db.collection('clubs').doc('fctokyo').set(clubData)
+          await clubRef.doc(this.club.id).collection('posts').doc(docId).set(postData)
             .then((doc) => {
-              console.log('club', this.docRefId)
+              console.log('club', docId)
             })
             .catch((error) => {
               console.error('Error adding document: ', error)
             })
-          await this.$router.push(`/post/complete?docRefId=${this.docRefId}`)
+          await this.$router.push(`/post/complete?docRefId=${docId}`)
         }
       })
     }

@@ -8,7 +8,7 @@
       v-on="$listeners"
     >
       <template v-for="item in listItems">
-        <option :key="item.spell" :value="item">
+        <option :key="item.id" :value="item">
           {{ item.name }}
         </option>
       </template>
