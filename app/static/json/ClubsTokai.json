@@ -1,8 +1,7 @@
 [
   {
-    "id": 32,
     "name": "清水エスパルス",
-    "spell": "spulse",
+    "id": "spulse",
     "division": "J1",
     "color1": "#FF8706",
     "color2": "#FF8706",
@@ -19,9 +18,8 @@
     "area": "東海"
   },
   {
-    "id": 33,
     "name": "ジュビロ磐田",
-    "spell": "jubilo",
+    "id": "jubilo",
     "division": "J2",
     "color1": "#7399D1",
     "color2": "#7399D1",
@@ -38,9 +36,8 @@
     "area": "東海"
   },
   {
-    "id": 34,
     "name": "藤枝MYFC",
-    "spell": "fujiedamyfc",
+    "id": "fujiedamyfc",
     "division": "J3",
     "color1": "#803376",
     "color2": "#803376",
@@ -53,9 +50,8 @@
     "area": "東海"
   },
   {
-    "id": 35,
     "name": "アスルクラロ沼津",
-    "spell": "azulclaro",
+    "id": "azulclaro",
     "division": "J3",
     "color1": "#00A0E9",
     "color2": "#122A88",
@@ -68,9 +64,8 @@
     "area": "東海"
   },
   {
-    "id": 36,
     "name": "名古屋グランパス",
-    "spell": "grampus",
+    "id": "grampus",
     "division": "J1",
     "color1": "#D70C17",
     "color2": "#F39800",
@@ -87,9 +82,8 @@
     "area": "東海"
   },
   {
-    "id": 37,
     "name": "FC岐阜",
-    "spell": "fcgifu",
+    "id": "fcgifu",
     "division": "J3",
     "color1": "#016427",
     "color2": "#45B158",

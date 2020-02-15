@@ -1,8 +1,7 @@
 [
   {
-    "id": 52,
     "name": "アビスパ福岡",
-    "spell": "avispa",
+    "id": "avispa",
     "division": "J2",
     "color1": "#17284C",
     "color2": "#9C9E9E",
@@ -15,9 +14,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 53,
     "name": "ギラヴァンツ北九州",
-    "spell": "giravanz",
+    "id": "giravanz",
     "division": "J2",
     "color1": "#FFF102",
     "color2": "#E60012",
@@ -30,9 +28,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 54,
     "name": "サガン鳥栖",
-    "spell": "sagan",
+    "id": "sagan",
     "division": "J1",
     "color1": "#2096F3",
     "color2": "#E95598",
@@ -45,9 +42,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 55,
     "name": "V・ファーレン長崎",
-    "spell": "v-varen",
+    "id": "v-varen",
     "division": "J2",
     "color1": "#F39800",
     "color2": "#005BAC",
@@ -60,9 +56,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 56,
     "name": "ロアッソ熊本",
-    "spell": "roasso",
+    "id": "roasso",
     "division": "J3",
     "color1": "#B71915",
     "color2": "#B71915",
@@ -75,9 +70,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 57,
     "name": "大分トリニータ",
-    "spell": "trinita",
+    "id": "trinita",
     "division": "J1",
     "color1": "#13098B",
     "color2": "#13098B",
@@ -90,9 +84,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 58,
     "name": "鹿児島ユナイテッドFC",
-    "spell": "kagoshima",
+    "id": "kagoshima",
     "division": "J3",
     "color1": "#16335C",
     "color2": "#16335C",
@@ -105,9 +98,8 @@
     "area": "九州・沖縄"
   },
   {
-    "id": 59,
     "name": "FC琉球",
-    "spell": "fcryukyu",
+    "id": "fcryukyu",
     "division": "J2",
     "color1": "#BE003B",
     "color2": "#E0CD76",
