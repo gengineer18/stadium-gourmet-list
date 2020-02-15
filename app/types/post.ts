@@ -1,17 +1,21 @@
-export type newPost = {
+export type NewPost = {
   gourmet: string,
-  team: string,
+  club: Club,
   shop: string,
   comment: string,
   date: Date | null,
-  file: File | null,
-  docRefId: string
+  file: File | null
 }
 
-export type completePost = {
+export type CompletePost = {
   gourmet: string,
-  teamName: string,
+  clubName: string,
   shop: string,
   comment: string,
   date: string,
+}
+
+export type Club = {
+  id: string,
+  name: string
 }

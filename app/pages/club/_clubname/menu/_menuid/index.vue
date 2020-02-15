@@ -19,7 +19,7 @@ export default Vue.extend({
   computed: {
     matchName () {
       console.info(this.$route.name)
-      return this.$route.name === 'club-clubname-menuid'
+      return this.$route.name === 'club-clubname-menu-menuid'
     }
   }
 })

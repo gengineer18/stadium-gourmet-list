@@ -2,7 +2,7 @@
   <section id="PostComplete">
     <h1>投稿</h1>
     <p>スタグル名：{{ gourmet }}</p>
-    <p>チーム名：{{ teamName }}</p>
+    <p>チーム名：{{ clubName }}</p>
     <p>店舗名：{{ shop }}</p>
     <p>寸評：{{ comment }}</p>
     <p>観戦日：{{ date }}</p>
@@ -13,16 +13,16 @@
 import Vue from 'vue'
 import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
-import { completePost } from '@/types/post'
+import { CompletePost } from '@/types/post'
 import 'dayjs/locale/ja'
 
 dayjs.locale('ja')
 
 export default Vue.extend({
-  data (): completePost {
+  data (): CompletePost {
     return {
       gourmet: '',
-      teamName: '',
+      clubName: '',
       shop: '',
       comment: '',
       date: ''
@@ -34,12 +34,12 @@ export default Vue.extend({
     const array = query.split('=')
     const docRefId = array[1]
     // ドキュメントIDを元にfirebaseからデータをstateにセット
-    await this.$store.dispatch('post/setPostsRef', db.collection('posts').doc(docRefId))
+    await this.$store.dispatch('post/init', db.collection('posts').doc(docRefId))
     // storeからデータ読み込み
     const storedPosts = await this.$store.state.post.posts
     if (storedPosts !== null) {
       this.gourmet = storedPosts.gourmet ? storedPosts.gourmet : ''
-      this.teamName = storedPosts.team ? storedPosts.team.name : ''
+      this.clubName = storedPosts.club ? storedPosts.club.name : ''
       this.shop = storedPosts.shop ? storedPosts.shop : ''
       this.comment = storedPosts.comment ? storedPosts.comment : ''
       this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
