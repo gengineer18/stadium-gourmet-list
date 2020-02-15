@@ -4,13 +4,12 @@ export type NewPost = {
   shop: string,
   comment: string,
   date: Date | null,
-  file: File | null,
-  docRefId: string
+  file: File | null
 }
 
 export type CompletePost = {
   gourmet: string,
-  teamName: string,
+  clubName: string,
   shop: string,
   comment: string,
   date: string,

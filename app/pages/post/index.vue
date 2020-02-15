@@ -24,7 +24,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import 'buefy'
-import { mapGetters } from 'vuex'
 import { db } from '~/plugins/firebase.js'
 import FormInput from '@/components/Form/FormInput.vue'
 import FormPulldown from '@/components/Form/FormPulldown.vue'
@@ -56,17 +55,8 @@ export default Vue.extend({
       shop: '',
       comment: '',
       date: null,
-      file: null,
-      docRefId: ''
+      file: null
     }
-  },
-  computed: {
-    // VuexからPostsデータを取得
-    ...mapGetters({ posts: 'post/getPosts' })
-  },
-  created () {
-    // firestoreのpostsをバインド
-    this.$store.dispatch('post/setPostsRef', db.collection('posts'))
   },
   methods: {
     sendData () {
@@ -76,10 +66,8 @@ export default Vue.extend({
         confirmText: 'OK',
         onConfirm: async () => {
           const docId: string = await db.collection('posts').doc().id
-          console.log('id', docId)
-          const postRef = db.collection('posts')
-          const clubRef = db.collection('clubs')
-          const postData = {
+          const clubId: string = this.club.id
+          const postData: NewPost = {
             gourmet: this.gourmet,
             club: this.club,
             shop: this.shop,
@@ -88,22 +76,8 @@ export default Vue.extend({
             file: this.file
           }
           // データの登録
-          await postRef.doc(docId).set(postData)
-            .then((docRef) => {
-              // this.docRefId = docRef.id
-              console.log('post', docId)
-            })
-            .catch((error) => {
-              console.error('Error adding document: ', error)
-            })
-          // データの登録
-          await clubRef.doc(this.club.id).collection('posts').doc(docId).set(postData)
-            .then((doc) => {
-              console.log('club', docId)
-            })
-            .catch((error) => {
-              console.error('Error adding document: ', error)
-            })
+          await this.$store.dispatch('post/add', { postData, docId })
+          await this.$store.dispatch('club/add', { postData, docId, clubId })
           await this.$router.push(`/post/complete?docRefId=${docId}`)
         }
       })
