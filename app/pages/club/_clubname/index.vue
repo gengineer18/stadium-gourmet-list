@@ -1,9 +1,13 @@
 <template>
   <section>
-    <h1>{{ getClubName }}</h1>
+    <h1 class="ClubName">
+      {{ getClubName }}
+    </h1>
     <ul v-for="item in storedClubs" :key="item.id">
       <nuxt-link :to="getMenuPath(item.id)">
-        <li>スタグル名：{{ item.gourmet }}</li>
+        <li>
+          <img :src="item.imagePath" class="Thumbnail">
+        </li>
       </nuxt-link>
     </ul>
   </section>
@@ -36,9 +40,12 @@ export default Vue.extend({
 })
 </script>
 
-<style lang="sass" scoped>
-section
-  border: solid 1px red
-  background-color: #DDD
-  padding: 3px
+<style lang="scss" scoped>
+.ClubName {
+  font-size: 1.5rem;
+}
+.Thumbnail {
+  width: 200px;
+  height: 200px;
+}
 </style>
