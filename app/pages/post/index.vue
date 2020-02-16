@@ -98,7 +98,7 @@ export default Vue.extend({
         if (typeof e.target.result === 'string') {
           image.src = e.target.result
           image.onload = () => {
-            this.postImage.path = image.width < 1280 ? image.src : this.makeImage(image)
+            this.postImage.path = image.width < 540 ? image.src : this.makeImage(image)
             this.makeTumbnail(image)
           }
         }
@@ -108,19 +108,19 @@ export default Vue.extend({
       const canvas: HTMLCanvasElement = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
       const ratio: number = image.height / image.width
-      const width: number = 1280
+      const width: number = 540
       const height: number = width * ratio
       canvas.width = width
       canvas.height = height
       if (ctx === null) { return '' }
       ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
-      return canvas.toDataURL('image/jpeg')
+      return canvas.toDataURL('image/png')
     },
     makeTumbnail (image: HTMLImageElement) {
       const canvas: HTMLCanvasElement = this.refs.thumbnail
       const ctx = canvas.getContext('2d')
       const ratio: number = image.width / image.height
-      const height: number = 120
+      const height: number = 200
       const width: number = height * ratio
       canvas.height = height
       canvas.width = width

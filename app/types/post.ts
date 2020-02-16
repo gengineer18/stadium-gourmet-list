@@ -23,6 +23,7 @@ export type CompletePost = {
   shop: string,
   comment: string,
   date: string,
+  imagePath: string
 }
 
 export type Club = {
