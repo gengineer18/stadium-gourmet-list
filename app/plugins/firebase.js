@@ -1,5 +1,6 @@
-import firebase from 'firebase/app'
+import * as firebase from 'firebase/app'
 import 'firebase/firestore'
+import 'firebase/storage'
 
 const config = {
   apiKey: process.env.FB_API_KEY,
@@ -16,3 +17,6 @@ if (!firebase.apps.length) {
 
 const db = firebase.firestore()
 export { db }
+
+const storage = firebase.storage()
+export { storage }
