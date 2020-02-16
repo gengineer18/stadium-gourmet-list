@@ -1,8 +1,7 @@
 [
   {
-    "id": 8,
     "name": "鹿島アントラーズ",
-    "spell": "antlers",
+    "id": "antlers",
     "division": "J1",
     "color1": "#B8183F",
     "color2": "#B8183F",
@@ -15,9 +14,8 @@
     "area": "関東"
   },
   {
-    "id": 9,
     "name": "水戸ホーリーホック",
-    "spell": "hollyhock",
+    "id": "hollyhock",
     "division": "J2",
     "color1": "#1C2088",
     "color2": "#1C2088",
@@ -30,9 +28,8 @@
     "area": "関東"
   },
   {
-    "id": 10,
     "name": "栃木SC",
-    "spell": "tochigisc",
+    "id": "tochigisc",
     "color1": "#FFEA02",
     "color2": "#FFEA02",
     "division": "J2",
@@ -45,9 +42,8 @@
     "area": "関東"
   },
   {
-    "id": 11,
     "name": "ザスパクサツ群馬",
-    "spell": "thespa",
+    "id": "thespa",
     "division": "J2",
     "color1": "#00063A",
     "color2": "#FDD448",
@@ -60,9 +56,8 @@
     "area": "関東"
   },
   {
-    "id": 12,
     "name": "浦和レッズ",
-    "spell": "reds",
+    "id": "reds",
     "division": "J1",
     "color1": "#E6002D",
     "color2": "#E6002D",
@@ -79,9 +74,8 @@
     "area": "関東"
   },
   {
-    "id": 13,
     "name": "大宮アルディージャ",
-    "spell": "ardija",
+    "id": "ardija",
     "division": "J2",
     "color1": "#ED6C00",
     "color2": "#ED6C00",
@@ -94,9 +88,8 @@
     "area": "関東"
   },
   {
-    "id": 14,
     "name": "ジェフユナイテッド千葉",
-    "spell": "jef",
+    "id": "jef",
     "division": "J2",
     "color1": "#FFE100",
     "color2": "#009260",
@@ -109,9 +102,8 @@
     "area": "関東"
   },
   {
-    "id": 15,
     "name": "柏レイソル",
-    "spell": "reysol",
+    "id": "reysol",
     "color1": "#FFE850",
     "color2": "#FFE850",
     "division": "J1",
@@ -124,9 +116,8 @@
     "area": "関東"
   },
   {
-    "id": 16,
     "name": "FC東京",
-    "spell": "fctokyo",
+    "id": "fctokyo",
     "color1": "#0B2F8E",
     "color2": "#E5002C",
     "division": "J1",
@@ -139,9 +130,8 @@
     "area": "関東"
   },
   {
-    "id": 17,
     "name": "FC東京 U-23",
-    "spell": "fctokyou23",
+    "id": "fctokyou23",
     "color1": "#0B2F8E",
     "color2": "#E5002C",
     "division": "J3",
@@ -162,9 +152,8 @@
     "area": "関東"
   },
   {
-    "id": 18,
     "name": "東京ヴェルディ",
-    "spell": "verdy",
+    "id": "verdy",
     "division": "J2",
     "color1": "#006937",
     "color2": "#006937",
@@ -185,9 +174,8 @@
     "area": "関東"
   },
   {
-    "id": 19,
     "name": "FC町田ゼルビア",
-    "spell": "zelvia",
+    "id": "zelvia",
     "division": "J2",
     "color1": "#0054A7",
     "color2": "#BEAF71",
@@ -200,9 +188,8 @@
     "area": "関東"
   },
   {
-    "id": 20,
     "name": "川崎フロンターレ",
-    "spell": "frontale",
+    "id": "frontale",
     "color1": "#20AEF4",
     "color2": "#212121",
     "division": "J1",
@@ -215,9 +202,8 @@
     "area": "関東"
   },
   {
-    "id": 21,
     "name": "横浜F・マリノス",
-    "spell": "fmarinos",
+    "id": "fmarinos",
     "color1": "#003F98",
     "color2": "#FFFFFF",
     "division": "J1",
@@ -234,9 +220,8 @@
     "area": "関東"
   },
   {
-    "id": 22,
     "name": "横浜FC",
-    "spell": "yokohamafc",
+    "id": "yokohamafc",
     "division": "J1",
     "color1": "#00A0E9",
     "color2": "#00A0E9",
@@ -249,9 +234,8 @@
     "area": "関東"
   },
   {
-    "id": 23,
     "name": "Y.S.C.C.横浜",
-    "spell": "yscc",
+    "id": "yscc",
     "color1": "#005BAB",
     "color2": "#EE7A00",
     "division": "J3",
@@ -264,9 +248,8 @@
     "area": "関東"
   },
   {
-    "id": 24,
     "name": "SC相模原",
-    "spell": "scsagamihara",
+    "id": "scsagamihara",
     "color1": "#2E8D47",
     "color2": "#373333",
     "division": "J3",
@@ -279,9 +262,8 @@
     "area": "関東"
   },
   {
-    "id": 25,
     "name": "湘南ベルマーレ",
-    "spell": "bellmare",
+    "id": "bellmare",
     "color1": "#6FBA2B",
     "color2": "#004081",
     "division": "J1",
@@ -294,9 +276,8 @@
     "area": "関東"
   },
   {
-    "id": 26,
     "name": "ヴァンフォーレ甲府",
-    "spell": "ventforet",
+    "id": "ventforet",
     "division": "J2",
     "color1": "#0060B5",
     "color2": "#CA1944",

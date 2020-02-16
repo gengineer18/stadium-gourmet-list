@@ -1,8 +1,7 @@
 [
   {
-    "id": 44,
     "name": "ガイナーレ鳥取",
-    "spell": "gainare",
+    "id": "gainare",
     "division": "J3",
     "color1": "#6DBA3C",
     "color2": "#023458",
@@ -15,9 +14,8 @@
     "area": "中国"
   },
   {
-    "id": 45,
     "name": "ファジアーノ岡山",
-    "spell": "fagiano",
+    "id": "fagiano",
     "division": "J2",
     "color1": "#B6003D",
     "color2": "#1D2368",
@@ -30,9 +28,8 @@
     "area": "中国"
   },
   {
-    "id": 46,
     "name": "サンフレッチェ広島",
-    "spell": "sanfrecce",
+    "id": "sanfrecce",
     "division": "J1",
     "color1": "#51308F",
     "color2": "#51308F",
@@ -45,9 +42,8 @@
     "area": "中国"
   },
   {
-    "id": 47,
     "name": "レノファ山口FC",
-    "spell": "renofa",
+    "id": "renofa",
     "division": "J2",
     "color1": "#EB5C00",
     "color2": "#EB5C00",
