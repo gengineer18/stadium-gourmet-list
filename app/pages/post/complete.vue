@@ -6,6 +6,7 @@
     <p>店舗名：{{ shop }}</p>
     <p>寸評：{{ comment }}</p>
     <p>観戦日：{{ date }}</p>
+    <img :src="imagePath">
   </section>
 </template>
 
@@ -25,7 +26,8 @@ export default Vue.extend({
       clubName: '',
       shop: '',
       comment: '',
-      date: ''
+      date: '',
+      imagePath: ''
     }
   },
   async mounted () {
@@ -43,6 +45,7 @@ export default Vue.extend({
       this.shop = storedPosts.shop ? storedPosts.shop : ''
       this.comment = storedPosts.comment ? storedPosts.comment : ''
       this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
+      this.imagePath = storedPosts.imagePath ? storedPosts.imagePath : ''
     }
   }
 })
