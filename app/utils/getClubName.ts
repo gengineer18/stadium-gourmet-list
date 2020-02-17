@@ -179,7 +179,7 @@ export default function getClubName(clubId: string): string {
       clubName = 'FC琉球'
       break;
     default:
-      clubName = 'def'
+      clubName = ''
   }
   return clubName
 }
