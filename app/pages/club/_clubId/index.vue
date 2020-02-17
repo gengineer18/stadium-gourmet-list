@@ -28,7 +28,7 @@ export default Vue.extend({
   computed: {
     getMenuPath () {
       return (menuId: string): string => {
-        return `/club/${this.$route.params.clubId}/menu/${menuId}`
+        return `/club/${this.$route.params.clubId}/post/${menuId}`
       }
     }
   },
