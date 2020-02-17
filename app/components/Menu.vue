@@ -56,8 +56,8 @@ export default Vue.extend({
   },
   computed: {
     getClubPageLink () {
-      return (clubname: string): string => {
-        return `/club/${clubname}`
+      return (clubId: string): string => {
+        return `/club/${clubId}`
       }
     }
   }
