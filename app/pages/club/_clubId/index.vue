@@ -1,7 +1,7 @@
 <template>
   <section>
     <h1 class="ClubName">
-      {{ getClubName }}
+      {{ clubName }}
     </h1>
     <ul v-for="item in storedClubs" :key="item.id">
       <nuxt-link :to="getMenuPath(item.id)">
@@ -15,26 +15,28 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import { db } from '~/plugins/firebase.js'
+import { db } from '~/plugins/firebase'
+import utilsGetClubName from '~/utils/getClubName'
 
 export default Vue.extend({
   data () {
     return {
-      storedClubs: []
+      storedClubs: [],
+      clubName: ''
     }
   },
   computed: {
     getMenuPath () {
       return (menuId: string): string => {
-        return `/club/${this.$route.params.clubname}/menu/${menuId}`
+        return `/club/${this.$route.params.clubId}/menu/${menuId}`
       }
-    },
-    getClubName (): string {
-      return this.$route.params.clubname
     }
   },
+  created () {
+    this.clubName = utilsGetClubName(this.$route.params.clubId)
+  },
   async mounted () {
-    await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubname).collection('posts'))
+    await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts'))
     this.storedClubs = await this.$store.state.club.clubs
   }
 })

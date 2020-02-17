@@ -13,13 +13,13 @@ import Vue from 'vue'
 export default Vue.extend({
   data () {
     return {
-      FILE_NAME: 'club/_clubname/_menuid.vue'
+      FILE_NAME: 'club/_clubId/menu/_menuid.vue'
     }
   },
   computed: {
     matchName () {
       console.info(this.$route.name)
-      return this.$route.name === 'club-clubname-menu-menuid'
+      return this.$route.name === 'club-clubId-menu-menuid'
     }
   }
 })
