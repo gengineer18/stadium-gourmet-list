@@ -22,8 +22,7 @@
       </button>
     </div>
     <div v-else>
-      <p>{{ user }}</p>
-      <p>{{ user.email }}でログイン中</p>
+      <p>{{ user.displayName }}でログイン中</p>
       <button @click="logOut">
         ログアウト
       </button>
@@ -56,19 +55,16 @@ export default Vue.extend({
   },
   methods: {
     loginGoogle () {
-      const provider = new firebase.auth.GoogleAuthProvider()
-      firebase.auth().signInWithRedirect(provider)
+      this.$store.dispatch('user/loginGoogle')
     },
     loginFacebook () {
-      const provider = new firebase.auth.FacebookAuthProvider()
-      firebase.auth().signInWithRedirect(provider)
+      this.$store.dispatch('user/loginFacebook')
     },
     loginTwitter () {
-      const provider = new firebase.auth.TwitterAuthProvider()
-      firebase.auth().signInWithRedirect(provider)
+      this.$store.dispatch('user/loginTwitter')
     },
     logOut () {
-      firebase.auth().signOut()
+      this.$store.dispatch('user/logout')
     }
   }
 })
