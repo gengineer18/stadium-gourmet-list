@@ -11,6 +11,9 @@
       クラブから探す
     </b-button>
     <div v-if="!isLogin">
+      <button @click="loginTwitter">
+        Twitterでログイン
+      </button>
       <button @click="loginFacebook">
         Facebookでログイン
       </button>
@@ -58,6 +61,10 @@ export default Vue.extend({
     },
     loginFacebook () {
       const provider = new firebase.auth.FacebookAuthProvider()
+      firebase.auth().signInWithRedirect(provider)
+    },
+    loginTwitter () {
+      const provider = new firebase.auth.TwitterAuthProvider()
       firebase.auth().signInWithRedirect(provider)
     },
     logOut () {
