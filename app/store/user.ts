@@ -1,38 +1,55 @@
 import firebase from 'firebase'
+import auth from '~/plugins/auth'
 
-export const state = () => {
-  loginUser: []
-  isLogin: false
-}
+export const state = () => ({
+  isAuth: false,
+  displayName: '',
+  email: '',
+  photoURL: ''
+})
 
 export const mutations = {
   setLoginState(state: any, user: any) {
-    console.warn(user)
-    state.loginUser = user
-    state.isLogin = true
+    state.isAuth = true
+    state.email = user.email
+    state.displayName = user.displayName
+    state.photoURL = user.photoURL
+    console.log('calllogin', state.isAuth)
   },
   setLogoutState(state: any) {
-    state.loginUser = []
-    state.isLogin = false
+    state.isAuth = false
+    state.email = ''
+    state.displayName = ''
+    state.photoURL = ''
   }
 }
 
 export const actions = {
-  async loginGoogle({ commit }: any) {
+  loginGoogle: async ({ commit }: any) => {
     const provider = new firebase.auth.GoogleAuthProvider()
     await loginCommon({ commit }, provider)
   },
-  async loginFacebook ({ commit }: any) {
+  loginFacebook: async ({ commit }: any) => {
     const provider = new firebase.auth.FacebookAuthProvider()
     await loginCommon({ commit }, provider)
   },
-  async loginTwitter ({ commit }: any) {
+  loginTwitter: async ({ commit }: any) => {
     const provider = new firebase.auth.TwitterAuthProvider()
     await loginCommon({ commit }, provider)
   },
-  logout ({ commit }: any) {
+  logout: ({ commit }: any) => {
     firebase.auth().signOut()
     commit('setLogoutState')
+  },
+  checkAuth: async ({ commit }: any) => {
+    await auth()
+      .then(user => {
+        console.log('called!!!!!!!')
+        if (!!user) {
+          console.log('called!!')
+          commit('setLoginState', user)
+        }
+      })
   }
 }
 
@@ -40,7 +57,7 @@ const loginCommon = ({ commit }: any, provider: any) => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then(res => commit('setLoginState', res.user))
+    .then((res: any) => commit('setLoginState', res.user))
     .catch(error => {
       if (error.code === 'auth/popup-closed-by-user') {
         // Do nothing.
