@@ -3,6 +3,7 @@ import auth from '~/plugins/auth'
 
 export const state = () => ({
   isAuth: false,
+  uid: '',
   displayName: '',
   email: '',
   photoURL: ''
@@ -11,13 +12,14 @@ export const state = () => ({
 export const mutations = {
   setLoginState(state: any, user: any) {
     state.isAuth = true
+    state.uid = user.uid
     state.email = user.email
     state.displayName = user.displayName
     state.photoURL = user.photoURL
-    console.log('calllogin', state.isAuth)
   },
   setLogoutState(state: any) {
     state.isAuth = false
+    state.uid = ''
     state.email = ''
     state.displayName = ''
     state.photoURL = ''
@@ -44,9 +46,7 @@ export const actions = {
   checkAuth: async ({ commit }: any) => {
     await auth()
       .then(user => {
-        console.log('called!!!!!!!')
         if (!!user) {
-          console.log('called!!')
           commit('setLoginState', user)
         }
       })

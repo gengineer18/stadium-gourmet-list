@@ -22,6 +22,7 @@
       </button>
     </div>
     <div v-else>
+      <p>{{ $store.state.user.uid }}</p>
       <p>{{ $store.state.user.displayName }}でログイン中</p>
       <button @click="logOut">
         ログアウト
@@ -36,27 +37,8 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: 'TopPage',
-  // asyncData () {
-  //   return {
-  //     isLogin: false,
-  //     user: []
-  //   }
-  // },
   mounted () {
-    // firebase.auth().onAuthStateChanged((user) => {
-    //   if (user) {
-    //     this.$data.isLogin = true
-    //     this.$data.user = user
-    //   } else {
-    //     this.$data.isLogin = false
-    //     this.$data.user = []
-    //   }
-    // })
     this.$store.dispatch('user/checkAuth')
-    console.info('test', this.$store.state.user.isAuth)
-  },
-  updated () {
-    console.info('aaaa', this.$store.state.user.isAuth)
   },
   methods: {
     loginGoogle () {
