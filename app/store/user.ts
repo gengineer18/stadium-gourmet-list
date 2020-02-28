@@ -1,5 +1,9 @@
 import firebase from 'firebase'
 import auth from '~/plugins/auth'
+import { firestoreAction } from 'vuexfire'
+import { db } from '~/plugins/firebase'
+
+const userRef = db.collection('users')
 
 export const state = () => ({
   isAuth: false,
@@ -50,7 +54,13 @@ export const actions = {
           commit('setLoginState', user)
         }
       })
-  }
+  },
+  add: firestoreAction((context, { postData, docId, userId }) => {
+    userRef.doc(userId).collection('posts').doc(docId).set(postData)
+    .catch((error) => {
+      console.error('Error adding document: ', error)
+    })
+  })
 }
 
 const loginCommon = ({ commit }: any, provider: any) => {
