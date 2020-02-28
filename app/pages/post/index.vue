@@ -170,6 +170,10 @@ export default Vue.extend({
     addDb (docId: string, clubId: string, postData: PostData): void {
       this.$store.dispatch('post/add', { postData, docId })
       this.$store.dispatch('club/add', { postData, docId, clubId })
+      if (this.$store.state.user.isAuth) {
+        const userId = this.$store.state.user.uid
+        this.$store.dispatch('user/add', { postData, docId, userId })
+      }
     }
   }
 })

@@ -10,14 +10,50 @@
     >
       クラブから探す
     </b-button>
+    <div v-if="!$store.state.user.isAuth">
+      <button @click="loginTwitter">
+        Twitterでログイン
+      </button>
+      <button @click="loginFacebook">
+        Facebookでログイン
+      </button>
+      <button @click="loginGoogle">
+        Googleでログイン
+      </button>
+    </div>
+    <div v-else>
+      <p>{{ $store.state.user.uid }}</p>
+      <p>{{ $store.state.user.displayName }}でログイン中</p>
+      <button @click="logOut">
+        ログアウト
+      </button>
+    </div>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+// import firebase from 'firebase'
 
 export default Vue.extend({
-  name: 'TopPage'
+  name: 'TopPage',
+  mounted () {
+    this.$store.dispatch('user/checkAuth')
+  },
+  methods: {
+    loginGoogle () {
+      this.$store.dispatch('user/loginGoogle')
+    },
+    loginFacebook () {
+      this.$store.dispatch('user/loginFacebook')
+    },
+    loginTwitter () {
+      this.$store.dispatch('user/loginTwitter')
+    },
+    logOut () {
+      this.$store.dispatch('user/logout')
+    }
+  }
 })
 </script>
 
