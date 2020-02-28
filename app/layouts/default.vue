@@ -1,36 +1,8 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <nuxt-link
-          class="navbar-item"
-          to="/"
-        >
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
-          >
-        </nuxt-link>
-
-        <nuxt-link class="navbar-item" to="/post">
-          投稿
-        </nuxt-link>
-
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </nav>
-
-    <section class="main-content columns">
-      <div class="container column is-8">
+    <the-header />
+    <section class="main-content">
+      <div class="container">
         <h1 class="TestLabel">
           現在αテスト中...
         </h1>
@@ -40,7 +12,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from 'vue'
+import TheHeader from '@/components/TheHeader.vue'
+
+export default Vue.extend({
+  components: {
+    TheHeader
+  }
+})
+</script>>
 export default {
 }
 </script>
