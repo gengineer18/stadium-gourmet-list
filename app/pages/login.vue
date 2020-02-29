@@ -16,14 +16,12 @@
         <button-facebook
           usage="ログイン"
           class="is-block btn-margin"
-          click="loginFacebook"
         />
       </span>
       <span @click="loginGoogle">
         <button-google
           usage="ログイン"
           class="is-block btn-margin"
-          click="loginGoogle"
         />
       </span>
     </div>
