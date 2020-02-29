@@ -69,10 +69,6 @@ const loginCommon = ({ commit }: any, provider: any) => {
     .signInWithPopup(provider)
     .then((res: any) => commit('setLoginState', res.user))
     .catch(error => {
-      if (error.code === 'auth/popup-closed-by-user') {
-        // Do nothing.
-      } else {
-        // any
-      }
+      console.error(error.code)
     })
 }
