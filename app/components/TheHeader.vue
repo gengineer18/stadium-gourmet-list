@@ -30,7 +30,7 @@
             icon-left="account"
             size="is-small"
             tag="nuxt-link"
-            to="/post"
+            to="/signup"
           >
             <strong>ユーザー登録</strong>
           </b-button>
@@ -41,7 +41,7 @@
             icon-left="login"
             size="is-small"
             tag="nuxt-link"
-            to="/post"
+            to="/login"
           >
             <strong>ログイン</strong>
           </b-button>
