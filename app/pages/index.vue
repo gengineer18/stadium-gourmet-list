@@ -11,6 +11,7 @@
       クラブから探す
     </b-button>
     <div>
+      <p>{{ $store.state.user.isAuth }}</p>
       <p>{{ $store.state.user.uid }}</p>
       <p>{{ $store.state.user.displayName }}でログイン中</p>
       <button @click="logOut">
