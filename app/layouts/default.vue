@@ -28,7 +28,9 @@ export default {
 
 <style lang="scss" scoped>
 .container {
-  margin-top: 32px;
+  width: 100%;
+  max-width: 960px;
+  margin: 32px auto 0;
 }
 .TestLabel {
   font-size: 2.5rem;
