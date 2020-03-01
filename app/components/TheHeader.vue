@@ -24,7 +24,7 @@
       </template>
 
       <template slot="end">
-        <b-navbar-item tag="div">
+        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
           <b-button
             type="is-sub"
             icon-left="account"
@@ -35,7 +35,7 @@
             <strong>ユーザー登録</strong>
           </b-button>
         </b-navbar-item>
-        <b-navbar-item tag="div">
+        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
           <b-button
             type="is-white"
             icon-left="login"
@@ -46,15 +46,32 @@
             <strong>ログイン</strong>
           </b-button>
         </b-navbar-item>
+        <b-navbar-dropdown v-if="$store.state.user.isAuth" :label="$store.state.user.displayName">
+          <b-navbar-item tag="div" @click="logout">
+            ログアウト
+          </b-navbar-item>
+        </b-navbar-dropdown>
       </template>
     </b-navbar>
   </section>
 </template>
 
-<script>
-export default {
-
-}
+<script lang="ts">
+import Vue from 'vue'
+export default Vue.extend({
+  created () {
+    this.$store.dispatch('user/checkAuth')
+  },
+  beforeUpdate () {
+    this.$store.dispatch('user/checkAuth')
+  },
+  methods: {
+    logout () {
+      this.$store.dispatch('user/logout')
+      this.$router.push('/')
+    }
+  }
+})
 </script>
 
 <style lang="scss">
