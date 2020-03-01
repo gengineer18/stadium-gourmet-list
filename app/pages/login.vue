@@ -1,31 +1,31 @@
 <template>
-  <section>
+  <section class="login-box">
     <div class="title-box has-text-centered">
       <h1 class="title is-4">
         ログイン
       </h1>
     </div>
-    <div class="btn-width">
+    <div class="button-box">
       <span @click="loginTwitter">
         <button-twitter
+          class="is-block button-margin"
           usage="ログイン"
-          class="is-block btn-margin"
         />
       </span>
       <span @click="loginFacebook">
         <button-facebook
+          class="is-block button-margin"
           usage="ログイン"
-          class="is-block btn-margin"
         />
       </span>
       <span @click="loginGoogle">
         <button-google
+          class="is-block button-margin"
           usage="ログイン"
-          class="is-block btn-margin"
         />
       </span>
     </div>
-    <div class="signup-box">
+    <div class="to-signup-box has-text-centered">
       スタグル名鑑 のアカウントを持っていない場合は
       <nuxt-link to="/signup">
         新規登録
@@ -65,22 +65,29 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.title-box {
-  border-bottom: 1px solid #dddddd;
-}
-.title {
-  margin: 1.3rem auto;
-}
-.btn-width {
+.login-box {
   width: 100%;
-  max-width: 360px;
-}
-.btn-margin {
-  margin-top: 1rem;
-}
-.signup-box {
-  border-top: 1px solid #dddddd;
-  margin-top: 1rem;
-  padding-top: 1.3rem;
+  max-width: 540px;
+  margin: 0 auto;
+  .title-box {
+    border-bottom: 1px solid #dddddd;
+    .title {
+      margin: 1.3rem auto;
+    }
+  }
+  .button-box {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    .button-margin {
+      margin-top: 1rem;
+    }
+  }
+
+  .to-signup-box {
+    border-top: 1px solid #dddddd;
+    margin-top: 1rem;
+    padding-top: 1.3rem;
+  }
 }
 </style>

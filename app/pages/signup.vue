@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="login-box">
     <div class="title-box has-text-centered">
       <h1 class="title is-4">
         スタグル名鑑へようこそ！
@@ -8,27 +8,27 @@
         新規登録(無料)して利用を開始しましょう。
       </h2>
     </div>
-    <div class="btn-width">
+    <div class="button-box">
       <span @click="loginTwitter">
         <button-twitter
+          class="is-block button-margin"
           usage="登録"
-          class="is-block btn-margin"
         />
       </span>
       <span @click="loginFacebook">
         <button-facebook
+          class="is-block button-margin"
           usage="登録"
-          class="is-block btn-margin"
         />
       </span>
       <span @click="loginGoogle">
         <button-google
+          class="is-block button-margin"
           usage="登録"
-          class="is-block btn-margin"
         />
       </span>
     </div>
-    <div class="signup-box">
+    <div class="to-login-box has-text-centered">
       スタグル名鑑 のアカウントを持っている場合は
       <nuxt-link to="/login">
         ログイン
@@ -40,7 +40,6 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase'
 import ButtonTwitter from '@/components/Button/ButtonTwitter.vue'
 import ButtonFacebook from '@/components/Button/ButtonFacebook.vue'
 import ButtonGoogle from '@/components/Button/ButtonGoogle.vue'
@@ -75,22 +74,29 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.title-box {
-  border-bottom: 1px solid #dddddd;
-}
-.title {
-  margin: 1.3rem auto;
-}
-.btn-width {
+.login-box {
   width: 100%;
-  max-width: 360px;
-}
-.btn-margin {
-  margin-top: 1rem;
-}
-.signup-box {
-  border-top: 1px solid #dddddd;
-  margin-top: 1rem;
-  padding-top: 1.3rem;
+  max-width: 540px;
+  margin: 0 auto;
+  .title-box {
+    border-bottom: 1px solid #dddddd;
+    .title {
+      margin: 1.3rem auto;
+    }
+  }
+  .button-box {
+    width: 100%;
+    max-width: 360px;
+    margin: auto;
+    .button-margin {
+      margin-top: 1rem;
+    }
+  }
+
+  .to-login-box {
+    border-top: 1px solid #dddddd;
+    margin-top: 1rem;
+    padding-top: 1.3rem;
+  }
 }
 </style>
