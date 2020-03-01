@@ -35,27 +35,6 @@
       </nuxt-link>
       から。
     </div>
-    <div>
-      <p>
-        <input
-          v-model="email"
-          type="text"
-          placeholder="email"
-        >
-      </p>
-      <p>
-        <input
-          v-model="password"
-          type="password"
-          placeholder="password"
-        >
-      </p>
-      <button @click="createPassword(email, password)">
-        新規登録
-      </button>
-      <p>{{ email }}</p>
-      <p>{{ password }}</p>
-    </div>
   </section>
 </template>
 
@@ -90,18 +69,6 @@ export default Vue.extend({
     async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
       await this.$router.push('/')
-    },
-    createPassword (email: string, password: string) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
-        .then(async (res: any) => {
-          await this.$store.commit('user/setLoginState', res.user)
-          await this.$router.push('/')
-        })
-        .catch((error) => {
-          console.error('error!!!', error.code)
-        })
     }
   }
 })

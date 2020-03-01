@@ -32,33 +32,11 @@
       </nuxt-link>
       から。
     </div>
-    <div>
-      <p>
-        <input
-          v-model="email"
-          type="text"
-          placeholder="email"
-        >
-      </p>
-      <p>
-        <input
-          v-model="password"
-          type="password"
-          placeholder="password"
-        >
-      </p>
-      <button @click="loginPassword(email, password)">
-        ログイン
-      </button>
-      <p>{{ email }}</p>
-      <p>{{ password }}</p>
-    </div>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-import firebase from 'firebase'
 import ButtonTwitter from '@/components/Button/ButtonTwitter.vue'
 import ButtonFacebook from '@/components/Button/ButtonFacebook.vue'
 import ButtonGoogle from '@/components/Button/ButtonGoogle.vue'
@@ -68,12 +46,6 @@ export default Vue.extend({
     ButtonTwitter,
     ButtonFacebook,
     ButtonGoogle
-  },
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
   },
   methods: {
     async loginGoogle () {
@@ -87,18 +59,6 @@ export default Vue.extend({
     async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
       await this.$router.push('/')
-    },
-    loginPassword (email: string, password: string) {
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password)
-        .then(async (res: any) => {
-          await this.$store.commit('user/setLoginState', res.user)
-          await this.$router.push('/')
-        })
-        .catch((error) => {
-          console.error('error!!!', error.code)
-        })
     }
   }
 })
