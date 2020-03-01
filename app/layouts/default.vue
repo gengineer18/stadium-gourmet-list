@@ -6,7 +6,9 @@
         <h1 class="TestLabel">
           現在αテスト中...
         </h1>
-        <nuxt />
+        <div class="content-inner">
+          <nuxt />
+        </div>
       </div>
     </section>
   </div>
@@ -21,9 +23,6 @@ export default Vue.extend({
     TheHeader
   }
 })
-</script>>
-export default {
-}
 </script>
 
 <style lang="scss" scoped>
@@ -31,8 +30,13 @@ export default {
   width: 100%;
   max-width: 960px;
   margin: 32px auto 0;
-}
-.TestLabel {
-  font-size: 2.5rem;
+  .TestLabel {
+    font-size: 2.5rem;
+  }
+  .content-inner {
+    width: 100%;
+    max-width: 720px;
+    margin: 0 auto;
+  }
 }
 </style>
