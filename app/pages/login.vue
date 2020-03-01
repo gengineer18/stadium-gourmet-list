@@ -2,36 +2,33 @@
   <section class="login-box">
     <div class="title-box has-text-centered">
       <h1 class="title is-4">
-        スタグル名鑑へようこそ！
+        ログイン
       </h1>
-      <h2 class="subtitle is-6">
-        新規登録(無料)して利用を開始しましょう。
-      </h2>
     </div>
     <div class="button-box">
       <span @click="loginTwitter">
         <button-twitter
           class="is-block button-margin"
-          usage="登録"
+          usage="ログイン"
         />
       </span>
       <span @click="loginFacebook">
         <button-facebook
           class="is-block button-margin"
-          usage="登録"
+          usage="ログイン"
         />
       </span>
       <span @click="loginGoogle">
         <button-google
           class="is-block button-margin"
-          usage="登録"
+          usage="ログイン"
         />
       </span>
     </div>
-    <div class="to-login-box has-text-centered">
-      スタグル名鑑 のアカウントを持っている場合は
-      <nuxt-link to="/login">
-        ログイン
+    <div class="to-signup-box has-text-centered">
+      スタグル名鑑 のアカウントを持っていない場合は
+      <nuxt-link to="/signup">
+        新規登録
       </nuxt-link>
       から。
     </div>
@@ -49,12 +46,6 @@ export default Vue.extend({
     ButtonTwitter,
     ButtonFacebook,
     ButtonGoogle
-  },
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
   },
   methods: {
     async loginGoogle () {
@@ -93,7 +84,7 @@ export default Vue.extend({
     }
   }
 
-  .to-login-box {
+  .to-signup-box {
     border-top: 1px solid #dddddd;
     margin-top: 1rem;
     padding-top: 1.3rem;
