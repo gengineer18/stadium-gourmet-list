@@ -12,12 +12,16 @@
         <div>
           <canvas ref="thumbnail" :width="0" :height="0" />
         </div>
-        <input ref="input" type="file" accept=".jpg, .png" @change="resize">
-        <div>
-          <button @click="reset">
-            ×
-          </button>
-        </div>
+        <label class="button is-sub is-small">
+          <b-icon icon="camera" size="is-small" />
+          写真をアップロード
+          <input ref="input" type="file" accept=".jpg, .png" class="input-photo" @change="resize">
+        </label>
+        <span @click="reset">
+          <b-button icon-left="close-circle" type="is-light" size="is-small">
+            写真をリセット
+          </b-button>
+        </span>
       </div>
 
       <div class="form-required">
@@ -36,10 +40,10 @@
       <span @click="sendData()">
         <b-button
           type="is-sub"
-          icon-right="send"
+          icon-left="send"
           :disabled="invalid"
         >
-          投稿
+          投稿する
         </b-button>
       </span>
     </validation-observer>
@@ -208,5 +212,8 @@ export default Vue.extend({
 }
 .form-comment {
   margin-top: 1.6rem;
+}
+.input-photo {
+  display: none;
 }
 </style>
