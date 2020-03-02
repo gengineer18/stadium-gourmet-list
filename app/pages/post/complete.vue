@@ -1,12 +1,35 @@
 <template>
-  <section id="PostComplete">
-    <h1>投稿</h1>
-    <p>スタグル名：{{ gourmet }}</p>
-    <p>チーム名：{{ clubName }}</p>
-    <p>店舗名：{{ shop }}</p>
-    <p>寸評：{{ comment }}</p>
-    <p>観戦日：{{ date }}</p>
+  <section>
+    <h1 class="title is-4">
+      投稿できました！
+    </h1>
+    <h2>チーム名：{{ clubName }}</h2>
     <img :src="imagePath">
+    <ul class="share-list">
+      <li class="share-list-item">
+        <b-button
+          type="is-twitter"
+          icon-left="twitter"
+          tag="a"
+          :href="twitterURL"
+          target="_blank"
+          rel="nofollow"
+        />
+      </li>
+      <li class="share-list-item is-facebook">
+        <b-button
+          type="is-facebook"
+          icon-left="facebook"
+          tag="a"
+          href="#"
+        />
+      </li>
+    </ul>
+    <p>ユーザー：{{ gourmet }}</p>
+    <p>スタグル名：{{ gourmet }}</p>
+    <p>店舗名：{{ shop }}</p>
+    <p>観戦日：{{ date }}</p>
+    <p>寸評：{{ comment }}</p>
   </section>
 </template>
 
@@ -22,12 +45,23 @@ dayjs.locale('ja')
 export default Vue.extend({
   data (): CompletePost {
     return {
+      docRefId: '',
       gourmet: '',
+      clubId: '',
       clubName: '',
       shop: '',
       comment: '',
       date: '',
       imagePath: ''
+    }
+  },
+  computed: {
+    twitterURL () {
+      const host = location.host
+      const url = `https://${host}/club/${this.$data.clubId}/post/${this.$data.docRefId}`
+      const comment = encodeURIComponent(this.$data.comment)
+      const hashtag = encodeURIComponent('スタグル名鑑')
+      return `https://twitter.com/intent/tweet?url=${url}&text=${comment}&hashtags=${hashtag}`
     }
   },
   async mounted () {
@@ -40,7 +74,9 @@ export default Vue.extend({
     // storeからデータ読み込み
     const storedPosts = await this.$store.state.post.posts
     if (storedPosts !== null) {
+      this.docRefId = docRefId
       this.gourmet = storedPosts.gourmet ? storedPosts.gourmet : ''
+      this.clubId = storedPosts.club ? storedPosts.club.id : ''
       this.clubName = storedPosts.club ? storedPosts.club.name : ''
       this.shop = storedPosts.shop ? storedPosts.shop : ''
       this.comment = storedPosts.comment ? storedPosts.comment : ''
@@ -51,5 +87,23 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss">
+.shareList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.share-list-item {
+  display: inline-block;
+  flex-grow: 1;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
 </style>

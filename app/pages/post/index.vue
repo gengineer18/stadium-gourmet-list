@@ -1,5 +1,5 @@
 <template>
-  <section id="PostPage">
+  <section>
     <h1 class="title is-4">
       投稿する
     </h1>

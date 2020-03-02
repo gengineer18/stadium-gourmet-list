@@ -18,7 +18,9 @@ export type PostData = {
 }
 
 export type CompletePost = {
+  docRefId: string,
   gourmet: string,
+  clubId: string,
   clubName: string,
   shop: string,
   comment: string,
