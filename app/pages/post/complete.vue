@@ -21,7 +21,8 @@
           type="is-facebook"
           icon-left="facebook"
           tag="a"
-          href="#"
+          :href="facebookURL"
+          target="_blank"
         />
       </li>
     </ul>
@@ -59,9 +60,17 @@ export default Vue.extend({
     twitterURL () {
       const host = location.host
       const url = `https://${host}/club/${this.$data.clubId}/post/${this.$data.docRefId}`
+      const gourmet = encodeURIComponent(this.$data.gourmet)
       const comment = encodeURIComponent(this.$data.comment)
       const hashtag = encodeURIComponent('スタグル名鑑')
-      return `https://twitter.com/intent/tweet?url=${url}&text=${comment}&hashtags=${hashtag}`
+      return `https://twitter.com/intent/tweet?url=${url}&text=${gourmet}:${comment}&hashtags=${hashtag}`
+    },
+    facebookURL () {
+      const host = location.host
+      const url = `https://${host}/club/${this.$data.clubId}/post/${this.$data.docRefId}`
+      const gourmet = encodeURIComponent(this.$data.gourmet)
+      const comment = encodeURIComponent(this.$data.comment)
+      return `https://www.facebook.com/sharer/sharer.php?u=${url}&text=${gourmet}:${comment}`
     }
   },
   async mounted () {
