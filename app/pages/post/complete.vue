@@ -16,7 +16,7 @@
           rel="nofollow"
         />
       </li>
-      <li class="share-list-item is-facebook">
+      <li class="share-list-item">
         <b-button
           type="is-facebook"
           icon-left="facebook"
@@ -24,6 +24,20 @@
           :href="facebookURL"
           target="_blank"
         />
+      </li>
+      <li class="share-list-item">
+        <b-button
+          type="is-line"
+          tag="a"
+          :href="lineURL"
+          target="_blank"
+        >
+          line
+        </b-button>
+      </li>
+    </ul>
+  </section></ul></li></b-button>
+</template>
       </li>
     </ul>
     <p>ユーザー：{{ gourmet }}</p>
@@ -68,9 +82,12 @@ export default Vue.extend({
     facebookURL () {
       const host = location.host
       const url = `https://${host}/club/${this.$data.clubId}/post/${this.$data.docRefId}`
-      const gourmet = encodeURIComponent(this.$data.gourmet)
-      const comment = encodeURIComponent(this.$data.comment)
-      return `https://www.facebook.com/sharer/sharer.php?u=${url}&text=${gourmet}:${comment}`
+      return `https://www.facebook.com/sharer/sharer.php?u=${url}`
+    },
+    lineURL () {
+      const host = location.host
+      const url = `https://${host}/club/${this.$data.clubId}/post/${this.$data.docRefId}`
+      return `https://social-plugins.line.me/lineit/share?url=${url}`
     }
   },
   async mounted () {

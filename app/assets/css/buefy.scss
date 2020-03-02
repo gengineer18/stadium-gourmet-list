@@ -14,6 +14,8 @@ $facebook: #3b5999;
 $facebook-invert: findColorInvert($facebook);
 $google: #dd5144;
 $google-invert: findColorInvert($google);
+$line: #00C300;
+$line-invert: findColorInvert($line);
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -64,6 +66,10 @@ $colors: (
   "google": (
     $google,
     $google-invert
+  ),
+  "line": (
+    $line,
+    $line-invert
   ),
   "sub": (
     $sub,
