@@ -1,28 +1,49 @@
 <template>
-  <section id="PostPage">
-    <h1>投稿</h1>
+  <section>
+    <h1 class="title is-4">
+      投稿する
+    </h1>
     <validation-observer v-slot="{ invalid }">
-      <form-input v-model="gourmet" label="スタグル名" :max-length="20" class="Form" :required="true" />
-      <form-pulldown v-model="club" label="ホームチーム" :list-items="listItems" class="Form" />
-      <form-input v-model="shop" label="店舗名" :max-length="20" class="Form" />
-      <form-text-area v-model="comment" label="寸評" :max-length="140" class="Form" :required="true" />
-      <form-date v-model="date" label="観戦した日" class="Form" />
-      <div>
-        <canvas ref="thumbnail" :width="0" :height="0" />
+      <div class="form-required">
+        <form-pulldown v-model="club" label="ホームチーム" :list-items="listItems" />
       </div>
-      <input ref="input" type="file" accept=".jpg, .png" @change="resize">
-      <div>
-        <button @click="reset">
-          ×
-        </button>
+
+      <div class="form-image">
+        <div>
+          <canvas ref="thumbnail" :width="0" :height="0" />
+        </div>
+        <label class="button is-sub is-small">
+          <b-icon icon="camera" size="is-small" />
+          写真をアップロード
+          <input ref="input" type="file" accept=".jpg, .png" class="input-photo" @change="resize">
+        </label>
+        <span @click="reset">
+          <b-button icon-left="close-circle" type="is-light" size="is-small">
+            写真をリセット
+          </b-button>
+        </span>
       </div>
+
+      <div class="form-required">
+        <form-input v-model="gourmet" label="スタグル名" :max-length="20" :required="true" />
+      </div>
+      <div class="form-not-required">
+        <form-input v-model="shop" label="店舗名" :max-length="20" />
+      </div>
+      <div class="form-not-required">
+        <form-date v-model="date" label="観戦した日" />
+      </div>
+      <div class="form-comment">
+        <form-text-area v-model="comment" label="寸評" :max-length="140" :required="true" />
+      </div>
+
       <span @click="sendData()">
         <b-button
           type="is-sub"
-          icon-right="send"
+          icon-left="send"
           :disabled="invalid"
         >
-          投稿
+          投稿する
         </b-button>
       </span>
     </validation-observer>
@@ -180,9 +201,19 @@ export default Vue.extend({
 </script>
 
 <style>
-.Form {
-  max-width: 540px;
-  width: 95%;
-  margin: 0 auto;
+.form-image {
+  margin-bottom: 1.6rem;
+}
+.form-required {
+  margin-bottom: 0.5rem;
+}
+.form-not-required {
+  margin-bottom: 0.1rem;
+}
+.form-comment {
+  margin-top: 1.6rem;
+}
+.input-photo {
+  display: none;
 }
 </style>

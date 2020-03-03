@@ -1,5 +1,8 @@
 <template>
-  <b-field :label="label" label-position="on-border">
+  <b-field label-position="on-border">
+    <template slot="label">
+      {{ label }} <span class="has-text-danger">(必須)</span>
+    </template>
     <b-select
       v-bind="$attrs"
       :placeholder="label"
