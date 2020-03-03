@@ -5,7 +5,7 @@
     </h1>
     <h2>チーム名：{{ clubName }}</h2>
     <img :src="imagePath">
-    <ul class="share-list">
+    <ul>
       <li class="share-list-item">
         <b-button
           type="is-twitter"
@@ -111,16 +111,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
-.shareList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
 .share-list-item {
   display: inline-block;
   flex-grow: 1;
