@@ -1,6 +1,6 @@
 <template>
   <section>
-    <h1 class="ClubName">
+    <h1 class="title is-4">
       {{ clubName }}
     </h1>
     <ul v-for="item in storedClubs" :key="item.id">
@@ -16,7 +16,7 @@
 <script lang="ts">
 import Vue from 'vue'
 import { db } from '~/plugins/firebase'
-import utilsGetClubName from '~/utils/getClubName'
+import utilsGetClubConfig from '~/utils/getClubConfig'
 
 export default Vue.extend({
   data () {
@@ -33,7 +33,8 @@ export default Vue.extend({
     }
   },
   created () {
-    this.clubName = utilsGetClubName(this.$route.params.clubId)
+    const clubConfig = utilsGetClubConfig(this.$route.params.clubId)
+    this.clubName = clubConfig.name
   },
   async mounted () {
     await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts'))
@@ -43,9 +44,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.ClubName {
-  font-size: 1.5rem;
-}
 .Thumbnail {
   width: 200px;
   height: 200px;
