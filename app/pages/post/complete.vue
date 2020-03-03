@@ -14,6 +14,7 @@
           :href="twitterURL"
           target="_blank"
           rel="nofollow"
+          class="share-button"
         />
       </li>
       <li class="share-list-item">
@@ -23,6 +24,7 @@
           tag="a"
           :href="facebookURL"
           target="_blank"
+          class="share-button"
         />
       </li>
       <li class="share-list-item">
@@ -31,16 +33,13 @@
           tag="a"
           :href="lineURL"
           target="_blank"
+          class="share-button"
         >
-          line
+          <img src="/line-icon.png" class="line-icon">
         </b-button>
       </li>
     </ul>
-  </section></ul></li></b-button>
-</template>
-      </li>
-    </ul>
-    <p>ユーザー：{{ gourmet }}</p>
+    <p>ユーザー：{{ this.$store.getters['user/userName'] }}</p>
     <p>スタグル名：{{ gourmet }}</p>
     <p>店舗名：{{ shop }}</p>
     <p>観戦日：{{ date }}</p>
@@ -127,9 +126,20 @@ export default Vue.extend({
 .share-list-item {
   display: inline-block;
   flex-grow: 1;
-  width: 50px;
-  height: 50px;
-  line-height: 50px;
+  width: 60px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
+  margin-right: 0.5rem;
+}
+
+.share-button {
+  width: 60px;
+  height: 40px;
+}
+
+.line-icon {
+  height: 24px;
+  margin: auto;
 }
 </style>

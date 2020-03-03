@@ -13,6 +13,13 @@ export const state = () => ({
   photoURL: ''
 })
 
+export const getters = {
+  userName: (state: any) => {
+    if(state.displayName !== '') return state.displayName
+    return 'ゲスト'
+  }
+}
+
 export const mutations = {
   setLoginState(state: any, user: any) {
     state.isAuth = true
