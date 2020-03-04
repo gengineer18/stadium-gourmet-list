@@ -1,6 +1,7 @@
 <template>
   <section>
-    <h1 class="ClubName">
+    <h1 class="title is-4">
+      <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h1>
     <ul v-for="item in storedClubs" :key="item.id">
@@ -16,13 +17,20 @@
 <script lang="ts">
 import Vue from 'vue'
 import { db } from '~/plugins/firebase'
-import utilsGetClubName from '~/utils/getClubName'
+import utilsGetClubConfig from '~/utils/getClubConfig'
+import MarkCircle from '@/components/Mark/MarkCircle.vue'
 
 export default Vue.extend({
+  components: {
+    MarkCircle
+  },
   data () {
     return {
       storedClubs: [],
-      clubName: ''
+      clubName: '',
+      color1: '',
+      color2: '',
+      color3: ''
     }
   },
   computed: {
@@ -33,7 +41,11 @@ export default Vue.extend({
     }
   },
   created () {
-    this.clubName = utilsGetClubName(this.$route.params.clubId)
+    const clubConfig = utilsGetClubConfig(this.$route.params.clubId)
+    this.clubName = clubConfig.name
+    this.color1 = clubConfig.color1
+    this.color2 = clubConfig.color2 ? clubConfig.color2 : ''
+    this.color3 = clubConfig.color3 ? clubConfig.color3 : ''
   },
   async mounted () {
     await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts'))
@@ -43,9 +55,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.ClubName {
-  font-size: 1.5rem;
-}
 .Thumbnail {
   width: 200px;
   height: 200px;

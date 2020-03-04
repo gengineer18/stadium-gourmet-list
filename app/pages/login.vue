@@ -7,19 +7,19 @@
     </div>
     <div class="button-box">
       <span @click="loginTwitter">
-        <button-twitter
+        <button-login-twitter
           class="is-block button-margin"
           usage="ログイン"
         />
       </span>
       <span @click="loginFacebook">
-        <button-facebook
+        <button-login-facebook
           class="is-block button-margin"
           usage="ログイン"
         />
       </span>
       <span @click="loginGoogle">
-        <button-google
+        <button-login-google
           class="is-block button-margin"
           usage="ログイン"
         />
@@ -37,15 +37,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import ButtonTwitter from '@/components/Button/ButtonTwitter.vue'
-import ButtonFacebook from '@/components/Button/ButtonFacebook.vue'
-import ButtonGoogle from '@/components/Button/ButtonGoogle.vue'
+import ButtonLoginTwitter from '@/components/Button/ButtonLoginTwitter.vue'
+import ButtonLoginFacebook from '@/components/Button/ButtonLoginFacebook.vue'
+import ButtonLoginGoogle from '@/components/Button/ButtonLoginGoogle.vue'
 
 export default Vue.extend({
   components: {
-    ButtonTwitter,
-    ButtonFacebook,
-    ButtonGoogle
+    ButtonLoginTwitter,
+    ButtonLoginFacebook,
+    ButtonLoginGoogle
   },
   methods: {
     async loginGoogle () {

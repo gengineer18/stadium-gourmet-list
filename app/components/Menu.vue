@@ -18,7 +18,7 @@
           v-for="club in clubJson"
           :key="club.id"
         >
-          <mark-circle :color1="club.color1" :color2="club.color2" class="is-inline-block" />
+          <mark-circle :color1="club.color1" :color2="club.color2" :color3="club.color3" class="is-inline-block" />
           <b-menu-item
             :label="club.name"
             tag="nuxt-link"
@@ -33,7 +33,7 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import MarkCircle from '@/components/MarkCircle.vue'
+import MarkCircle from '@/components/Mark/MarkCircle.vue'
 
 export default Vue.extend({
   components: {

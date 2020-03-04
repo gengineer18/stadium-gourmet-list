@@ -200,7 +200,7 @@ export default Vue.extend({
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 .form-image {
   margin-bottom: 1.6rem;
 }

@@ -26,6 +26,9 @@ export type CompletePost = {
   comment: string,
   date: string,
   imagePath: string
+  color1: string
+  color2: string
+  color3: string
 }
 
 export type Club = {
