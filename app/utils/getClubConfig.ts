@@ -99,7 +99,6 @@ export default function getClubName(clubId: string): ClubConfig {
         name: 'ジェフユナイテッド千葉',
         color1: '#FFE100',
         color2: '#009260',
-        color3: '#009260',
       }
       break;
     case 'reysol':
@@ -147,7 +146,7 @@ export default function getClubName(clubId: string): ClubConfig {
         name: '横浜F・マリノス',
         color1: '#003F98',
         color2: '#FFFFFF',
-        color3: '#211612',
+        color3: '#E6002D',
       }
       break;
     case 'yokohamafc':
