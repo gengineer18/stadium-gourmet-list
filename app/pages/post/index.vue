@@ -9,7 +9,10 @@
       </div>
 
       <div class="form-image">
-        <div>
+        <div v-show="!postImage.path">
+          <img src="~/assets/default-photo.png">
+        </div>
+        <div v-show="postImage.path">
           <canvas ref="thumbnail" :width="0" :height="0" />
         </div>
         <label class="button is-sub is-small">
@@ -182,7 +185,7 @@ export default Vue.extend({
           shop: this.shop,
           comment: this.comment,
           date: this.date,
-          imagePath: ''
+          imagePath: 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=a518f35a-2ab4-4127-be64-1d614dbe294f'
         }
         this.addDb(docId, clubId, postData)
         this.$router.push(`/post/complete?docRefId=${docId}`)
