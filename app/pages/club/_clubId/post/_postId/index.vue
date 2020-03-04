@@ -1,6 +1,7 @@
 <template>
   <section>
     <h2 class="title is-4">
+      <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h2>
     <img :src="imagePath">
@@ -51,10 +52,15 @@ import Vue from 'vue'
 import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
 import 'dayjs/locale/ja'
+import MarkCircle from '@/components/Mark/MarkCircle.vue'
+import utilsGetClubConfig from '@/utils/getClubConfig'
 
 dayjs.locale('ja')
 
 export default Vue.extend({
+  components: {
+    MarkCircle
+  },
   data () {
     return {
       docRefId: '',
@@ -64,7 +70,10 @@ export default Vue.extend({
       shop: '',
       comment: '',
       date: '',
-      imagePath: ''
+      imagePath: '',
+      color1: '',
+      color2: '',
+      color3: ''
     }
   },
   computed: {
@@ -99,6 +108,11 @@ export default Vue.extend({
       this.comment = storedPosts.comment ? storedPosts.comment : ''
       this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
       this.imagePath = storedPosts.imagePath ? storedPosts.imagePath : ''
+
+      const clubConfig = utilsGetClubConfig(this.clubId)
+      this.color1 = clubConfig.color1
+      this.color2 = clubConfig.color2 ? clubConfig.color2 : ''
+      this.color3 = clubConfig.color3 ? clubConfig.color3 : ''
     }
   }
 })
