@@ -3,40 +3,17 @@
     <h1 class="title is-4">
       投稿できました！
     </h1>
-    <h2>チーム名：{{ clubName }}</h2>
+    <h2 class="subtitle is-4">
+      <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
+      {{ clubName }}
+    </h2>
     <img :src="imagePath">
     <ul>
       <li class="share-list-item">
-        <b-button
-          type="is-twitter"
-          icon-left="twitter"
-          tag="a"
-          :href="twitterURL"
-          target="_blank"
-          rel="nofollow"
-          class="share-button"
-        />
+        <button-share-twitter :club-id="clubId" :doc-ref-id="docRefId" :gourmet="gourmet" :comment="comment" />
       </li>
       <li class="share-list-item">
-        <b-button
-          type="is-facebook"
-          icon-left="facebook"
-          tag="a"
-          :href="facebookURL"
-          target="_blank"
-          class="share-button"
-        />
-      </li>
-      <li class="share-list-item">
-        <b-button
-          type="is-line"
-          tag="a"
-          :href="lineURL"
-          target="_blank"
-          class="share-button"
-        >
-          <img src="/line-icon.png" class="line-icon">
-        </b-button>
+        <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
       </li>
     </ul>
     <p>ユーザー：{{ this.$store.getters['user/userName'] }}</p>
@@ -53,10 +30,19 @@ import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
 import { CompletePost } from '@/types/post'
 import 'dayjs/locale/ja'
+import utilsGetClubConfig from '@/utils/getClubConfig'
+import MarkCircle from '@/components/Mark/MarkCircle.vue'
+import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
+import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
 
 dayjs.locale('ja')
 
 export default Vue.extend({
+  components: {
+    MarkCircle,
+    ButtonShareTwitter,
+    ButtonShareFacebook
+  },
   data (): CompletePost {
     return {
       docRefId: '',
@@ -66,24 +52,10 @@ export default Vue.extend({
       shop: '',
       comment: '',
       date: '',
-      imagePath: ''
-    }
-  },
-  computed: {
-    twitterURL () {
-      const url = `https://stgrmeikan.com/club/${this.$data.clubId}/post/${this.$data.docRefId}`
-      const gourmet = encodeURIComponent(this.$data.gourmet)
-      const comment = encodeURIComponent(this.$data.comment)
-      const hashtag = encodeURIComponent('スタグル名鑑')
-      return `https://twitter.com/intent/tweet?url=${url}&text=${gourmet}:${comment}&hashtags=${hashtag}`
-    },
-    facebookURL () {
-      const url = `https://stgrmeikan.com/club/${this.$data.clubId}/post/${this.$data.docRefId}`
-      return `https://www.facebook.com/sharer/sharer.php?u=${url}`
-    },
-    lineURL () {
-      const url = `https://stgrmeikan.com/club/${this.$data.clubId}/post/${this.$data.docRefId}`
-      return `https://social-plugins.line.me/lineit/share?url=${url}`
+      imagePath: '',
+      color1: '',
+      color2: '',
+      color3: ''
     }
   },
   async mounted () {
@@ -102,6 +74,11 @@ export default Vue.extend({
       this.comment = storedPosts.comment ? storedPosts.comment : ''
       this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
       this.imagePath = storedPosts.imagePath ? storedPosts.imagePath : ''
+
+      const clubConfig = utilsGetClubConfig(this.clubId)
+      this.color1 = clubConfig.color1
+      this.color2 = clubConfig.color2 ? clubConfig.color2 : ''
+      this.color3 = clubConfig.color3 ? clubConfig.color3 : ''
     }
   }
 })
@@ -116,15 +93,5 @@ export default Vue.extend({
   line-height: 40px;
   text-align: center;
   margin-right: 0.5rem;
-}
-
-.share-button {
-  width: 60px;
-  height: 40px;
-}
-
-.line-icon {
-  height: 24px;
-  margin: auto;
 }
 </style>
