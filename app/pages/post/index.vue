@@ -1,13 +1,15 @@
 <template>
   <section>
-    <h1 class="title is-4">
+    <h1 class="title is-5">
       投稿する
     </h1>
     <validation-observer v-slot="{ invalid }">
-      <div class="form-required">
+      <div class="form-team">
         <form-pulldown v-model="club" label="ホームチーム" :list-items="listItems" />
       </div>
-
+      <div>
+        <form-input v-model="gourmet" label="スタグル名" :max-length="20" :required="true" />
+      </div>
       <div class="form-image">
         <div v-show="!postImage.path">
           <img src="~/assets/default-photo.png">
@@ -27,9 +29,6 @@
         </span>
       </div>
 
-      <div class="form-required">
-        <form-input v-model="gourmet" label="スタグル名" :max-length="20" :required="true" />
-      </div>
       <div class="form-not-required">
         <form-input v-model="shop" label="店舗名" :max-length="20" />
       </div>
@@ -207,8 +206,8 @@ export default Vue.extend({
 .form-image {
   margin-bottom: 1.6rem;
 }
-.form-required {
-  margin-bottom: 0.5rem;
+.form-team {
+  margin-bottom: 1.6rem;
 }
 .form-not-required {
   margin-bottom: 0.1rem;
