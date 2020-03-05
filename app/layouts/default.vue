@@ -3,9 +3,6 @@
     <the-header />
     <section class="main-content">
       <div class="container">
-        <h1 class="TestLabel">
-          現在αテスト中...
-        </h1>
         <div class="content-inner">
           <nuxt />
         </div>
@@ -30,11 +27,8 @@ export default Vue.extend({
   width: 100%;
   max-width: 960px;
   margin: 32px auto 0;
-  .TestLabel {
-    font-size: 2.5rem;
-  }
   .content-inner {
-    width: 100%;
+    width: 96%;
     max-width: 720px;
     margin: 0 auto;
   }
