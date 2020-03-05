@@ -1,10 +1,10 @@
 <template>
   <section>
-    <h2 class="subtitle is-4">
+    <h2 class="title is-5">
       <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h2>
-    <img :src="imagePath">
+    <img :src="getImagePath(imagePath)">
     <ul>
       <li class="share-list-item">
         <button-share-twitter :club-id="clubId" :doc-ref-id="docRefId" :gourmet="gourmet" :comment="comment" />
@@ -53,6 +53,13 @@ export default Vue.extend({
       color1: '',
       color2: '',
       color3: ''
+    }
+  },
+  computed: {
+    getImagePath () {
+      return (imagePath: string): string => {
+        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=a518f35a-2ab4-4127-be64-1d614dbe294f'
+      }
     }
   },
   async created () {

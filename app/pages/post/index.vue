@@ -1,15 +1,20 @@
 <template>
   <section>
-    <h1 class="title is-4">
+    <h1 class="title is-5">
       投稿する
     </h1>
     <validation-observer v-slot="{ invalid }">
-      <div class="form-required">
+      <div class="form-team">
         <form-pulldown v-model="club" label="ホームチーム" :list-items="listItems" />
       </div>
-
+      <div>
+        <form-input v-model="gourmet" label="スタグル名" :max-length="20" :required="true" />
+      </div>
       <div class="form-image">
-        <div>
+        <div v-show="!postImage.path">
+          <img src="~/assets/default-photo.png">
+        </div>
+        <div v-show="postImage.path">
           <canvas ref="thumbnail" :width="0" :height="0" />
         </div>
         <label class="button is-sub is-small">
@@ -24,9 +29,6 @@
         </span>
       </div>
 
-      <div class="form-required">
-        <form-input v-model="gourmet" label="スタグル名" :max-length="20" :required="true" />
-      </div>
       <div class="form-not-required">
         <form-input v-model="shop" label="店舗名" :max-length="20" />
       </div>
@@ -182,7 +184,7 @@ export default Vue.extend({
           shop: this.shop,
           comment: this.comment,
           date: this.date,
-          imagePath: ''
+          imagePath: 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=a518f35a-2ab4-4127-be64-1d614dbe294f'
         }
         this.addDb(docId, clubId, postData)
         this.$router.push(`/post/complete?docRefId=${docId}`)
@@ -204,8 +206,8 @@ export default Vue.extend({
 .form-image {
   margin-bottom: 1.6rem;
 }
-.form-required {
-  margin-bottom: 0.5rem;
+.form-team {
+  margin-bottom: 1.6rem;
 }
 .form-not-required {
   margin-bottom: 0.1rem;

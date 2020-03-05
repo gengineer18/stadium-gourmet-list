@@ -13,6 +13,7 @@
     <div>
       <p>{{ $store.state.user.isAuth }}</p>
       <p>{{ $store.state.user.uid }}</p>
+      <img :src="$store.state.user.photoURL">
       <p>{{ $store.state.user.displayName }}でログイン中</p>
       <button @click="logOut">
         ログアウト
