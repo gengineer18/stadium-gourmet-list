@@ -131,7 +131,7 @@ export default Vue.extend({
       const canvas: HTMLCanvasElement = document.createElement('canvas')
       const ctx = canvas.getContext('2d')
       const ratio: number = image.height / image.width
-      const width: number = 540
+      const width: number = 300
       const height: number = width * ratio
       canvas.width = width
       canvas.height = height
@@ -142,9 +142,9 @@ export default Vue.extend({
     makeTumbnail (image: HTMLImageElement) {
       const canvas: HTMLCanvasElement = this.refs.thumbnail
       const ctx = canvas.getContext('2d')
-      const ratio: number = image.width / image.height
-      const height: number = 200
-      const width: number = height * ratio
+      const ratio: number = image.height / image.width
+      const width: number = 300
+      const height: number = width * ratio
       canvas.height = height
       canvas.width = width
       if (ctx === null) { return '' }

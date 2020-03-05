@@ -29,7 +29,7 @@
       </span>
     </div>
     <div class="to-login-box has-text-centered">
-      スタグル名鑑 のアカウントを持っている場合は
+      スタグル名鑑 のアカウントを<br>持っている場合は
       <nuxt-link to="/login">
         ログイン
       </nuxt-link>

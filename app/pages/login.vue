@@ -26,7 +26,7 @@
       </span>
     </div>
     <div class="to-signup-box has-text-centered">
-      スタグル名鑑 のアカウントを持っていない場合は
+      スタグル名鑑 のアカウントを<br>持っていない場合は
       <nuxt-link to="/signup">
         新規登録
       </nuxt-link>
