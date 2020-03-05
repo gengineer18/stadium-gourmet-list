@@ -5,6 +5,17 @@
         <b-navbar-item tag="div">
           <b-button
             type="is-sub"
+            icon-left="soccer"
+            size="is-small"
+            tag="nuxt-link"
+            to="/club"
+          >
+            <strong>クラブから探す</strong>
+          </b-button>
+        </b-navbar-item>
+        <b-navbar-item tag="div">
+          <b-button
+            type="is-accent"
             icon-left="pencil"
             size="is-small"
             tag="nuxt-link"
