@@ -7,9 +7,8 @@
     <Menu area-name="関東" :club-json="clubsKanto" />
     <Menu area-name="北信越" :club-json="clubsHokushinetsu" />
     <Menu area-name="東海" :club-json="clubsTokai" />
-    <Menu area-name="関西" :club-json="clubsKansai" />
-    <Menu area-name="中国" :club-json="clubsChugoku" />
-    <Menu area-name="四国" :club-json="clubsShikoku" />
+    <Menu area-name="近畿" :club-json="clubsKinki" />
+    <Menu area-name="中国・四国" :club-json="clubsChugokuShikoku" />
     <Menu area-name="九州・沖縄" :club-json="clubsKyushuOkinawa" />
   </section>
 </template>
@@ -24,15 +23,15 @@ export default Vue.extend({
     Menu
   },
   asyncData () {
+    const json = require('~/static/json/AllClubsList.json')
     return {
-      clubsHokkaidoTohoku: require('~/static/json/ClubsHokkaidoTohoku.json'),
-      clubsKanto: require('~/static/json/ClubsKanto.json'),
-      clubsHokushinetsu: require('~/static/json/ClubsHokushinetsu.json'),
-      clubsTokai: require('~/static/json/ClubsTokai.json'),
-      clubsKansai: require('~/static/json/ClubsKansai.json'),
-      clubsChugoku: require('~/static/json/ClubsChugoku.json'),
-      clubsShikoku: require('~/static/json/ClubsShikoku.json'),
-      clubsKyushuOkinawa: require('~/static/json/ClubsKyushuOkinawa.json')
+      clubsHokkaidoTohoku: json[0].hokkaidoTohoku.list,
+      clubsKanto: json[1].kanto.list,
+      clubsHokushinetsu: json[2].hokushinetsu.list,
+      clubsTokai: json[3].tokai.list,
+      clubsKinki: json[4].kinki.list,
+      clubsChugokuShikoku: json[5].chugokuShikoku.list,
+      clubsKyushuOkinawa: json[6].kyushuOkinawa.list
     }
   }
 })

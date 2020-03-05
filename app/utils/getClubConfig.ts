@@ -5,7 +5,7 @@ type ClubConfig = {
   color3?: string
 }
 
-export default function getClubName(clubId: string): ClubConfig {
+export default function getClubConfig(clubId: string): ClubConfig {
   let clubConfig: ClubConfig = {
     name: '',
     color1: ''

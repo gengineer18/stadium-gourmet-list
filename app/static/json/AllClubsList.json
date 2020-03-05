@@ -5,31 +5,42 @@
       "list": [
         {
           "name": "北海道コンサドーレ札幌",
-          "id": "consadole"
+          "id": "consadole",
+          "color1": "#d7000f",
+          "color2": "#000000"
         },
         {
           "name": "ヴァンラーレ八戸",
-          "id": "vanraure"
+          "id": "vanraure",
+          "color1": "#008836"
         },
         {
           "name": "いわてグルージャ盛岡",
-          "id": "grulla"
+          "id": "grulla",
+          "color1": "#FFFFFF",
+          "color2": "#000000"
         },
         {
           "name": "ベガルタ仙台",
-          "id": "vegalta"
+          "id": "vegalta",
+          "color1": "#fcc800"
         },
         {
           "name": "ブラウブリッツ秋田",
-          "id": "blaublitz"
+          "id": "blaublitz",
+          "color1": "#005BAB"
         },
         {
           "name": "モンテディオ山形",
-          "id": "montedio"
+          "id": "montedio",
+          "color1": "#004099",
+          "color2": "#FFFFFF"
         },
         {
           "name": "福島ユナイテッドFC",
-          "id": "fukushima"
+          "id": "fukushima",
+          "color1": "#E60012",
+          "color2": "#211612"
         }
       ]
     }
@@ -40,79 +51,110 @@
       "list": [
         {
           "name": "鹿島アントラーズ",
-          "id": "antlers"
+          "id": "antlers",
+          "color1": "#B8183F"
         },
         {
           "name": "水戸ホーリーホック",
-          "id": "hollyhock"
+          "id": "hollyhock",
+          "color1": "#1C2088"
         },
         {
           "name": "栃木SC",
-          "id": "tochigisc"
+          "id": "tochigisc",
+          "color1": "#FFEA02"
         },
         {
           "name": "ザスパクサツ群馬",
-          "id": "thespa"
+          "id": "thespa",
+          "color1": "#00063A",
+          "color2": "#FDD448"
         },
         {
           "name": "浦和レッズ",
-          "id": "reds"
+          "id": "reds",
+          "color1": "#E6002D"
         },
         {
           "name": "大宮アルディージャ",
-          "id": "ardija"
+          "id": "ardija",
+          "color1": "#ED6C00"
         },
         {
           "name": "ジェフユナイテッド千葉",
-          "id": "jef"
+          "id": "jef",
+          "color1": "#FFE100",
+          "color2": "#009260"
         },
         {
           "name": "柏レイソル",
-          "id": "reysol"
+          "id": "reysol",
+          "color1": "#FFE850"
         },
         {
           "name": "FC東京",
-          "id": "fctokyo"
+          "id": "fctokyo",
+          "color1": "#0B2F8E",
+          "color2": "#E5002C"
         },
         {
           "name": "FC東京 U-23",
-          "id": "fctokyou23"
+          "id": "fctokyou23",
+          "color1": "#0B2F8E",
+          "color2": "#E5002C"
         },
         {
           "name": "東京ヴェルディ",
-          "id": "verdy"
+          "id": "verdy",
+          "color1": "#006937"
         },
         {
           "name": "FC町田ゼルビア",
-          "id": "zelvia"
+          "id": "zelvia",
+          "color1": "#0054A7",
+          "color2": "#BEAF71"
         },
         {
           "name": "川崎フロンターレ",
-          "id": "frontale"
+          "id": "frontale",
+          "color1": "#20AEF4",
+          "color2": "#212121"
         },
         {
           "name": "横浜F・マリノス",
-          "id": "fmarinos"
+          "id": "fmarinos",
+          "color1": "#003F98",
+          "color2": "#FFFFFF",
+          "color3": "#E6002D"
         },
         {
           "name": "横浜FC",
-          "id": "yokohamafc"
+          "id": "yokohamafc",
+          "color1": "#00A0E9"
         },
         {
           "name": "Y.S.C.C.横浜",
-          "id": "yscc"
+          "id": "yscc",
+          "color1": "#005BAB",
+          "color2": "#EE7A00"
         },
         {
           "name": "SC相模原",
-          "id": "scsagamihara"
+          "id": "scsagamihara",
+          "color1": "#2E8D47",
+          "color2": "#373333"
         },
         {
           "name": "湘南ベルマーレ",
-          "id": "bellmare"
+          "id": "bellmare",
+          "color1": "#6FBA2B",
+          "color2": "#004081"
         },
         {
           "name": "ヴァンフォーレ甲府",
-          "id": "ventforet"
+          "id": "ventforet",
+          "color1": "#0060B5",
+          "color2": "#CA1944"
         }
       ]
     }
@@ -123,23 +165,33 @@
       "list": [
         {
           "name": "AC長野パルセイロ",
-          "id": "parceiro"
+          "id": "parceiro",
+          "color1": "#DA7600",
+          "color2": "#1A2260"
         },
         {
           "name": "松本山雅FC",
-          "id": "yamaga"
+          "id": "yamaga",
+          "color1": "#007343",
+          "color2": "#003E20"
         },
         {
           "name": "アルビレックス新潟",
-          "id": "albirex"
+          "id": "albirex",
+          "color1": "#E95405",
+          "color2": "#004099"
         },
         {
           "name": "カターレ富山",
-          "id": "kataller"
+          "id": "kataller",
+          "color1": "#0D267E",
+          "color2": "#9B0337"
         },
         {
           "name": "ツエーゲン金沢",
-          "id": "zweigen"
+          "id": "zweigen",
+          "color1": "#D70C1E",
+          "color2": "#000000"
         }
       ]
     }
@@ -150,27 +202,36 @@
       "list": [
         {
           "name": "清水エスパルス",
-          "id": "spulse"
+          "id": "spulse",
+          "color1": "#FF8706"
         },
         {
           "name": "ジュビロ磐田",
-          "id": "jubilo"
+          "id": "jubilo",
+          "color1": "#7399D1"
         },
         {
           "name": "藤枝MYFC",
-          "id": "fujiedamyfc"
+          "id": "fujiedamyfc",
+          "color1": "#803376"
         },
         {
           "name": "アスルクラロ沼津",
-          "id": "azulclaro"
+          "id": "azulclaro",
+          "color1": "#00A0E9",
+          "color2": "#122A88"
         },
         {
           "name": "名古屋グランパス",
-          "id": "grampus"
+          "id": "grampus",
+          "color1": "#D70C17",
+          "color2": "#F39800"
         },
         {
           "name": "FC岐阜",
-          "id": "fcgifu"
+          "id": "fcgifu",
+          "color1": "#016427",
+          "color2": "#45B158"
         }
       ]
     }
@@ -181,27 +242,35 @@
       "list": [
         {
           "name": "京都サンガF.C.",
-          "id": "sanga"
+          "id": "sanga",
+          "color1": "#842178"
         },
         {
           "name": "ガンバ大阪",
-          "id": "gamba"
+          "id": "gamba",
+          "color1": "#013981",
+          "color2": "#000000"
         },
         {
           "name": "ガンバ大阪 U-23",
-          "id": "gambau23"
+          "id": "gambau23",
+          "color1": "#013981",
+          "color2": "#000000"
         },
         {
           "name": "セレッソ大阪",
-          "id": "cerezo"
+          "id": "cerezo",
+          "color1": "#DA005C"
         },
         {
           "name": "セレッソ大阪 U-23",
-          "id": "cerezou23"
+          "id": "cerezou23",
+          "color1": "#DA005C"
         },
         {
           "name": "ヴィッセル神戸",
-          "id": "vissel"
+          "id": "vissel",
+          "color1": "#9B001F"
         }
       ]
     }
@@ -212,35 +281,48 @@
       "list": [
         {
           "name": "ガイナーレ鳥取",
-          "id": "gainare"
+          "id": "gainare",
+          "color1": "#6DBA3C",
+          "color2": "#023458"
         },
         {
           "name": "ファジアーノ岡山",
-          "id": "fagiano"
+          "id": "fagiano",
+          "color1": "#B6003D",
+          "color2": "#1D2368"
         },
         {
           "name": "サンフレッチェ広島",
-          "id": "sanfrecce"
+          "id": "sanfrecce",
+          "color1": "#51308F"
         },
         {
           "name": "レノファ山口FC",
-          "id": "renofa"
+          "id": "renofa",
+          "color1": "#EB5C00"
         },
         {
           "name": "徳島ヴォルティス",
-          "id": "vortis"
+          "id": "vortis",
+          "color1": "#0A308F",
+          "color2": "#6BB131"
         },
         {
           "name": "カマタマーレ讃岐",
-          "id": "kamatamare"
+          "id": "kamatamare",
+          "color1": "#65AADD",
+          "color2": "#004471"
         },
         {
           "name": "愛媛FC",
-          "id": "ehimefc"
+          "id": "ehimefc",
+          "color1": "#FF951B"
         },
         {
           "name": "FC今治",
-          "id": "fcimabari"
+          "id": "fcimabari",
+          "color1": "#161B60",
+          "color2": "#FFF102"
         }
       ]
     }
@@ -251,35 +333,48 @@
       "list": [
         {
           "name": "アビスパ福岡",
-          "id": "avispa"
+          "id": "avispa",
+          "color1": "#17284C",
+          "color2": "#9C9E9E"
         },
         {
           "name": "ギラヴァンツ北九州",
-          "id": "giravanz"
+          "id": "giravanz",
+          "color1": "#FFF102",
+          "color2": "#E60012"
         },
         {
           "name": "サガン鳥栖",
-          "id": "sagan"
+          "id": "sagan",
+          "color1": "#2096F3",
+          "color2": "#E95598"
         },
         {
           "name": "V・ファーレン長崎",
-          "id": "v-varen"
+          "id": "v-varen",
+          "color1": "#F39800",
+          "color2": "#005BAC"
         },
         {
           "name": "ロアッソ熊本",
-          "id": "roasso"
+          "id": "roasso",
+          "color1": "#B71915"
         },
         {
           "name": "大分トリニータ",
-          "id": "trinita"
+          "id": "trinita",
+          "color1": "#13098B"
         },
         {
           "name": "鹿児島ユナイテッドFC",
-          "id": "kagoshima"
+          "id": "kagoshima",
+          "color1": "#16335C"
         },
         {
           "name": "FC琉球",
-          "id": "fcryukyu"
+          "id": "fcryukyu",
+          "color1": "#BE003B",
+          "color2": "#E0CD76"
         }
       ]
     }
