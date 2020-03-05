@@ -1,13 +1,16 @@
 <template>
   <section id="club">
-    <Menu area-name="北海道・東北" :club-json="clubsHokkaidoTohoku" class="Menu" />
-    <Menu area-name="関東" :club-json="clubsKanto" class="Menu" />
-    <Menu area-name="北信越" :club-json="clubsHokushinetsu" class="Menu" />
-    <Menu area-name="東海" :club-json="clubsTokai" class="Menu" />
-    <Menu area-name="関西" :club-json="clubsKansai" class="Menu" />
-    <Menu area-name="中国" :club-json="clubsChugoku" class="Menu" />
-    <Menu area-name="四国" :club-json="clubsShikoku" class="Menu" />
-    <Menu area-name="九州・沖縄" :club-json="clubsKyushuOkinawa" class="Menu" />
+    <h1 class="title is-5">
+      クラブから探す
+    </h1>
+    <Menu area-name="北海道・東北" :club-json="clubsHokkaidoTohoku" />
+    <Menu area-name="関東" :club-json="clubsKanto" />
+    <Menu area-name="北信越" :club-json="clubsHokushinetsu" />
+    <Menu area-name="東海" :club-json="clubsTokai" />
+    <Menu area-name="関西" :club-json="clubsKansai" />
+    <Menu area-name="中国" :club-json="clubsChugoku" />
+    <Menu area-name="四国" :club-json="clubsShikoku" />
+    <Menu area-name="九州・沖縄" :club-json="clubsKyushuOkinawa" />
   </section>
 </template>
 
@@ -34,11 +37,3 @@ export default Vue.extend({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-.Menu {
-  max-width: 540px;
-  width: 95%;
-  margin: 0 auto;
-}
-</style>

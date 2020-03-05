@@ -1,13 +1,13 @@
 <template>
   <section>
-    <h1 class="title is-4">
+    <h1 class="title is-5">
       <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h1>
     <ul v-for="item in storedClubs" :key="item.id">
       <nuxt-link :to="getMenuPath(item.id)">
         <li>
-          <img :src="item.imagePath" class="Thumbnail">
+          <img :src="getImagePath(item.imagePath)" class="Thumbnail">
         </li>
       </nuxt-link>
     </ul>
@@ -37,6 +37,11 @@ export default Vue.extend({
     getMenuPath () {
       return (menuId: string): string => {
         return `/club/${this.$route.params.clubId}/post/${menuId}`
+      }
+    },
+    getImagePath () {
+      return (imagePath: string): string => {
+        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=a518f35a-2ab4-4127-be64-1d614dbe294f'
       }
     }
   },

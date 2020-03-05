@@ -1,9 +1,9 @@
 <template>
   <section>
-    <h1 class="title is-4">
+    <h1 class="title is-5">
       投稿できました！
     </h1>
-    <h2 class="subtitle is-4">
+    <h2 class="title is-5">
       <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h2>
