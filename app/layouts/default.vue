@@ -14,8 +14,8 @@
 
 <script lang="ts">
 import Vue from 'vue'
-const PcHeader = () => import('@/components/Header/PcHeader.vue')
-const SpHeader = () => import('@/components/Header/SpHeader.vue')
+import PcHeader from '@/components/Header/PcHeader.vue'
+import SpHeader from '@/components/Header/SpHeader.vue'
 
 export default Vue.extend({
   components: {

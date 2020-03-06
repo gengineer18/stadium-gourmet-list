@@ -57,11 +57,21 @@
             <strong>ログイン</strong>
           </b-button>
         </b-navbar-item>
-        <b-navbar-dropdown v-if="$store.state.user.isAuth" :label="$store.state.user.displayName">
-          <b-navbar-item tag="div" @click="logout">
+        <b-dropdown v-if="$store.state.user.isAuth" area-role="list" class="navbar-item">
+          <a slot="trigger">
+            <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
+            <span style="color:black;">{{ $store.state.user.displayName }}</span>
+            <b-icon icon="menu-down" style="vertical-align: middle;" />
+          </a>
+          <b-dropdown-item area-role="menu-item" :focusable="false">
+            <strong>{{ $store.state.user.displayName }}</strong><br>
+            マイページ
+          </b-dropdown-item>
+          <hr class="dropdown-divider">
+          <b-dropdown-item area-role="menu-item" :focusable="false" @click="logout">
             ログアウト
-          </b-navbar-item>
-        </b-navbar-dropdown>
+          </b-dropdown-item>
+        </b-dropdown>
       </template>
     </b-navbar>
   </section>
