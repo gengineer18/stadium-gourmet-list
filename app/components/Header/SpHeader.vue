@@ -1,31 +1,6 @@
 <template>
   <section class="background-primary">
     <b-navbar type="is-primary" class="max-width">
-      <template slot="start">
-        <b-navbar-item tag="div">
-          <b-button
-            type="is-sub"
-            icon-left="soccer"
-            size="is-small"
-            tag="nuxt-link"
-            to="/club"
-          >
-            <strong>クラブから探す</strong>
-          </b-button>
-        </b-navbar-item>
-        <b-navbar-item tag="div">
-          <b-button
-            type="is-accent"
-            icon-left="pencil"
-            size="is-small"
-            tag="nuxt-link"
-            to="/post"
-          >
-            <strong>投稿する</strong>
-          </b-button>
-        </b-navbar-item>
-      </template>
-
       <template slot="brand">
         <b-navbar-item tag="div" class="align-center">
           <nuxt-link to="/">
@@ -35,27 +10,11 @@
       </template>
 
       <template slot="end">
-        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
-          <b-button
-            type="is-sub"
-            icon-left="account"
-            size="is-small"
-            tag="nuxt-link"
-            to="/signup"
-          >
-            <strong>ユーザー登録</strong>
-          </b-button>
+        <b-navbar-item v-if="!$store.state.user.isAuth" tag="router-link" to="/signup">
+          ユーザー登録
         </b-navbar-item>
-        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
-          <b-button
-            type="is-white"
-            icon-left="login"
-            size="is-small"
-            tag="nuxt-link"
-            to="/login"
-          >
-            <strong>ログイン</strong>
-          </b-button>
+        <b-navbar-item v-if="!$store.state.user.isAuth" tag="router-link" to="/login">
+          ログイン
         </b-navbar-item>
         <b-navbar-dropdown v-if="$store.state.user.isAuth" :label="$store.state.user.displayName">
           <b-navbar-item tag="div" @click="logout">
