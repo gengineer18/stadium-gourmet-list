@@ -29,7 +29,7 @@
       <template slot="brand">
         <b-navbar-item tag="div" class="align-center">
           <nuxt-link to="/">
-            <span style="color:black;">みんなで作るスタグル名鑑</span>
+            <span style="color:black;">PCみんなで作るスタグル名鑑</span>
           </nuxt-link>
         </b-navbar-item>
       </template>
