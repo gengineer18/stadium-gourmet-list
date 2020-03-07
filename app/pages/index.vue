@@ -1,50 +1,110 @@
 <template>
-  <section id="toppage">
-    <b-button
-      type="is-sub"
-      icon-left="soccer"
-      size="is-large"
-      tag="nuxt-link"
-      to="/club"
-      class="ClubButton"
-    >
-      クラブから探す
-    </b-button>
-    <div>
-      <p>{{ $store.state.user.isAuth }}</p>
-      <p>{{ $store.state.user.uid }}</p>
-      <img :src="$store.state.user.photoURL">
-      <p>{{ $store.state.user.displayName }}でログイン中</p>
-      <button @click="logOut">
-        ログアウト
-      </button>
-    </div>
+  <section>
+    <h1 class="title is-5">
+      タイムライン
+    </h1>
+    <ul class="menu-list is-flex has-text-centered">
+      <nuxt-link v-for="item in storedPosts" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
+        <li>
+          <div class="card card-width">
+            <header class="card-header has-text-centered">
+              <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+            </header>
+            <div class="card-content">
+              <mark-circle
+                :color1="getClubColor1(item.club.id)"
+                :color2="getClubColor2(item.club.id)"
+                :color3="getClubColor3(item.club.id)"
+                class="is-inline-block va-mid"
+              />
+              <span class="text-rem-8 va-mid">{{ getClubName(item.club.id) }}</span>
+              <p>{{ item.gourmet }}</p>
+            </div>
+          </div>
+        </li>
+      </nuxt-link>
+    </ul>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
-// import firebase from 'firebase'
+import { db } from '~/plugins/firebase'
+import utilsGetClubConfig from '~/utils/getClubConfig'
+import MarkCircle from '@/components/Mark/MarkCircle.vue'
 
 export default Vue.extend({
   name: 'TopPage',
-  mounted () {
-    this.$store.dispatch('user/checkAuth')
+  components: {
+    MarkCircle
+  },
+  data () {
+    return {
+      storedPosts: []
+    }
+  },
+  computed: {
+    getMenuPath () {
+      return (clubId: string, menuId: string): string => {
+        return `/club/${clubId}/post/${menuId}`
+      }
+    },
+    getImagePath () {
+      return (imagePath: string): string => {
+        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=4e9d7eab-2f73-4472-8f9e-404db32a18e4'
+      }
+    }
+  },
+  async mounted () {
+    await this.$store.dispatch('post/init', db.collection('posts'))
+    this.storedPosts = await this.$store.state.post.posts
   },
   methods: {
-    logOut () {
-      this.$store.dispatch('user/logout')
+    getClubConfig (clubId: string) {
+      const clubConfig = utilsGetClubConfig(clubId)
+      return clubConfig
+    },
+    getClubName (clubId: string): string {
+      const clubConfig = this.getClubConfig(clubId)
+      return clubConfig.name
+    },
+    getClubColor1 (clubId: string): string {
+      const clubConfig = this.getClubConfig(clubId)
+      return clubConfig.color1
+    },
+    getClubColor2 (clubId: string): string {
+      const clubConfig = this.getClubConfig(clubId)
+      return clubConfig.color2 || ''
+    },
+    getClubColor3 (clubId: string): string {
+      const clubConfig = this.getClubConfig(clubId)
+      return clubConfig.color3 || ''
     }
   }
 })
 </script>
 
 <style lang="scss" scoped>
-#toppage{
-  max-width: 540px;
-  width: 95%;
-}
 .ClubButton{
   margin: 0 auto;
+}
+.Thumbnail {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.menu-list {
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.va-mid {
+  vertical-align: middle;
+}
+.card-width {
+  width: 216px;
+}
+.text-rem-8 {
+  font-size: 0.8rem;
 }
 </style>
