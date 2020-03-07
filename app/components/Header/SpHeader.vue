@@ -1,10 +1,10 @@
 <template>
   <section class="background-primary">
-    <b-navbar type="is-primary" class="max-width">
+    <b-navbar type="is-primary" class="max-width" close-on-click="true">
       <template slot="brand">
-        <b-navbar-item tag="div" class="align-center">
+        <b-navbar-item tag="div" class="align-center is-black">
           <nuxt-link to="/">
-            みんなで作るスタグル名鑑
+            <span class="text-black">みんなで作るスタグル名鑑</span>
           </nuxt-link>
         </b-navbar-item>
       </template>
@@ -55,12 +55,16 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import "~assets/css/buefy.scss";
 .background-primary {
-  background-color: #f6d04d
+  background-color: $primary
 }
 .max-width {
   width: 100%;
   max-width: 960px;
   margin: auto;
+}
+.text-black {
+  color: $black
 }
 </style>

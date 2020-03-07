@@ -1,6 +1,14 @@
 <template>
   <section class="background-primary">
     <b-navbar type="is-primary" class="max-width">
+      <template slot="brand">
+        <b-navbar-item tag="div" class="align-center">
+          <nuxt-link to="/">
+            <span class="text-black">みんなで作るスタグル名鑑</span>
+          </nuxt-link>
+        </b-navbar-item>
+      </template>
+
       <template slot="start">
         <b-navbar-item tag="div">
           <b-button
@@ -23,14 +31,6 @@
           >
             <strong>投稿する</strong>
           </b-button>
-        </b-navbar-item>
-      </template>
-
-      <template slot="brand">
-        <b-navbar-item tag="div" class="align-center">
-          <nuxt-link to="/">
-            みんなで作るスタグル名鑑
-          </nuxt-link>
         </b-navbar-item>
       </template>
 
@@ -60,8 +60,10 @@
         <b-dropdown v-if="$store.state.user.isAuth" area-role="list" class="navbar-item">
           <a slot="trigger">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
-            <span class="is-black">{{ $store.state.user.displayName }}</span>
-            <b-icon icon="menu-down" style="vertical-align: middle;" />
+            <span class="text-black">
+              {{ $store.state.user.displayName }}
+              <b-icon icon="menu-down" style="vertical-align: middle;" />
+            </span>
           </a>
           <b-dropdown-item area-role="menuitem" :focusable="false" @click="logout">
             <b-icon icon="logout" />
@@ -92,12 +94,16 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import "~assets/css/buefy.scss";
 .background-primary {
-  background-color: #f6d04d
+  background-color: $primary
 }
 .max-width {
   width: 100%;
   max-width: 960px;
   margin: auto;
+}
+.text-black {
+  color: $black
 }
 </style>
