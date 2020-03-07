@@ -29,7 +29,7 @@
       <template slot="brand">
         <b-navbar-item tag="div" class="align-center">
           <nuxt-link to="/">
-            <span style="color:black;">PCみんなで作るスタグル名鑑</span>
+            みんなで作るスタグル名鑑
           </nuxt-link>
         </b-navbar-item>
       </template>
@@ -60,15 +60,11 @@
         <b-dropdown v-if="$store.state.user.isAuth" area-role="list" class="navbar-item">
           <a slot="trigger">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
-            <span style="color:black;">{{ $store.state.user.displayName }}</span>
+            <span class="is-black">{{ $store.state.user.displayName }}</span>
             <b-icon icon="menu-down" style="vertical-align: middle;" />
           </a>
-          <b-dropdown-item area-role="menu-item" :focusable="false">
-            <strong>{{ $store.state.user.displayName }}</strong><br>
-            マイページ
-          </b-dropdown-item>
-          <hr class="dropdown-divider">
-          <b-dropdown-item area-role="menu-item" :focusable="false" @click="logout">
+          <b-dropdown-item area-role="menuitem" :focusable="false" @click="logout">
+            <b-icon icon="logout" />
             ログアウト
           </b-dropdown-item>
         </b-dropdown>

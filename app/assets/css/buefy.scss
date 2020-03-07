@@ -16,6 +16,7 @@ $google: #dd5144;
 $google-invert: findColorInvert($google);
 $line: #00C300;
 $line-invert: findColorInvert($line);
+$black: #4A4A4A;
 
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
@@ -82,9 +83,9 @@ $colors: (
 );
 
 // Links
-$link: $sub;
-$link-invert: $sub-invert;
-$link-focus-border: $sub;
+$link: $black;
+$link-invert: $black;
+$link-focus-border: $black;
 
 // Footer
 $footer-background-color: $primary;
