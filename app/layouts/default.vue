@@ -1,6 +1,7 @@
 <template>
   <div>
-    <the-header />
+    <pc-header v-if="$ua.deviceType() === 'pc'" />
+    <sp-header v-if="$ua.deviceType() !== 'pc'" />
     <section class="main-content">
       <div class="container">
         <div class="content-inner">
@@ -13,11 +14,13 @@
 
 <script lang="ts">
 import Vue from 'vue'
-import TheHeader from '@/components/TheHeader.vue'
+import PcHeader from '@/components/Header/PcHeader.vue'
+import SpHeader from '@/components/Header/SpHeader.vue'
 
 export default Vue.extend({
   components: {
-    TheHeader
+    PcHeader,
+    SpHeader
   }
 })
 </script>
