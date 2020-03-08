@@ -40,6 +40,7 @@ import Vue from 'vue'
 import { db } from '~/plugins/firebase'
 import utilsGetClubConfig from '~/utils/getClubConfig'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
+import { defaultImagePath } from '~/utils/common'
 
 export default Vue.extend({
   name: 'TopPage',
@@ -60,7 +61,7 @@ export default Vue.extend({
     },
     getImagePath () {
       return (imagePath: string): string => {
-        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=4e9d7eab-2f73-4472-8f9e-404db32a18e4'
+        return imagePath || defaultImagePath
       }
     }
   },

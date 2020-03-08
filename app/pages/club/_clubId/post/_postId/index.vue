@@ -27,6 +27,7 @@ import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
 import 'dayjs/locale/ja'
 import utilsGetClubConfig from '@/utils/getClubConfig'
+import { defaultImagePath } from '@/utils/common'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
 import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
@@ -58,7 +59,7 @@ export default Vue.extend({
   computed: {
     getImagePath () {
       return (imagePath: string): string => {
-        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=4e9d7eab-2f73-4472-8f9e-404db32a18e4'
+        return imagePath || defaultImagePath
       }
     }
   },
