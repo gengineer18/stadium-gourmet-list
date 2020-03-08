@@ -10,6 +10,7 @@ export type NewPost = {
     id: string
     name: string
   }
+  price: number | null
 }
 
 export type PostData = {
@@ -23,6 +24,7 @@ export type PostData = {
     id: string
     name: string
   }
+  price: number | null
 }
 
 export type CompletePost = {
@@ -38,6 +40,7 @@ export type CompletePost = {
   color1: string
   color2: string
   color3: string
+  price: number | null
 }
 
 export type Club = {

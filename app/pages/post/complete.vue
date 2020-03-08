@@ -22,6 +22,9 @@
     <h3 class="is-size-5 mt-1rem">
       {{ this.$store.getters['user/userName'] }}
     </h3>
+    <h3 v-if="price" class="is-size-6">
+      価格：{{ price }}円
+    </h3>
     <h3 v-if="shop" class="is-size-6">
       店舗名：{{ shop }}
     </h3>
@@ -66,7 +69,8 @@ export default Vue.extend({
       userName: '',
       color1: '',
       color2: '',
-      color3: ''
+      color3: '',
+      price: null
     }
   },
   async mounted () {
@@ -86,6 +90,7 @@ export default Vue.extend({
       this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
       this.imagePath = storedPosts.imagePath ? storedPosts.imagePath : ''
       this.userName = storedPosts.user.name ? storedPosts.user.name : 'ゲスト'
+      this.price = storedPosts.price ? storedPosts.price : null
 
       const clubConfig = utilsGetClubConfig(this.clubId)
       this.color1 = clubConfig.color1
