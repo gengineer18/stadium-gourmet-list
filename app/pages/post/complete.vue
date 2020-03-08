@@ -7,7 +7,10 @@
       <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h2>
-    <img :src="imagePath">
+    <h3 class="subtitle is-4">
+      {{ gourmet }}
+    </h3>
+    <img :src="imagePath" class="mb-1rem">
     <ul>
       <li class="share-list-item">
         <button-share-twitter :club-id="clubId" :doc-ref-id="docRefId" :gourmet="gourmet" :comment="comment" />
@@ -16,11 +19,18 @@
         <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
       </li>
     </ul>
-    <p>ユーザー：{{ this.$store.getters['user/userName'] }}</p>
-    <p>スタグル名：{{ gourmet }}</p>
-    <p>店舗名：{{ shop }}</p>
-    <p>観戦日：{{ date }}</p>
-    <p>寸評：{{ comment }}</p>
+    <h3 class="is-size-5 mt-1rem">
+      {{ this.$store.getters['user/userName'] }}
+    </h3>
+    <h3 v-if="shop" class="is-size-6">
+      店舗名：{{ shop }}
+    </h3>
+    <h3 v-if="date" class="is-size-6">
+      観戦日：{{ date }}
+    </h3>
+    <h3 v-if="comment" class="is-size-6">
+      寸評：{{ comment }}
+    </h3>
   </section>
 </template>
 
@@ -95,5 +105,11 @@ export default Vue.extend({
   line-height: 40px;
   text-align: center;
   margin-right: 0.5rem;
+}
+.mb-1rem {
+  margin-bottom: 1rem;
+}
+.mt-1rem {
+  margin-top: 1rem;
 }
 </style>
