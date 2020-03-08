@@ -3,27 +3,35 @@
     <h1 class="title is-5">
       タイムライン
     </h1>
-    <ul class="menu-list is-flex has-text-centered">
-      <nuxt-link v-for="item in storedPosts" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
-        <li>
-          <div class="card card-width">
-            <header class="card-header has-text-centered">
-              <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
-            </header>
-            <div class="card-content">
-              <mark-circle
-                :color1="getClubColor1(item.club.id)"
-                :color2="getClubColor2(item.club.id)"
-                :color3="getClubColor3(item.club.id)"
-                class="is-inline-block va-mid"
-              />
-              <span class="text-rem-8 va-mid">{{ getClubName(item.club.id) }}</span>
-              <p>{{ item.gourmet }}</p>
+    <div v-if="isLoading">
+      Now Loading...
+    </div>
+    <div v-if="!isLoading && storedPosts.length === 0">
+      投稿が取得できませんでした。
+    </div>
+    <div v-if="!isLoading && storedPosts.length > 0">
+      <ul class="menu-list is-flex has-text-centered">
+        <nuxt-link v-for="item in storedPosts" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
+          <li>
+            <div class="card card-width">
+              <header class="card-header has-text-centered">
+                <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+              </header>
+              <div class="card-content">
+                <mark-circle
+                  :color1="getClubColor1(item.club.id)"
+                  :color2="getClubColor2(item.club.id)"
+                  :color3="getClubColor3(item.club.id)"
+                  class="is-inline-block va-mid"
+                />
+                <span class="text-rem-8 va-mid">{{ getClubName(item.club.id) }}</span>
+                <p>{{ item.gourmet }}</p>
+              </div>
             </div>
-          </div>
-        </li>
-      </nuxt-link>
-    </ul>
+          </li>
+        </nuxt-link>
+      </ul>
+    </div>
   </section>
 </template>
 
@@ -40,7 +48,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      storedPosts: []
+      storedPosts: [],
+      isLoading: true
     }
   },
   computed: {
@@ -58,6 +67,7 @@ export default Vue.extend({
   async mounted () {
     await this.$store.dispatch('post/init', db.collection('posts'))
     this.storedPosts = await this.$store.state.post.posts
+    this.isLoading = false
   },
   methods: {
     getClubConfig (clubId: string) {
