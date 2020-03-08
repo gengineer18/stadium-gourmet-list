@@ -22,7 +22,6 @@
         </nuxt-link>
       </ul>
     </div>
-    </loading-mark>
   </section>
 </template>
 

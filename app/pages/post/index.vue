@@ -30,6 +30,9 @@
       </div>
 
       <div class="form-not-required">
+        <form-input v-model="price" label="価格" :max-length="5" />
+      </div>
+      <div class="form-not-required">
         <form-input v-model="shop" label="店舗名" :max-length="20" />
       </div>
       <div class="form-not-required">
@@ -94,7 +97,8 @@ export default Vue.extend({
       user: {
         id: '',
         name: ''
-      }
+      },
+      price: null
     }
   },
   computed: {
@@ -179,7 +183,8 @@ export default Vue.extend({
               user: {
                 id: this.$store.getters['user/userId'],
                 name: this.$store.getters['user/userName']
-              }
+              },
+              price: this.price
             }
             this.reset()
             this.addDb(docId, clubId, postData)
@@ -197,7 +202,8 @@ export default Vue.extend({
           user: {
             id: this.$store.getters['user/userId'],
             name: this.$store.getters['user/userName']
-          }
+          },
+          price: this.price
         }
         this.addDb(docId, clubId, postData)
         this.$router.push(`/post/complete?docRefId=${docId}`)
