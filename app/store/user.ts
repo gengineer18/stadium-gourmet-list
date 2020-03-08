@@ -14,6 +14,10 @@ export const state = () => ({
 })
 
 export const getters = {
+  userId: (state: any) => {
+    if(state.uid !== '') return state.uid
+    return 'guestUser'
+  },
   userName: (state: any) => {
     if(state.displayName !== '') return state.displayName
     return 'ゲスト'
@@ -63,6 +67,8 @@ export const actions = {
       })
   },
   add: firestoreAction((context, { postData, docId, userId }) => {
+    postData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
+    postData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
     userRef.doc(userId).collection('posts').doc(docId).set(postData)
     .catch((error) => {
       console.error('Error adding document: ', error)

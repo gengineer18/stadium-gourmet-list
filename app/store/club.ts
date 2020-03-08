@@ -1,4 +1,5 @@
 import { firestoreAction } from 'vuexfire'
+import firebase from '~/plugins/firebase'
 import { db } from '~/plugins/firebase'
 
 const clubRef = db.collection('clubs')
@@ -13,6 +14,8 @@ export const actions = {
     return bindFirestoreRef('clubs', ref)
   }),
   add: firestoreAction((context, { postData, docId, clubId }) => {
+    postData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
+    postData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
     clubRef.doc(clubId).collection('posts').doc(docId).set(postData)
     .catch((error) => {
       console.error('Error adding document: ', error)

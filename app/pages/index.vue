@@ -66,7 +66,7 @@ export default Vue.extend({
     }
   },
   async mounted () {
-    await this.$store.dispatch('post/init', db.collection('posts'))
+    await this.$store.dispatch('post/init', db.collection('posts').orderBy('createdAt', 'desc'))
     this.storedPosts = await this.$store.state.post.posts
     this.isLoading = false
   },

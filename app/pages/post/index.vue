@@ -177,7 +177,7 @@ export default Vue.extend({
               date: this.date,
               imagePath: this.imagePath,
               user: {
-                id: this.$store.state.user.uid,
+                id: this.$store.getters['user/userId'],
                 name: this.$store.getters['user/userName']
               }
             }
@@ -195,7 +195,7 @@ export default Vue.extend({
           date: this.date,
           imagePath: defaultImagePath,
           user: {
-            id: this.$store.state.user.uid,
+            id: this.$store.getters['user/userId'],
             name: this.$store.getters['user/userName']
           }
         }
