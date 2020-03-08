@@ -13,7 +13,7 @@
         <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
       </li>
     </ul>
-    <p>ユーザー：{{ user }}</p>
+    <p>ユーザー：{{ userName }}</p>
     <p>スタグル名：{{ gourmet }}</p>
     <p>店舗名：{{ shop }}</p>
     <p>観戦日：{{ date }}</p>
@@ -43,7 +43,7 @@ export default Vue.extend({
   data () {
     return {
       docRefId: '',
-      user: '',
+      userName: '',
       gourmet: '',
       clubId: '',
       clubName: '',
@@ -71,7 +71,7 @@ export default Vue.extend({
     const storedPosts = await this.$store.state.club.clubs
     if (storedPosts !== null) {
       this.docRefId = postId
-      this.user = storedPosts.user ? storedPosts.user : 'ゲスト'
+      this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
       this.gourmet = storedPosts.gourmet ? storedPosts.gourmet : ''
       this.clubId = storedPosts.club ? storedPosts.club.id : ''
       this.clubName = storedPosts.club ? storedPosts.club.name : ''

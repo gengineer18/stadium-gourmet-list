@@ -5,7 +5,11 @@ export type NewPost = {
   comment: string,
   date: Date | null,
   postImage: Image,
-  imagePath: string
+  imagePath: string,
+  user: {
+    id: string
+    name: string
+  }
 }
 
 export type PostData = {
@@ -14,7 +18,11 @@ export type PostData = {
   shop: string,
   comment: string,
   date: Date | null
-  imagePath: string
+  imagePath: string,
+  user: {
+    id: string
+    name: string
+  }
 }
 
 export type CompletePost = {
@@ -26,6 +34,7 @@ export type CompletePost = {
   comment: string,
   date: string,
   imagePath: string
+  userName: string
   color1: string
   color2: string
   color3: string

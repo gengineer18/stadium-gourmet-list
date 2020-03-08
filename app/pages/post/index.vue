@@ -90,7 +90,11 @@ export default Vue.extend({
         width: 0,
         height: 0
       },
-      imagePath: ''
+      imagePath: '',
+      user: {
+        id: '',
+        name: ''
+      }
     }
   },
   computed: {
@@ -171,7 +175,11 @@ export default Vue.extend({
               shop: this.shop,
               comment: this.comment,
               date: this.date,
-              imagePath: this.imagePath
+              imagePath: this.imagePath,
+              user: {
+                id: this.$store.state.user.uid,
+                name: this.$store.getters['user/userName']
+              }
             }
             this.reset()
             this.addDb(docId, clubId, postData)
@@ -185,7 +193,11 @@ export default Vue.extend({
           shop: this.shop,
           comment: this.comment,
           date: this.date,
-          imagePath: defaultImagePath
+          imagePath: defaultImagePath,
+          user: {
+            id: this.$store.state.user.uid,
+            name: this.$store.getters['user/userName']
+          }
         }
         this.addDb(docId, clubId, postData)
         this.$router.push(`/post/complete?docRefId=${docId}`)
