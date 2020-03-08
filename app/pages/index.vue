@@ -3,12 +3,8 @@
     <h1 class="title is-5">
       タイムライン
     </h1>
-    <div v-if="isLoading">
-      Now Loading...
-    </div>
-    <div v-if="!isLoading && storedPosts.length === 0">
-      投稿が取得できませんでした。
-    </div>
+    <loading-mark v-if="isLoading" />
+    <loading-failed v-if="!isLoading && storedPosts.length === 0" />
     <div v-if="!isLoading && storedPosts.length > 0">
       <ul class="menu-list is-flex has-text-centered">
         <nuxt-link v-for="item in storedPosts" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
@@ -41,11 +37,15 @@ import { db } from '~/plugins/firebase'
 import utilsGetClubConfig from '~/utils/getClubConfig'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import { defaultImagePath } from '~/utils/common'
+import LoadingMark from '@/components/Loading/LoadingMark.vue'
+import LoadingFailed from '@/components/Loading/LoadingFailed.vue'
 
 export default Vue.extend({
   name: 'TopPage',
   components: {
-    MarkCircle
+    MarkCircle,
+    LoadingMark,
+    LoadingFailed
   },
   data () {
     return {
@@ -68,7 +68,7 @@ export default Vue.extend({
   async mounted () {
     await this.$store.dispatch('post/init', db.collection('posts').orderBy('createdAt', 'desc'))
     this.storedPosts = await this.$store.state.post.posts
-    this.isLoading = false
+    this.isLoading = await false
   },
   methods: {
     getClubConfig (clubId: string) {
@@ -96,9 +96,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-.ClubButton{
-  margin: 0 auto;
-}
 .Thumbnail {
   max-width: 100%;
   max-height: 100%;
