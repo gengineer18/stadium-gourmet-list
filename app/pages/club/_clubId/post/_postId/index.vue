@@ -13,7 +13,7 @@
         <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
       </li>
     </ul>
-    <p>ユーザー：{{ user }}</p>
+    <p>ユーザー：{{ userName }}</p>
     <p>スタグル名：{{ gourmet }}</p>
     <p>店舗名：{{ shop }}</p>
     <p>観戦日：{{ date }}</p>
@@ -27,6 +27,7 @@ import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
 import 'dayjs/locale/ja'
 import utilsGetClubConfig from '@/utils/getClubConfig'
+import { defaultImagePath } from '@/utils/common'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
 import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
@@ -42,7 +43,7 @@ export default Vue.extend({
   data () {
     return {
       docRefId: '',
-      user: '',
+      userName: '',
       gourmet: '',
       clubId: '',
       clubName: '',
@@ -58,7 +59,7 @@ export default Vue.extend({
   computed: {
     getImagePath () {
       return (imagePath: string): string => {
-        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=4e9d7eab-2f73-4472-8f9e-404db32a18e4'
+        return imagePath || defaultImagePath
       }
     }
   },
@@ -70,7 +71,7 @@ export default Vue.extend({
     const storedPosts = await this.$store.state.club.clubs
     if (storedPosts !== null) {
       this.docRefId = postId
-      this.user = storedPosts.user ? storedPosts.user : 'ゲスト'
+      this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
       this.gourmet = storedPosts.gourmet ? storedPosts.gourmet : ''
       this.clubId = storedPosts.club ? storedPosts.club.id : ''
       this.clubName = storedPosts.club ? storedPosts.club.name : ''

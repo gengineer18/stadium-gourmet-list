@@ -4,13 +4,25 @@
       <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
     </h1>
-    <ul v-for="item in storedClubs" :key="item.id">
-      <nuxt-link :to="getMenuPath(item.id)">
-        <li>
-          <img :src="getImagePath(item.imagePath)" class="Thumbnail">
-        </li>
-      </nuxt-link>
-    </ul>
+    <loading-mark v-if="isLoading" />
+    <loading-failed v-if="!isLoading && storedClubs.length === 0" />
+    <div v-if="!isLoading && storedClubs.length > 0">
+      <ul class="menu-list is-flex has-text-centered">
+        <nuxt-link v-for="item in storedClubs" :key="item.id" :to="getMenuPath(item.id)">
+          <li>
+            <div class="card card-width">
+              <header class="card-header has-text-centered">
+                <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+              </header>
+              <div class="card-content">
+                <p>{{ item.gourmet }}</p>
+              </div>
+            </div>
+          </li>
+        </nuxt-link>
+      </ul>
+    </div>
+    </loading-mark>
   </section>
 </template>
 
@@ -18,11 +30,16 @@
 import Vue from 'vue'
 import { db } from '~/plugins/firebase'
 import utilsGetClubConfig from '~/utils/getClubConfig'
+import { defaultImagePath } from '~/utils/common'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
+import LoadingMark from '@/components/Loading/LoadingMark.vue'
+import LoadingFailed from '@/components/Loading/LoadingFailed.vue'
 
 export default Vue.extend({
   components: {
-    MarkCircle
+    MarkCircle,
+    LoadingMark,
+    LoadingFailed
   },
   data () {
     return {
@@ -30,7 +47,8 @@ export default Vue.extend({
       clubName: '',
       color1: '',
       color2: '',
-      color3: ''
+      color3: '',
+      isLoading: true
     }
   },
   computed: {
@@ -41,7 +59,7 @@ export default Vue.extend({
     },
     getImagePath () {
       return (imagePath: string): string => {
-        return imagePath || 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=4e9d7eab-2f73-4472-8f9e-404db32a18e4'
+        return imagePath || defaultImagePath
       }
     }
   },
@@ -55,13 +73,29 @@ export default Vue.extend({
   async mounted () {
     await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts'))
     this.storedClubs = await this.$store.state.club.clubs
+    this.isLoading = await false
   }
 })
 </script>
 
 <style lang="scss" scoped>
 .Thumbnail {
-  width: 200px;
-  height: 200px;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: 50% 0;
+}
+.menu-list {
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+.va-mid {
+  vertical-align: middle;
+}
+.card-width {
+  width: 216px;
+}
+.text-rem-8 {
+  font-size: 0.8rem;
 }
 </style>

@@ -61,6 +61,7 @@ import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
 import { NewPost, PostData } from '@/types/post'
+import { defaultImagePath } from '@/utils/common'
 
 export default Vue.extend({
   components: {
@@ -89,7 +90,11 @@ export default Vue.extend({
         width: 0,
         height: 0
       },
-      imagePath: ''
+      imagePath: '',
+      user: {
+        id: '',
+        name: ''
+      }
     }
   },
   computed: {
@@ -170,7 +175,11 @@ export default Vue.extend({
               shop: this.shop,
               comment: this.comment,
               date: this.date,
-              imagePath: this.imagePath
+              imagePath: this.imagePath,
+              user: {
+                id: this.$store.getters['user/userId'],
+                name: this.$store.getters['user/userName']
+              }
             }
             this.reset()
             this.addDb(docId, clubId, postData)
@@ -184,7 +193,11 @@ export default Vue.extend({
           shop: this.shop,
           comment: this.comment,
           date: this.date,
-          imagePath: 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fdefault-photo.png?alt=media&token=a518f35a-2ab4-4127-be64-1d614dbe294f'
+          imagePath: defaultImagePath,
+          user: {
+            id: this.$store.getters['user/userId'],
+            name: this.$store.getters['user/userName']
+          }
         }
         this.addDb(docId, clubId, postData)
         this.$router.push(`/post/complete?docRefId=${docId}`)

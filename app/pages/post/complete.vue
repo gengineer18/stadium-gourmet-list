@@ -53,6 +53,7 @@ export default Vue.extend({
       comment: '',
       date: '',
       imagePath: '',
+      userName: '',
       color1: '',
       color2: '',
       color3: ''
@@ -74,6 +75,7 @@ export default Vue.extend({
       this.comment = storedPosts.comment ? storedPosts.comment : ''
       this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
       this.imagePath = storedPosts.imagePath ? storedPosts.imagePath : ''
+      this.userName = storedPosts.user.name ? storedPosts.user.name : 'ゲスト'
 
       const clubConfig = utilsGetClubConfig(this.clubId)
       this.color1 = clubConfig.color1
