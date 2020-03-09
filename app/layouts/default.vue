@@ -15,7 +15,7 @@
       <sp-header />
       <section class="main-content">
         <div class="container">
-          <div class="content-inner-sp">
+          <div class="content-inner">
             <nuxt />
           </div>
         </div>
@@ -51,7 +51,7 @@ export default Vue.extend({
 .page-layout-sp {
   display: flex;
   flex-direction: column;
-  max-height: 89vh;
+  padding-bottom: 11vh;
 }
 .main-content {
   margin-bottom: 3rem;
@@ -64,12 +64,6 @@ export default Vue.extend({
     width: 96%;
     max-width: 720px;
     margin: 0 auto;
-  }
-  .content-inner-sp {
-    width: 96%;
-    max-width: 720px;
-    margin: 0 auto;
-    max-height: 80vh;
   }
 }
 .pc-footer {
