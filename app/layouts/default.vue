@@ -1,31 +1,61 @@
 <template>
-  <div>
-    <pc-header v-if="$ua.deviceType() === 'pc'" />
-    <sp-header v-if="$ua.deviceType() !== 'pc'" />
-    <section class="main-content">
-      <div class="container">
-        <div class="content-inner">
-          <nuxt />
+  <section>
+    <div v-if="$ua.deviceType() === 'pc'" class="page-layout-pc">
+      <pc-header />
+      <section class="main-content">
+        <div class="container">
+          <div class="content-inner">
+            <nuxt />
+          </div>
         </div>
-      </div>
-    </section>
-  </div>
+      </section>
+      <pc-footer class="pc-footer" />
+    </div>
+    <div v-if="$ua.deviceType() !== 'pc'" class="page-layout-sp">
+      <sp-header />
+      <section class="main-content">
+        <div class="container">
+          <div class="content-inner">
+            <nuxt />
+          </div>
+        </div>
+      </section>
+      <sp-footer class="sp-footer" />
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 import PcHeader from '@/components/Header/PcHeader.vue'
 import SpHeader from '@/components/Header/SpHeader.vue'
+import PcFooter from '@/components/Footer/PcFooter.vue'
+import SpFooter from '@/components/Footer/SpFooter.vue'
 
 export default Vue.extend({
   components: {
     PcHeader,
-    SpHeader
+    SpHeader,
+    PcFooter,
+    SpFooter
   }
 })
 </script>
 
 <style lang="scss" scoped>
+.page-layout-pc {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.page-layout-sp {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 11vh;
+}
+.main-content {
+  margin-bottom: 3rem;
+}
 .container {
   width: 100%;
   max-width: 960px;
@@ -35,5 +65,16 @@ export default Vue.extend({
     max-width: 720px;
     margin: 0 auto;
   }
+}
+.pc-footer {
+  margin-top: auto;
+}
+.sp-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: 11vh;
 }
 </style>
