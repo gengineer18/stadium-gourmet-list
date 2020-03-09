@@ -11,11 +11,11 @@
 
       <template slot="end">
         <div v-if="!$store.state.user.isAuth">
-          <b-navbar-item tag="router-link" to="/signup">
+          <b-navbar-item tag="router-link" to="/account/signup">
             <b-icon icon="account" />
             ユーザー登録
           </b-navbar-item>
-          <b-navbar-item tag="router-link" to="/login">
+          <b-navbar-item tag="router-link" to="/account/login">
             <b-icon icon="login" />
             ログイン
           </b-navbar-item>

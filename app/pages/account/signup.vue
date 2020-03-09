@@ -30,7 +30,7 @@
     </div>
     <div class="to-login-box has-text-centered">
       スタグル名鑑 のアカウントを<br>持っている場合は
-      <nuxt-link to="/login">
+      <nuxt-link to="/account/login">
         ログイン
       </nuxt-link>
       から。
