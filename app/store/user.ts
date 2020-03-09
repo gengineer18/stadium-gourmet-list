@@ -9,8 +9,8 @@ export const state = () => ({
   isAuth: false,
   uid: '',
   displayName: '',
-  email: '',
-  photoURL: ''
+  photoURL: '',
+  isRegistered: false,
 })
 
 export const getters = {
@@ -28,31 +28,44 @@ export const mutations = {
   setLoginState(state: any, user: any) {
     state.isAuth = true
     state.uid = user.uid
-    state.email = user.email
     state.displayName = user.displayName
     state.photoURL = user.photoURL
+    state.isRegistered = user.isRegistered
   },
   setLogoutState(state: any) {
     state.isAuth = false
     state.uid = ''
-    state.email = ''
     state.displayName = ''
     state.photoURL = ''
+    state.isRegistered = false
   }
 }
 
 export const actions = {
-  loginGoogle: async ({ commit }: any) => {
+  loginGoogle: async ({ commit, dispatch }: any) => {
     const provider = new firebase.auth.GoogleAuthProvider()
-    await loginCommon({ commit }, provider)
+    await dispatch('loginCommon', provider)
   },
-  loginFacebook: async ({ commit }: any) => {
+  loginFacebook: async ({ commit, dispatch }: any) => {
     const provider = new firebase.auth.FacebookAuthProvider()
-    await loginCommon({ commit }, provider)
+    await dispatch('loginCommon', provider)
   },
-  loginTwitter: async ({ commit }: any) => {
+  loginTwitter: async ({ commit, dispatch }: any) => {
     const provider = new firebase.auth.TwitterAuthProvider()
-    await loginCommon({ commit }, provider)
+    await dispatch('loginCommon', provider)
+  },
+  loginCommon: ({ commit, dispatch }: any, provider: any) => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((res: any) => {
+        console.info(res.user)
+        dispatch('getInitializeUser', res.user.uid)
+        commit('setLoginState', res.user)
+      })
+      .catch(error => {
+        console.error('loginCommon', error.code)
+      })
   },
   logout: ({ commit }: any) => {
     firebase.auth().signOut()
@@ -73,15 +86,32 @@ export const actions = {
     .catch((error) => {
       console.error('Error adding document: ', error)
     })
-  })
-}
-
-const loginCommon = ({ commit }: any, provider: any) => {
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then((res: any) => commit('setLoginState', res.user))
-    .catch(error => {
-      console.error(error.code)
+  }),
+  setInitializeUser: firestoreAction((context, { userData, userId }) => {
+    userData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
+    userData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
+    userData.isRegistered = false
+    userRef.doc(userId).set(userData)
+    .catch((error) => {
+      console.error('Error adding document: ', error)
     })
+  }),
+  getInitializeUser: firestoreAction(({ bindFirestoreRef, dispatch }, userId) => {
+    // return the promise returned by `bindFirestoreRef`
+    const ref = db.collection('users').doc(userId)
+    ref
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.info('doctrue', doc)
+          return false
+        } else {
+          const userData = {}
+          dispatch('setInitializeUser', { userData, userId })
+        }
+      })
+      .catch(error => {
+        console.error('getInitializeUser', error)
+      })
+  })
 }
