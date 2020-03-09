@@ -29,6 +29,13 @@
       </span>
     </div>
     <div class="to-login-box has-text-centered">
+      登録には
+      <nuxt-link to="/terms">
+        利用規約
+      </nuxt-link>
+      に同意する必要があります。
+    </div>
+    <div class="to-login-box has-text-centered">
       スタグル名鑑 のアカウントを<br>持っている場合は
       <nuxt-link to="/account/login">
         ログイン
@@ -50,24 +57,18 @@ export default Vue.extend({
     ButtonLoginFacebook,
     ButtonLoginGoogle
   },
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
   methods: {
     async loginGoogle () {
       await this.$store.dispatch('user/loginGoogle')
-      await this.$router.push('/')
+      this.$router.push('/account/loading')
     },
     async loginFacebook () {
       await this.$store.dispatch('user/loginFacebook')
-      await this.$router.push('/')
+      await this.$router.push('/account/loading')
     },
     async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
-      await this.$router.push('/')
+      await this.$router.push('/account/loading')
     }
   }
 })

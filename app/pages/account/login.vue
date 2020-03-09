@@ -50,15 +50,15 @@ export default Vue.extend({
   methods: {
     async loginGoogle () {
       await this.$store.dispatch('user/loginGoogle')
-      await this.$router.push('/')
+      this.$router.push('/account/loading')
     },
     async loginFacebook () {
       await this.$store.dispatch('user/loginFacebook')
-      await this.$router.push('/')
+      this.$router.push('/account/loading')
     },
     async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
-      await this.$router.push('/')
+      this.$router.push('/account/loading')
     }
   }
 })
