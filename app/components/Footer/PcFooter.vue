@@ -11,20 +11,35 @@
       <div class="list-box">
         <ul>
           <li>
-            About
+            <nuxt-link to="/about">
+              <span class="link-black">About</span>
+            </nuxt-link>
           </li>
           <li>
-            利用規約
+            <nuxt-link to="/terms">
+              <span class="link-black">利用規約</span>
+            </nuxt-link>
           </li>
         </ul>
       </div>
       <div class="list-box">
         <ul>
           <li>
-            プライバシー
+            <nuxt-link to="/privacy">
+              <span class="link-black">プライバシー</span>
+            </nuxt-link>
           </li>
           <li>
-            ご意見
+            <span class="link-black">ご意見</span>
+          </li>
+        </ul>
+      </div>
+      <div class="list-box">
+        <ul>
+          <li>
+            <nuxt-link to="/guidline">
+              <span class="link-black">ガイドライン</span>
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -39,6 +54,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~assets/css/buefy.scss';
 .footer-box {
   display:flex;
   flex-flow: row wrap;
@@ -52,6 +68,9 @@ export default {
   ul {
     list-style: none;
   }
+}
+.link-black {
+  color: $black;
 }
 .list-box {
   text-align: left;
