@@ -30,7 +30,10 @@ export const mutations = {
     state.uid = user.uid
     state.displayName = user.displayName
     state.photoURL = user.photoURL
-    state.isRegistered = user.isRegistered
+  },
+  setUserIsRegistered(state: any, isRegistered: boolean) {
+    state.isRegistered = isRegistered
+    console.log('setUserIsRegistered', isRegistered)
   },
   setLogoutState(state: any) {
     state.isAuth = false
@@ -59,7 +62,6 @@ export const actions = {
       .auth()
       .signInWithPopup(provider)
       .then((res: any) => {
-        console.info(res.user)
         dispatch('getInitializeUser', res.user.uid)
         commit('setLoginState', res.user)
       })
@@ -96,19 +98,23 @@ export const actions = {
       console.error('Error adding document: ', error)
     })
   }),
-  getInitializeUser: firestoreAction(({ bindFirestoreRef, dispatch }, userId) => {
+  getInitializeUser: (({ commit, dispatch }: any, userId :string) => {
     // return the promise returned by `bindFirestoreRef`
     const ref = db.collection('users').doc(userId)
     ref
       .get()
       .then((doc) => {
         if (doc.exists) {
-          console.info('doctrue', doc)
-          return false
-        } else {
-          const userData = {}
-          dispatch('setInitializeUser', { userData, userId })
+          // 登録済みなら
+          if (doc.get('isRegistered')) {
+            commit('setUserIsRegistered', true)
+          }
+          commit('setUserIsRegistered', false)
         }
+        // ユーザー登録がなければ初期化してユーザーコレクションに追加
+        const userData = {}
+        dispatch('setInitializeUser', { userData, userId })
+        return false
       })
       .catch(error => {
         console.error('getInitializeUser', error)
