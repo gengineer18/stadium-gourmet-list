@@ -107,14 +107,19 @@ export const actions = {
         if (doc.exists) {
           // 登録済みなら
           if (doc.get('isRegistered')) {
+            console.info('isRegistered')
             commit('setUserIsRegistered', true)
           }
+          console.info('未登録')
           commit('setUserIsRegistered', false)
+          dispatch('logout')
+        } else {
+          console.info('完全初回')
+          // ユーザー登録がなければ初期化してユーザーコレクションに追加
+          const userData = {}
+          dispatch('setInitializeUser', { userData, userId })
+          dispatch('logout')
         }
-        // ユーザー登録がなければ初期化してユーザーコレクションに追加
-        const userData = {}
-        dispatch('setInitializeUser', { userData, userId })
-        return false
       })
       .catch(error => {
         console.error('getInitializeUser', error)
