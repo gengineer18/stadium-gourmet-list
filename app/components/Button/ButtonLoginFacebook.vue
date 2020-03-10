@@ -4,6 +4,8 @@
     icon-left="facebook"
     expanded
     type="is-facebook"
+    :disabled="disabled"
+    @click="loginFacebook"
   >
     Facebookアカウントで{{ usage }}
   </b-button>
@@ -17,6 +19,15 @@ export default Vue.extend({
     usage: {
       type: String,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      required: false
+    }
+  },
+  methods: {
+    loginFacebook () {
+      this.$emit('login-facebook')
     }
   }
 })

@@ -8,32 +8,41 @@
         新規登録(無料)して利用を開始しましょう。
       </h2>
     </div>
+    <div class="has-text-centered term-box">
+      登録には
+      <a href="/terms" target="_blank">利用規約</a>
+      に同意する必要があります。
+      <div>
+        <b-checkbox v-model="checkbox">
+          同意して登録する
+        </b-checkbox>
+      </div>
+    </div>
     <div class="button-box">
-      <span @click="loginTwitter">
+      <span>
         <button-login-twitter
           class="is-block button-margin"
           usage="登録"
+          :disabled="!checkbox"
+          @login-twitter="loginTwitter($event)"
         />
       </span>
-      <span @click="loginFacebook">
+      <span>
         <button-login-facebook
           class="is-block button-margin"
           usage="登録"
+          :disabled="!checkbox"
+          @login-facebook="loginFacebook($event)"
         />
       </span>
-      <span @click="loginGoogle">
+      <span>
         <button-login-google
           class="is-block button-margin"
           usage="登録"
+          :disabled="!checkbox"
+          @login-google="loginGoogle($event)"
         />
       </span>
-    </div>
-    <div class="to-login-box has-text-centered">
-      登録には
-      <nuxt-link to="/terms">
-        利用規約
-      </nuxt-link>
-      に同意する必要があります。
     </div>
     <div class="to-login-box has-text-centered">
       スタグル名鑑 のアカウントを<br>持っている場合は
@@ -57,16 +66,21 @@ export default Vue.extend({
     ButtonLoginFacebook,
     ButtonLoginGoogle
   },
+  data () {
+    return {
+      checkbox: false
+    }
+  },
   methods: {
-    async loginGoogle () {
+    async loginGoogle (event: any) {
       await this.$store.dispatch('user/loginGoogle')
       this.$router.push('/account/loading')
     },
-    async loginFacebook () {
+    async loginFacebook (event: any) {
       await this.$store.dispatch('user/loginFacebook')
       await this.$router.push('/account/loading')
     },
-    async loginTwitter () {
+    async loginTwitter (event: any) {
       await this.$store.dispatch('user/loginTwitter')
       await this.$router.push('/account/loading')
     }
@@ -84,6 +98,9 @@ export default Vue.extend({
     .title {
       margin: 1.3rem auto;
     }
+  }
+  .term-box {
+    margin-top: 1rem;
   }
   .button-box {
     width: 100%;

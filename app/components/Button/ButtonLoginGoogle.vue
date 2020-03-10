@@ -4,6 +4,8 @@
     icon-left="google"
     expanded
     type="is-google"
+    :disabled="disabled"
+    @click="loginGoogle"
   >
     Googleアカウントで{{ usage }}
   </b-button>
@@ -17,6 +19,15 @@ export default Vue.extend({
     usage: {
       type: String,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      required: false
+    }
+  },
+  methods: {
+    loginGoogle () {
+      this.$emit('login-google')
     }
   }
 })

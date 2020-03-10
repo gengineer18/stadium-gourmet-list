@@ -10,18 +10,21 @@
         <button-login-twitter
           class="is-block button-margin"
           usage="ログイン"
+          @login-twitter="loginTwitter($event)"
         />
       </span>
       <span @click="loginFacebook">
         <button-login-facebook
           class="is-block button-margin"
           usage="ログイン"
+          @login-facebook="loginFacebook($event)"
         />
       </span>
       <span @click="loginGoogle">
         <button-login-google
           class="is-block button-margin"
           usage="ログイン"
+          @login-google="loginGoogle($event)"
         />
       </span>
     </div>
@@ -48,15 +51,15 @@ export default Vue.extend({
     ButtonLoginGoogle
   },
   methods: {
-    async loginGoogle () {
+    async loginGoogle (event: any) {
       await this.$store.dispatch('user/loginGoogle')
       this.$router.push('/account/loading')
     },
-    async loginFacebook () {
+    async loginFacebook (event: any) {
       await this.$store.dispatch('user/loginFacebook')
       this.$router.push('/account/loading')
     },
-    async loginTwitter () {
+    async loginTwitter (event: any) {
       await this.$store.dispatch('user/loginTwitter')
       this.$router.push('/account/loading')
     }
