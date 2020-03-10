@@ -10,6 +10,7 @@ export const state = () => ({
   uid: '',
   displayName: '',
   photoURL: '',
+  email: '',
   isRegistered: false,
 })
 
@@ -29,31 +30,32 @@ export const mutations = {
     state.isAuth = true
     state.uid = user.uid
     state.displayName = user.displayName
+    state.email = user.email
     state.photoURL = user.photoURL
   },
-  setUserIsRegistered(state: any, isRegistered: boolean) {
-    state.isRegistered = isRegistered
-    console.log('setUserIsRegistered', isRegistered)
+  setUserIsRegisteredTrue(state: any) {
+    state.isRegistered = true
   },
   setLogoutState(state: any) {
     state.isAuth = false
     state.uid = ''
     state.displayName = ''
     state.photoURL = ''
+    state.email = ''
     state.isRegistered = false
   }
 }
 
 export const actions = {
-  loginGoogle: async ({ commit, dispatch }: any) => {
+  loginGoogle: async ({ dispatch }: any) => {
     const provider = new firebase.auth.GoogleAuthProvider()
     await dispatch('loginCommon', provider)
   },
-  loginFacebook: async ({ commit, dispatch }: any) => {
+  loginFacebook: async ({ dispatch }: any) => {
     const provider = new firebase.auth.FacebookAuthProvider()
     await dispatch('loginCommon', provider)
   },
-  loginTwitter: async ({ commit, dispatch }: any) => {
+  loginTwitter: async ({ dispatch }: any) => {
     const provider = new firebase.auth.TwitterAuthProvider()
     await dispatch('loginCommon', provider)
   },
@@ -66,6 +68,7 @@ export const actions = {
         commit('setLoginState', res.user)
       })
       .catch(error => {
+        if(error.code === 'auth/popup-blocked') return
         console.error('loginCommon', error.code)
       })
   },
@@ -84,7 +87,7 @@ export const actions = {
   add: firestoreAction((context, { postData, docId, userId }) => {
     postData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
     postData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
-    userRef.doc(userId).collection('posts').doc(docId).set(postData)
+    userRef.doc(userId).collection('posts').doc(docId).set(postData, { merge: true })
     .catch((error) => {
       console.error('Error adding document: ', error)
     })
@@ -98,27 +101,29 @@ export const actions = {
       console.error('Error adding document: ', error)
     })
   }),
+  setUserRegistered: firestoreAction(({ commit }, { userData, userId }) => {
+    userData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
+    userData.isRegistered = true
+    userRef.doc(userId).set(userData, { merge: true })
+    .catch((error) => {
+      console.error('Error adding document: ', error)
+    })
+    commit('setUserIsRegisteredTrue')
+  }),
   getInitializeUser: (({ commit, dispatch }: any, userId :string) => {
     // return the promise returned by `bindFirestoreRef`
     const ref = db.collection('users').doc(userId)
     ref
       .get()
       .then((doc) => {
-        if (doc.exists) {
-          // 登録済みなら
-          if (doc.get('isRegistered')) {
-            console.info('isRegistered')
-            commit('setUserIsRegistered', true)
-          }
-          console.info('未登録')
-          commit('setUserIsRegistered', false)
-          dispatch('logout')
+        if (doc.get('isRegistered')) {
+          console.log('true called')
+          commit('setUserIsRegisteredTrue')
         } else {
-          console.info('完全初回')
+          console.log('false called')
           // ユーザー登録がなければ初期化してユーザーコレクションに追加
           const userData = {}
           dispatch('setInitializeUser', { userData, userId })
-          dispatch('logout')
         }
       })
       .catch(error => {

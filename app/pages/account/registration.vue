@@ -5,27 +5,23 @@
         スタグル名鑑へようこそ！
       </h1>
       <h2 class="subtitle is-6">
-        新規登録(無料)して利用を開始しましょう。
+        ユーザー情報を登録できます。
       </h2>
     </div>
     <form-input v-model="displayName" label="ユーザー名" :max-length="20" :required="true" />
-    <div class="field">
-      <b-checkbox v-model="checkbox">
-        <a href="/terms" target="_blank">利用規約</a>に同意する
-      </b-checkbox>
-    </div>
+    <form-input v-model="email" label="メールアドレス" :max-length="254" :required="true" />
     <b-button
-      :class="[checkbox === true ? 'is-primary' : '' ]"
       type="is-primary"
-      :disabled="!checkbox"
+      @click="register()"
     >
-      利用規約に同意して登録
+      登録
     </b-button>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import firebase from '~/plugins/firebase'
 import FormInput from '@/components/Form/FormInput.vue'
 
 export default Vue.extend({
@@ -36,7 +32,35 @@ export default Vue.extend({
   data () {
     return {
       checkbox: false,
-      displayName: ''
+      displayName: '',
+      email: ''
+    }
+  },
+  created () {
+    this.$store.dispatch('user/checkAuth')
+  },
+  mounted () {
+    this.displayName = this.$store.state.user.displayName
+    this.email = this.$store.state.user.email
+  },
+  methods: {
+    register (): void {
+      const user = firebase.auth().currentUser
+      if (user) {
+        const uid = user.uid
+          ? user.uid
+          : ''
+        if (this.displayName) {
+          user.updateProfile({
+            displayName: this.displayName
+          })
+        }
+        if (this.email) {
+          user.updateEmail(this.email)
+        }
+        this.$store.dispatch('user/setUserRegistered', { userData: {}, userId: uid })
+      }
+      this.$router.push('/')
     }
   }
 })

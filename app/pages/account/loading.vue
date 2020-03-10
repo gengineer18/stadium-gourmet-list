@@ -12,10 +12,10 @@ export default Vue.extend({
     this.$store.dispatch('user/checkAuth')
   },
   async mounted () {
-    if (await this.$store.state.user.isRegistered) {
-      this.$router.push('/')
+    if (this.$store.state.user.isRegistered) {
+      await this.$router.push('/')
     } else {
-      this.$router.push('/account/registration')
+      await this.$router.push('/account/registration')
     }
   }
 })
