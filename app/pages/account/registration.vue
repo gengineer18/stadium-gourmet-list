@@ -29,6 +29,7 @@ import Vue from 'vue'
 import FormInput from '@/components/Form/FormInput.vue'
 
 export default Vue.extend({
+  layout: 'registration',
   components: {
     FormInput
   },

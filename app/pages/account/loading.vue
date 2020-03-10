@@ -13,9 +13,9 @@ export default Vue.extend({
   },
   async mounted () {
     if (await this.$store.state.user.isRegistered) {
-      console.log('true')
+      this.$router.push('/')
     } else {
-      console.log('false')
+      this.$router.push('/account/registration')
     }
   }
 })
