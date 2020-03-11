@@ -37,7 +37,7 @@
       <template slot="end">
         <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
           <b-button
-            type="is-white"
+            type="is-sub"
             icon-left="login"
             size="is-small"
             tag="nuxt-link"
