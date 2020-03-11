@@ -28,19 +28,21 @@
         />
       </span>
     </div>
-    <div class="to-login-box has-text-centered">
-      登録には
-      <nuxt-link to="/terms">
+    <div class="terms-text-box has-text-centered">
+      サインインすることにより、
+      <a href="/terms" target="_blank">
         利用規約
-      </nuxt-link>
-      に同意する必要があります。
+      </a>
+      および
+      <a href="/privacy" target="_blank">
+        プライバシーポリシー
+      </a>
+      に同意したとみなされます。
     </div>
     <div class="to-login-box has-text-centered">
-      スタグル名鑑 のアカウントを<br>持っている場合は
       <nuxt-link to="/account/login">
-        ログイン
+        <strong>ログインはこちら</strong>
       </nuxt-link>
-      から。
     </div>
   </section>
 </template>
@@ -99,10 +101,13 @@ export default Vue.extend({
       margin-top: 1rem;
     }
   }
-
-  .to-login-box {
+  .terms-text-box {
     border-top: 1px solid #dddddd;
     margin-top: 1rem;
+    padding-top: 1.3rem;
+    font-size: 0.7rem;
+  }
+  .to-login-box {
     padding-top: 1.3rem;
   }
 }
