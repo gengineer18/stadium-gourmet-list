@@ -4,8 +4,6 @@
     icon-left="twitter"
     expanded
     type="is-twitter"
-    :disabled="disabled"
-    @click="loginTwitter"
   >
     Twitterアカウントで{{ usage }}
   </b-button>
@@ -19,15 +17,6 @@ export default Vue.extend({
     usage: {
       type: String,
       required: true
-    },
-    disabled: {
-      type: Boolean,
-      required: false
-    }
-  },
-  methods: {
-    loginTwitter () {
-      this.$emit('login-twitter')
     }
   }
 })

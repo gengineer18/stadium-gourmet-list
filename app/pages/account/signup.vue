@@ -8,41 +8,32 @@
         新規登録(無料)して利用を開始しましょう。
       </h2>
     </div>
-    <div class="has-text-centered term-box">
-      登録には
-      <a href="/terms" target="_blank">利用規約</a>
-      に同意する必要があります。
-      <div>
-        <b-checkbox v-model="checkbox">
-          同意して登録する
-        </b-checkbox>
-      </div>
-    </div>
     <div class="button-box">
-      <span>
+      <span @click="loginTwitter">
         <button-login-twitter
           class="is-block button-margin"
           usage="登録"
-          :disabled="!checkbox"
-          @login-twitter="loginTwitter($event)"
         />
       </span>
-      <span>
+      <span @click="loginFacebook">
         <button-login-facebook
           class="is-block button-margin"
           usage="登録"
-          :disabled="!checkbox"
-          @login-facebook="loginFacebook($event)"
         />
       </span>
-      <span>
+      <span @click="loginGoogle">
         <button-login-google
           class="is-block button-margin"
           usage="登録"
-          :disabled="!checkbox"
-          @login-google="loginGoogle($event)"
         />
       </span>
+    </div>
+    <div class="to-login-box has-text-centered">
+      登録には
+      <nuxt-link to="/terms">
+        利用規約
+      </nuxt-link>
+      に同意する必要があります。
     </div>
     <div class="to-login-box has-text-centered">
       スタグル名鑑 のアカウントを<br>持っている場合は
@@ -66,21 +57,16 @@ export default Vue.extend({
     ButtonLoginFacebook,
     ButtonLoginGoogle
   },
-  data () {
-    return {
-      checkbox: false
-    }
-  },
   methods: {
-    async loginGoogle (event: any) {
+    async loginGoogle () {
       await this.$store.dispatch('user/loginGoogle')
       await this.routing()
     },
-    async loginFacebook (event: any) {
+    async loginFacebook () {
       await this.$store.dispatch('user/loginFacebook')
       await this.routing()
     },
-    async loginTwitter (event: any) {
+    async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
       await this.routing()
     },
