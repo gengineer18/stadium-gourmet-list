@@ -30,17 +30,17 @@
     </div>
     <div class="terms-text-box has-text-centered">
       サインインすることにより、
-      <a href="/terms" target="_blank">
+      <a href="/terms" target="_blank" class="link">
         利用規約
       </a>
       および
-      <a href="/privacy" target="_blank">
+      <a href="/privacy" target="_blank" class="link">
         プライバシーポリシー
       </a>
       に同意したとみなされます。
     </div>
     <div class="to-login-box has-text-centered">
-      <nuxt-link to="/account/login">
+      <nuxt-link to="/account/login" class="link">
         <strong>ログインはこちら</strong>
       </nuxt-link>
     </div>
@@ -80,6 +80,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import '~assets/css/buefy.scss';
+
 .login-box {
   width: 100%;
   max-width: 540px;
@@ -106,9 +108,15 @@ export default Vue.extend({
     margin-top: 1rem;
     padding-top: 1.3rem;
     font-size: 0.7rem;
+    .link {
+      color: $sub;
+    }
   }
   .to-login-box {
     padding-top: 1.3rem;
+    .link {
+      color: $sub;
+    }
   }
 }
 </style>

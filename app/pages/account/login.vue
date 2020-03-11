@@ -26,18 +26,20 @@
       </span>
     </div>
     <div class="terms-text-box has-text-centered">
-      サインインすることにより、
-      <a href="/terms" target="_blank">
-        利用規約
-      </a>
-      および
-      <a href="/privacy" target="_blank">
-        プライバシーポリシー
-      </a>
-      に同意したとみなされます。
+      <span class="is-block">サインインすることにより、</span>
+      <span class="is-block">
+        <a href="/terms" target="_blank" class="link">
+          利用規約
+        </a>
+        および
+        <a href="/privacy" target="_blank" class="link">
+          プライバシーポリシー
+        </a>
+        に同意したとみなされます。
+      </span>
     </div>
     <div class="to-signup-box has-text-centered">
-      <nuxt-link to="/account/signup">
+      <nuxt-link to="/account/signup" class="link">
         <strong>新規登録はこちら</strong>
       </nuxt-link>
     </div>
@@ -77,6 +79,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss">
+@import '~assets/css/buefy.scss';
+
 .login-box {
   width: 100%;
   max-width: 540px;
@@ -100,9 +104,15 @@ export default Vue.extend({
     margin-top: 1rem;
     padding-top: 1.3rem;
     font-size: 0.7rem;
+    .link {
+      color: $sub;
+    }
   }
   .to-signup-box {
     padding-top: 1.3rem;
+    .link {
+      color: $sub;
+    }
   }
 }
 </style>
