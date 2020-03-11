@@ -37,17 +37,6 @@
       <template slot="end">
         <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
           <b-button
-            type="is-sub"
-            icon-left="account"
-            size="is-small"
-            tag="nuxt-link"
-            to="/account/signup"
-          >
-            <strong>ユーザー登録</strong>
-          </b-button>
-        </b-navbar-item>
-        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
-          <b-button
             type="is-white"
             icon-left="login"
             size="is-small"
