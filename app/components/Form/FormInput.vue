@@ -7,7 +7,6 @@
       v-bind="$attrs"
       :maxlength="maxLength"
       :placeholder="label"
-      type="search"
       :required="required"
       v-on="$listeners"
     />
