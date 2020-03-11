@@ -11,7 +11,6 @@ export const state = () => ({
   displayName: '',
   photoURL: '',
   email: '',
-  isRegistered: false,
 })
 
 export const getters = {
@@ -32,9 +31,6 @@ export const mutations = {
     state.displayName = user.displayName
     state.email = user.email
     state.photoURL = user.photoURL
-  },
-  setUserIsRegisteredTrue(state: any) {
-    state.isRegistered = true
   },
   setLogoutState(state: any) {
     state.isAuth = false
@@ -92,23 +88,13 @@ export const actions = {
       console.error('Error adding document: ', error)
     })
   }),
-  setInitializeUser: firestoreAction((context, { userData, userId }) => {
+  userCreate: firestoreAction((context, { userData, userId }) => {
     userData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
     userData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
-    userData.isRegistered = false
     userRef.doc(userId).set(userData)
     .catch((error) => {
       console.error('Error adding document: ', error)
     })
-  }),
-  setUserRegistered: firestoreAction(({ commit }, { userData, userId }) => {
-    userData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
-    userData.isRegistered = true
-    userRef.doc(userId).set(userData, { merge: true })
-    .catch((error) => {
-      console.error('Error adding document: ', error)
-    })
-    commit('setUserIsRegisteredTrue')
   }),
   getInitializeUser: (({ commit, dispatch }: any, userId :string) => {
     // return the promise returned by `bindFirestoreRef`
@@ -116,14 +102,11 @@ export const actions = {
     ref
       .get()
       .then((doc) => {
-        if (doc.get('isRegistered')) {
-          console.log('true called')
-          commit('setUserIsRegisteredTrue')
-        } else {
+        if (!doc.exists) {
           console.log('false called')
           // ユーザー登録がなければ初期化してユーザーコレクションに追加
           const userData = {}
-          dispatch('setInitializeUser', { userData, userId })
+          dispatch('userCreate', { userData, userId })
         }
       })
       .catch(error => {

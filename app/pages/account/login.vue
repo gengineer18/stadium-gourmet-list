@@ -53,15 +53,18 @@ export default Vue.extend({
   methods: {
     async loginGoogle (event: any) {
       await this.$store.dispatch('user/loginGoogle')
-      this.$router.push('/account/loading')
+      await this.routing()
     },
     async loginFacebook (event: any) {
       await this.$store.dispatch('user/loginFacebook')
-      this.$router.push('/account/loading')
+      await this.routing()
     },
     async loginTwitter (event: any) {
       await this.$store.dispatch('user/loginTwitter')
-      this.$router.push('/account/loading')
+      await this.routing()
+    },
+    routing () {
+      this.$router.push('/')
     }
   }
 })
