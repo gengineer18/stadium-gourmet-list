@@ -3,55 +3,111 @@
     <h1 class="title is-5">
       投稿する
     </h1>
-    <validation-observer v-slot="{ invalid }">
-      <div class="form-team">
-        <form-pulldown v-model="club" label="ホームチーム" :list-items="listItems" />
+    <div class="form-team">
+      <form-pulldown
+        v-model="club"
+        label="ホームチーム"
+        :list-items="listItems"
+      />
+    </div>
+    <div>
+      <form-input
+        v-model="gourmet"
+        label="スタグル名"
+        :max-length="20"
+        :required="true"
+      />
+    </div>
+    <div class="form-image">
+      <div v-show="!postImage.path">
+        <img src="~/assets/default-photo.png">
       </div>
-      <div>
-        <form-input v-model="gourmet" label="スタグル名" :max-length="20" :required="true" />
+      <div v-show="postImage.path">
+        <canvas
+          ref="thumbnail"
+          :width="0"
+          :height="0"
+        />
       </div>
-      <div class="form-image">
-        <div v-show="!postImage.path">
-          <img src="~/assets/default-photo.png">
-        </div>
-        <div v-show="postImage.path">
-          <canvas ref="thumbnail" :width="0" :height="0" />
-        </div>
-        <label class="button is-sub is-small">
-          <b-icon icon="camera" size="is-small" />
-          写真をアップロード
-          <input ref="input" type="file" accept=".jpg, .png" class="input-photo" @change="resize">
-        </label>
-        <span @click="reset">
-          <b-button icon-left="close-circle" type="is-light" size="is-small">
-            写真をリセット
-          </b-button>
-        </span>
-      </div>
-
-      <div class="form-not-required">
-        <form-input v-model="price" label="価格" :max-length="5" />
-      </div>
-      <div class="form-not-required">
-        <form-input v-model="shop" label="店舗名" :max-length="20" />
-      </div>
-      <div class="form-not-required">
-        <form-date v-model="date" label="観戦した日" />
-      </div>
-      <div class="form-comment">
-        <form-text-area v-model="comment" label="寸評" :max-length="140" :required="true" />
-      </div>
-
-      <span @click="sendData()">
-        <b-button
-          type="is-sub"
-          icon-left="send"
-          :disabled="invalid"
+      <label class="button is-sub is-small">
+        <b-icon
+          icon="camera"
+          size="is-small"
+        />
+        写真をアップロード
+        <input
+          ref="input"
+          type="file"
+          accept=".jpg, .png"
+          class="input-photo"
+          @change="resize"
         >
-          投稿する
+      </label>
+      <span @click="reset">
+        <b-button
+          icon-left="close-circle"
+          type="is-light"
+          size="is-small"
+        >
+          写真をリセット
         </b-button>
       </span>
-    </validation-observer>
+    </div>
+
+    <div class="form-price">
+      <form-input
+        v-model="price"
+        label="価格(円)"
+        :max-length="5"
+        pattern="[0-9]*"
+        message="価格は半角数字で入力してください"
+      />
+    </div>
+    <div class="form-not-required">
+      <form-input
+        v-model="shop"
+        label="店舗名"
+        :max-length="20"
+      />
+    </div>
+    <div class="form-not-required">
+      <form-date
+        v-model="date"
+        label="観戦した日"
+      />
+    </div>
+    <div class="form-comment">
+      <form-text-area
+        v-model="comment"
+        label="寸評"
+        :max-length="140"
+        :required="true"
+      />
+    </div>
+
+    <span
+      v-if="clickable"
+      @click="sendData()"
+    >
+      <b-button
+        type="is-sub"
+        icon-left="send"
+      >
+        投稿する
+      </b-button>
+    </span>
+    <div v-if="!clickable">
+      <b-button
+        type="is-sub"
+        icon-left="send"
+        disabled
+      >
+        投稿する
+      </b-button>
+      <span class="is-block has-text-danger is-size-7">
+        必須項目を入力してください
+      </span>
+    </div>
   </section>
 </template>
 
@@ -104,6 +160,9 @@ export default Vue.extend({
   computed: {
     refs ():any {
       return this.$refs
+    },
+    clickable (): boolean {
+      return !!this.gourmet && !!this.club && !!this.comment
     }
   },
   methods: {
@@ -228,8 +287,11 @@ export default Vue.extend({
 .form-team {
   margin-bottom: 1.6rem;
 }
+.form-price {
+  margin-bottom: 0.5rem;
+}
 .form-not-required {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.2rem;
 }
 .form-comment {
   margin-top: 1.6rem;
