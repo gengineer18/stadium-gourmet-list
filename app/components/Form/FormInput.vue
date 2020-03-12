@@ -8,6 +8,8 @@
       :maxlength="maxLength"
       :placeholder="label"
       :required="required"
+      :pattern="pattern"
+      :validation-message="message"
       v-on="$listeners"
     />
   </b-field>
@@ -29,6 +31,15 @@ export default Vue.extend({
       type: Boolean,
       required: false,
       default: false
+    },
+    pattern: {
+      type: String,
+      required: false,
+      default: '.*'
+    },
+    message: {
+      type: String,
+      required: false
     }
   },
   data () {

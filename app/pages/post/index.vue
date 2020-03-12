@@ -54,11 +54,13 @@
       </span>
     </div>
 
-    <div class="form-not-required">
+    <div class="form-price">
       <form-input
         v-model="price"
-        label="価格"
+        label="価格(円)"
         :max-length="5"
+        pattern="[0-9]*"
+        message="価格は半角数字で入力してください"
       />
     </div>
     <div class="form-not-required">
@@ -285,8 +287,11 @@ export default Vue.extend({
 .form-team {
   margin-bottom: 1.6rem;
 }
+.form-price {
+  margin-bottom: 0.5rem;
+}
 .form-not-required {
-  margin-bottom: 0.1rem;
+  margin-bottom: 0.2rem;
 }
 .form-comment {
   margin-top: 1.6rem;
