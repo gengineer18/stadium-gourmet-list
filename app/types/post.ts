@@ -41,6 +41,7 @@ export type CompletePost = {
   color2: string
   color3: string
   price: number | null
+  createdAt: string
 }
 
 export type Club = {

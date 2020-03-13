@@ -10,7 +10,10 @@
     <h3 class="subtitle is-4">
       {{ gourmet }}
     </h3>
-    <img :src="imagePath" class="mb-1rem">
+    <img :src="imagePath">
+    <p class="is-size-6 has-text-grey-light mb-1rem">
+      {{ createdAt }}
+    </p>
     <ul>
       <li class="share-list-item">
         <button-share-twitter :club-id="clubId" :doc-ref-id="docRefId" :gourmet="gourmet" :comment="comment" />
@@ -22,6 +25,7 @@
     <h3 class="is-size-5 mt-1rem">
       {{ this.$store.getters['user/userName'] }}
     </h3>
+    <p>{{ createdAt }}</p>
     <h3 v-if="price" class="is-size-6">
       価格：{{ price }}円
     </h3>
@@ -70,7 +74,8 @@ export default Vue.extend({
       color1: '',
       color2: '',
       color3: '',
-      price: null
+      price: null,
+      createdAt: ''
     }
   },
   async mounted () {
@@ -91,6 +96,7 @@ export default Vue.extend({
       this.imagePath = storedPosts.imagePath || ''
       this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
       this.price = storedPosts.price || null
+      this.createdAt = storedPosts.createdAt ? dayjs(storedPosts.createdAt.toDate()).format('YYYY/MM/DD HH:mm') : ''
 
       const clubConfig = utilsGetClubConfig(this.clubId)
       this.color1 = clubConfig.color1

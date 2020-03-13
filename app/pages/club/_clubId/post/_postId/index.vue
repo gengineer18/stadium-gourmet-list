@@ -7,7 +7,10 @@
     <h3 class="subtitle is-4">
       {{ gourmet }}
     </h3>
-    <img :src="getImagePath(imagePath)" class="mb-1rem">
+    <img :src="getImagePath(imagePath)">
+    <p class="is-size-6 has-text-grey-light mb-1rem">
+      {{ createdAt }}
+    </p>
     <div>
       <ul>
         <li class="share-list-item">
@@ -69,7 +72,8 @@ export default Vue.extend({
       color1: '',
       color2: '',
       color3: '',
-      price: null
+      price: null,
+      createdAt: ''
     }
   },
   computed: {
@@ -96,6 +100,7 @@ export default Vue.extend({
       this.gameDate = storedPosts.gameDate ? dayjs(storedPosts.gameDate.toDate()).format('YYYY年MM月DD日') : ''
       this.imagePath = storedPosts.imagePath || ''
       this.price = storedPosts.price || null
+      this.createdAt = storedPosts.createdAt ? dayjs(storedPosts.createdAt.toDate()).format('YYYY/MM/DD HH:mm') : ''
 
       const clubConfig = utilsGetClubConfig(this.clubId)
       this.color1 = clubConfig.color1
