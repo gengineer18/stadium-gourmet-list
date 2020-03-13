@@ -72,7 +72,7 @@
     </div>
     <div class="form-not-required">
       <form-date
-        v-model="date"
+        v-model="gameDate"
         label="観戦した日"
       />
     </div>
@@ -143,7 +143,7 @@ export default Vue.extend({
       },
       shop: '',
       comment: '',
-      date: null,
+      gameDate: null,
       postImage: {
         path: '',
         width: 0,
@@ -237,7 +237,7 @@ export default Vue.extend({
               club: this.club,
               shop: this.shop,
               comment: this.comment,
-              date: this.date,
+              gameDate: this.gameDate,
               imagePath: this.imagePath,
               user: {
                 id: this.$store.getters['user/userId'],
@@ -256,7 +256,7 @@ export default Vue.extend({
           club: this.club,
           shop: this.shop,
           comment: this.comment,
-          date: this.date,
+          gameDate: this.gameDate,
           imagePath: defaultImagePath,
           user: {
             id: this.$store.getters['user/userId'],

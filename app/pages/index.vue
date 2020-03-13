@@ -67,8 +67,8 @@ export default Vue.extend({
   },
   async mounted () {
     await this.$store.dispatch('post/init', db.collection('posts').orderBy('createdAt', 'desc'))
-    this.storedPosts = await this.$store.state.post.posts
-    this.isLoading = await false
+    this.storedPosts = this.$store.state.post.posts
+    this.isLoading = false
   },
   methods: {
     getClubConfig (clubId: string) {

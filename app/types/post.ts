@@ -3,7 +3,7 @@ export type NewPost = {
   club: Club,
   shop: string,
   comment: string,
-  date: Date | null,
+  gameDate: Date | null,
   postImage: Image,
   imagePath: string,
   user: {
@@ -18,7 +18,7 @@ export type PostData = {
   club: Club,
   shop: string,
   comment: string,
-  date: Date | null
+  gameDate: Date | null
   imagePath: string,
   user: {
     id: string
@@ -34,7 +34,7 @@ export type CompletePost = {
   clubName: string,
   shop: string,
   comment: string,
-  date: string,
+  gameDate: string,
   imagePath: string
   userName: string
   color1: string
