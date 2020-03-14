@@ -2,6 +2,7 @@ import firebase from 'firebase'
 import auth from '~/plugins/auth'
 import { firestoreAction } from 'vuexfire'
 import { db } from '~/plugins/firebase'
+import { toastSuccess, toastFail } from '~/utils/common'
 
 const userRef = db.collection('users')
 
@@ -84,6 +85,7 @@ export const actions = {
   logout: ({ commit }: any) => {
     firebase.auth().signOut()
     commit('setLogoutState')
+    toastSuccess('ログアウトしました。')
   },
   checkAuth: async ({ commit }: any) => {
     await auth()
@@ -97,8 +99,10 @@ export const actions = {
     postData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
     postData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
     userRef.doc(userId).collection('posts').doc(docId).set(postData, { merge: true })
-    .catch((error) => {
-      console.error('Error adding document: ', error)
+      .catch((error) => {
+        console.error('Error adding user doc: ', error.code)
+        toastFail('データベースへの登録に失敗しました。')
+        throw error;
     })
   }),
   userCreate: firestoreAction((context, { user }) => {

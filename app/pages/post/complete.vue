@@ -1,12 +1,9 @@
 <template>
   <section>
     <h1 class="title is-5">
-      投稿できました！
-    </h1>
-    <h2 class="title is-5">
       <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
       {{ clubName }}
-    </h2>
+    </h1>
     <h3 class="subtitle is-4">
       {{ gourmet }}
     </h3>
@@ -25,7 +22,6 @@
     <h3 class="is-size-5 mt-1rem">
       {{ this.$store.getters['user/userName'] }}
     </h3>
-    <p>{{ createdAt }}</p>
     <h3 v-if="price" class="is-size-6">
       価格：{{ price }}円
     </h3>

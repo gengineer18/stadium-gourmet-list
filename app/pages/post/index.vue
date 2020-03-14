@@ -267,7 +267,7 @@ export default Vue.extend({
       canvas.width = 0
       this.refs.input.value = ''
     },
-    upload (docId: string, clubId: string) {
+    async upload (docId: string, clubId: string) {
       if (this.postImage.path !== '') { // 画像があれば
         const photoPath: string = this.postImage.path
         const storageRef = storage.ref().child(`clubs/${clubId}/${docId}.jpg`)
@@ -287,9 +287,9 @@ export default Vue.extend({
               },
               price: this.price
             }
-            this.reset()
-            this.addDb(docId, clubId, postData)
+            await this.addDb(docId, clubId, postData)
             await this.$router.push(`/post/complete?docRefId=${docId}`)
+            await this.reset()
           })
         })
       } else { // 画像の指定がない場合
@@ -306,16 +306,16 @@ export default Vue.extend({
           },
           price: this.price
         }
-        this.addDb(docId, clubId, postData)
-        this.$router.push(`/post/complete?docRefId=${docId}`)
+        await this.addDb(docId, clubId, postData)
+        await this.$router.push(`/post/complete?docRefId=${docId}`)
       }
     },
-    addDb (docId: string, clubId: string, postData: PostData): void {
-      this.$store.dispatch('post/add', { postData, docId })
-      this.$store.dispatch('club/add', { postData, docId, clubId })
+    async addDb (docId: string, clubId: string, postData: PostData) {
+      await this.$store.dispatch('post/add', { postData, docId })
+      await this.$store.dispatch('club/add', { postData, docId, clubId })
       if (this.$store.state.user.isAuth) {
         const userId = this.$store.state.user.uid
-        this.$store.dispatch('user/add', { postData, docId, userId })
+        await this.$store.dispatch('user/add', { postData, docId, userId })
       }
     }
   }
