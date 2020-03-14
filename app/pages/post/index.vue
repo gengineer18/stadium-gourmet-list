@@ -172,7 +172,8 @@ export default Vue.extend({
       imagePath: '',
       user: {
         id: '',
-        name: ''
+        name: '',
+        photo: ''
       },
       price: null,
       isLoading: false,
@@ -262,7 +263,7 @@ export default Vue.extend({
       })
     },
     async upload (docId, clubId) {
-      if (this.resizedImg !== '') { // 画像があれば
+      if (this.resizedImg) { // 画像があれば
         const blob = this.blob
         const storageRef = storage.ref().child(`clubs/${clubId}/${docId}.jpg`)
         storageRef.put(blob).then((snapshot) => {
@@ -277,10 +278,12 @@ export default Vue.extend({
               imagePath: this.imagePath,
               user: {
                 id: this.$store.getters['user/userId'],
-                name: this.$store.getters['user/userName']
+                name: this.$store.getters['user/userName'],
+                photo: this.$store.getters['user/userPhoto']
               },
               price: this.price
             }
+            await console.log('userphoto', postData.user.photo)
             await this.addDb(docId, clubId, postData)
             await this.$router.push(`/post/complete?docRefId=${docId}`)
             await this.clearAttachImg()
@@ -296,10 +299,12 @@ export default Vue.extend({
           imagePath: defaultImagePath,
           user: {
             id: this.$store.getters['user/userId'],
-            name: this.$store.getters['user/userName']
+            name: this.$store.getters['user/userName'],
+            photo: this.$store.getters['user/userPhoto']
           },
           price: this.price
         }
+        await console.log('userphoto', postData.user.photo)
         await this.addDb(docId, clubId, postData)
         await this.$router.push(`/post/complete?docRefId=${docId}`)
       }

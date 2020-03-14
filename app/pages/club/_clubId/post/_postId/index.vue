@@ -21,8 +21,9 @@
         </li>
       </ul>
     </div>
-    <h3 class="is-size-5 mt-1rem">
-      {{ userName }}
+    <h3 class="is-size-6 mt-1rem user">
+      <img :src="userPhoto" class="user-content">
+      <span class="user-content">{{ userName }}</span>
     </h3>
     <h3 v-if="price" class="is-size-6">
       価格：{{ price }}円
@@ -49,6 +50,7 @@ import { defaultImagePath } from '@/utils/common'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
 import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
+import { guestUserImagePath } from '~/utils/common'
 
 dayjs.locale('ja')
 
@@ -62,6 +64,7 @@ export default Vue.extend({
     return {
       docRefId: '',
       userName: '',
+      userPhoto: '',
       gourmet: '',
       clubId: '',
       clubName: '',
@@ -92,6 +95,7 @@ export default Vue.extend({
     if (storedPosts !== null) {
       this.docRefId = postId
       this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
+      this.userPhoto = storedPosts.user ? storedPosts.user.photo : guestUserImagePath
       this.gourmet = storedPosts.gourmet || ''
       this.clubId = storedPosts.club ? storedPosts.club.id : ''
       this.clubName = storedPosts.club ? storedPosts.club.name : ''
@@ -126,5 +130,17 @@ export default Vue.extend({
 }
 .mt-1rem {
   margin-top: 1rem;
+}
+.user {
+  height: 30px;
+  line-height: 30px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  &-content{
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 </style>
