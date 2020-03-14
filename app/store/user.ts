@@ -7,6 +7,7 @@ const userRef = db.collection('users')
 
 export const state = () => ({
   isAuth: false,
+  isAnonymous: true,
   uid: '',
   displayName: '',
   photoURL: '',
@@ -27,18 +28,27 @@ export const getters = {
 export const mutations = {
   setLoginState(state: any, user: any) {
     state.isAuth = true
+    state.isAnonymous = user.isAnonymous
     state.uid = user.uid
-    state.displayName = user.displayName
+    state.displayName = user.displayName || 'ゲスト'
     state.email = user.email
     state.photoURL = user.photoURL
   },
   setLogoutState(state: any) {
     state.isAuth = false
+    state.isAnonymous = true
     state.uid = ''
     state.displayName = ''
     state.photoURL = ''
     state.email = ''
-    state.isRegistered = false
+  },
+  loginAnonymous(state: any, user: any) {
+    state.isAuth = true
+    state.isAnonymous = true
+    state.uid = user.uid
+    state.displayName = 'ゲスト'
+    state.email = user.email
+    state.photoURL = user.photoURL
   }
 }
 
@@ -54,6 +64,9 @@ export const actions = {
   loginTwitter: async ({ dispatch }: any) => {
     const provider = new firebase.auth.TwitterAuthProvider()
     await dispatch('loginCommon', provider)
+  },
+  loginAnonymous: ({ commit }: any, { user }:any) => {
+    commit('loginAnonymous', { user })
   },
   loginCommon: ({ commit, dispatch }: any, provider: any) => {
     firebase

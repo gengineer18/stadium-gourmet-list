@@ -85,6 +85,35 @@
       />
     </div>
 
+    <div v-if="!this.$store.state.user.isAuth" class="mb-1rem">
+      <p class="is-size-7">
+        あなたはゲストユーザーです。<br>
+        投稿するためには
+        <nuxt-link to="/account/login" class="link">
+          ログイン
+        </nuxt-link>
+        するか、ゲストパスを発行する必要があります。<br>
+        (ゲストパスの発行により、
+        <a href="/terms" target="_blank" class="link">
+          利用規約
+        </a>
+        および
+        <a href="/privacy" target="_blank" class="link">
+          プライバシーポリシー
+        </a>
+        に同意したとみなされます。)
+      </p>
+      <b-button v-if="isLoading" loading class="mb-1rem">
+        ゲストパスを発行する
+      </b-button>
+      <b-button
+        v-if="!isLoading"
+        class="is-accent"
+        @click="anonymous()"
+      >
+        ゲストパスを発行する
+      </b-button>
+    </div>
     <span
       v-if="clickable"
       @click="sendData()"
@@ -114,12 +143,12 @@
 <script lang="ts">
 import Vue from 'vue'
 import 'buefy'
-import { db, storage } from '~/plugins/firebase'
+import firebase, { db, storage } from '~/plugins/firebase'
 import FormInput from '@/components/Form/FormInput.vue'
 import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
-import { NewPost, PostData } from '@/types/post'
+import { PostData } from '@/types/post'
 import { defaultImagePath } from '@/utils/common'
 
 export default Vue.extend({
@@ -134,7 +163,7 @@ export default Vue.extend({
       listItems: require('~/static/json/AllClubsNameList.json')
     }
   },
-  data (): NewPost {
+  data () {
     return {
       gourmet: '',
       club: {
@@ -154,7 +183,8 @@ export default Vue.extend({
         id: '',
         name: ''
       },
-      price: null
+      price: null,
+      isLoading: false
     }
   },
   computed: {
@@ -162,10 +192,22 @@ export default Vue.extend({
       return this.$refs
     },
     clickable (): boolean {
-      return !!this.gourmet && !!this.club && !!this.comment
+      return !!this.gourmet && !!this.club && !!this.comment && !!this.$store.state.user.isAuth
     }
   },
   methods: {
+    anonymous () {
+      this.isLoading = true
+      firebase.auth().signInAnonymously()
+        .then(async (user) => {
+          await this.$store.dispatch('user/loginAnonymous', user)
+          await firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+              this.isLoading = false
+            }
+          })
+        })
+    },
     sendData () {
       this.$buefy.dialog.confirm({
         message: '投稿してよろしいですか?',
@@ -281,6 +323,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+@import '~assets/css/buefy.scss';
+
 .form-image {
   margin-bottom: 1.6rem;
 }
@@ -298,5 +342,14 @@ export default Vue.extend({
 }
 .input-photo {
   display: none;
+}
+.mb-1rem {
+  margin-bottom: 1rem;
+}
+.link {
+  color: $sub;
+  &:hover {
+    color: $sub
+  }
 }
 </style>
