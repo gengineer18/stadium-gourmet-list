@@ -7,7 +7,10 @@
     <h3 class="subtitle is-4">
       {{ gourmet }}
     </h3>
-    <img :src="getImagePath(imagePath)" class="mb-1rem">
+    <img :src="getImagePath(imagePath)">
+    <p class="is-size-6 has-text-grey-light mb-1rem">
+      {{ createdAt }}
+    </p>
     <div>
       <ul>
         <li class="share-list-item">
@@ -27,8 +30,8 @@
     <h3 v-if="shop" class="is-size-6">
       店舗名：{{ shop }}
     </h3>
-    <h3 v-if="date" class="is-size-6">
-      観戦日：{{ date }}
+    <h3 v-if="gameDate" class="is-size-6">
+      観戦日：{{ gameDate }}
     </h3>
     <h3 v-if="comment" class="is-size-6">
       寸評：{{ comment }}
@@ -64,12 +67,13 @@ export default Vue.extend({
       clubName: '',
       shop: '',
       comment: '',
-      date: '',
+      gameDate: '',
       imagePath: '',
       color1: '',
       color2: '',
       color3: '',
-      price: null
+      price: null,
+      createdAt: ''
     }
   },
   computed: {
@@ -88,19 +92,20 @@ export default Vue.extend({
     if (storedPosts !== null) {
       this.docRefId = postId
       this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
-      this.gourmet = storedPosts.gourmet ? storedPosts.gourmet : ''
+      this.gourmet = storedPosts.gourmet || ''
       this.clubId = storedPosts.club ? storedPosts.club.id : ''
       this.clubName = storedPosts.club ? storedPosts.club.name : ''
-      this.shop = storedPosts.shop ? storedPosts.shop : ''
-      this.comment = storedPosts.comment ? storedPosts.comment : ''
-      this.date = storedPosts.date ? dayjs(storedPosts.date.toDate()).format('YYYY年MM月DD日') : ''
-      this.imagePath = storedPosts.imagePath ? storedPosts.imagePath : ''
-      this.price = storedPosts.price ? storedPosts.price : null
+      this.shop = storedPosts.shop || ''
+      this.comment = storedPosts.comment || ''
+      this.gameDate = storedPosts.gameDate ? dayjs(storedPosts.gameDate.toDate()).format('YYYY年MM月DD日') : ''
+      this.imagePath = storedPosts.imagePath || ''
+      this.price = storedPosts.price || null
+      this.createdAt = storedPosts.createdAt ? dayjs(storedPosts.createdAt.toDate()).format('YYYY/MM/DD HH:mm') : ''
 
       const clubConfig = utilsGetClubConfig(this.clubId)
       this.color1 = clubConfig.color1
-      this.color2 = clubConfig.color2 ? clubConfig.color2 : ''
-      this.color3 = clubConfig.color3 ? clubConfig.color3 : ''
+      this.color2 = clubConfig.color2 || ''
+      this.color3 = clubConfig.color3 || ''
     }
   }
 })
