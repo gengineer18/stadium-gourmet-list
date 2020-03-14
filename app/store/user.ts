@@ -73,7 +73,7 @@ export const actions = {
       .auth()
       .signInWithPopup(provider)
       .then((res: any) => {
-        dispatch('getInitializeUser', res.user.uid)
+        dispatch('getInitializeUser', { user: res.user })
         commit('setLoginState', res.user)
       })
       .catch(error => {
@@ -101,25 +101,30 @@ export const actions = {
       console.error('Error adding document: ', error)
     })
   }),
-  userCreate: firestoreAction((context, { userData, userId }) => {
-    userData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
-    userData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
-    userRef.doc(userId).set(userData)
+  userCreate: firestoreAction((context, { user }) => {
+    const data = {
+      userId: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+      photoURL: user.photoURL,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    }
+    userRef.doc(data.userId).collection('credentials').doc(data.userId).set(data)
     .catch((error) => {
       console.error('Error adding document: ', error)
     })
   }),
-  getInitializeUser: (({ commit, dispatch }: any, userId :string) => {
+  getInitializeUser: (({ dispatch }: any, { user }: any) => {
     // return the promise returned by `bindFirestoreRef`
-    const ref = db.collection('users').doc(userId)
+    const ref = db.collection('users').doc(user.uid)
     ref
       .get()
       .then((doc) => {
         if (!doc.exists) {
           console.log('false called')
           // ユーザー登録がなければ初期化してユーザーコレクションに追加
-          const userData = {}
-          dispatch('userCreate', { userData, userId })
+          dispatch('userCreate', { user })
         }
       })
       .catch(error => {
