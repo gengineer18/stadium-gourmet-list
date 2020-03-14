@@ -1,8 +1,5 @@
 <template>
   <section>
-    <h1 class="title is-5">
-      タイムライン
-    </h1>
     <loading-mark v-if="isLoading" />
     <loading-failed v-if="!isLoading && storedPosts.length === 0" />
     <div v-if="!isLoading && storedPosts.length > 0">
@@ -97,8 +94,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .Thumbnail {
+  width: 192px;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 192px;
   object-fit: cover;
   object-position: 50% 0;
 }

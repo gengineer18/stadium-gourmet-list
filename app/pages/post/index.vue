@@ -169,11 +169,6 @@ export default Vue.extend({
       shop: '',
       comment: '',
       gameDate: null,
-      postImage: {
-        path: '',
-        width: 0,
-        height: 0
-      },
       imagePath: '',
       user: {
         id: '',
@@ -224,8 +219,8 @@ export default Vue.extend({
 
       loadImage.parseMetaData(file, (data) => {
         const options = {
-          maxHeight: 500,
-          maxWidth: 500,
+          maxHeight: 300,
+          maxWidth: 300,
           canvas: true
         }
         if (data.exif) {
@@ -241,12 +236,10 @@ export default Vue.extend({
           const data = canvas.toDataURL(file.type)
           // data_url形式をblob objectに変換
           const blob = this.base64ToBlob(data, file.type)
-          console.log(blob)
           // objectのURLを生成
           const url = window.URL.createObjectURL(blob)
           this.blob = blob
           this.resizedImg = url
-          console.log('resizedImg', this.resizedImg)
         },
         options
       )
