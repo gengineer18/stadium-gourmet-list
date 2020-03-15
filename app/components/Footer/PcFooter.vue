@@ -16,33 +16,35 @@
             </nuxt-link>
           </li>
           <li>
-            <nuxt-link to="/terms">
+            <a href="/terms" target="_blank">
               <span class="link-black">利用規約</span>
-            </nuxt-link>
+            </a>
           </li>
         </ul>
       </div>
       <div class="list-box">
         <ul>
           <li>
-            <nuxt-link to="/privacy">
+            <a href="/privacy" target="_blank">
               <span class="link-black">プライバシー</span>
-            </nuxt-link>
+            </a>
           </li>
           <li>
-            <span class="link-black">ご意見</span>
+            <a href="https://forms.gle/o9Bd2j7eFToEBX2RA" target="_blank">
+              <span class="link-black">ご意見</span>
+            </a>
           </li>
         </ul>
       </div>
-      <div class="list-box">
+      <!-- <div class="list-box">
         <ul>
           <li>
-            <nuxt-link to="/guidline">
+            <a href="/guidline" target="_blank">
               <span class="link-black">ガイドライン</span>
-            </nuxt-link>
+            </a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </footer>
 </template>
