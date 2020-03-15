@@ -285,7 +285,7 @@ export default Vue.extend({
             }
             await console.log('userphoto', postData.user.photo)
             await this.addDb(docId, clubId, postData)
-            await this.$router.push(`/post/complete?docRefId=${docId}`)
+            await this.$router.push(`/post/complete/${docId}`)
             await this.clearAttachImg()
           })
         })
@@ -306,7 +306,7 @@ export default Vue.extend({
         }
         await console.log('userphoto', postData.user.photo)
         await this.addDb(docId, clubId, postData)
-        await this.$router.push(`/post/complete?docRefId=${docId}`)
+        await this.$router.push(`/post/complete/${docId}`)
       }
     },
     async addDb (docId, clubId, postData) {

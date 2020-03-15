@@ -78,7 +78,8 @@ export default Vue.extend({
     }
   },
   async mounted () {
-    const docRefId = new URL(location.href).searchParams.get('docRefId')
+    const path = location.pathname.split('/').filter(pathname => Boolean(pathname))
+    const docRefId = path[path.length - 1]
     if (!docRefId) { return }
     // ドキュメントIDを元にfirebaseからデータをstateにセット
     await this.$store.dispatch('post/init', db.collection('posts').doc(docRefId))
