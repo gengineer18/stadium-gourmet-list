@@ -19,8 +19,9 @@
         <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
       </li>
     </ul>
-    <h3 class="is-size-5 mt-1rem">
-      {{ this.$store.getters['user/userName'] }}
+    <h3 class="is-size-6 mt-1rem user">
+      <img :src="userPhoto" class="user-content">
+      <span class="user-content">{{ userName }}</span>
     </h3>
     <h3 v-if="price" class="is-size-6">
       価格：{{ price }}円
@@ -47,6 +48,7 @@ import utilsGetClubConfig from '@/utils/getClubConfig'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
 import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
+import { guestUserImagePath } from '~/utils/common'
 
 dayjs.locale('ja')
 
@@ -71,11 +73,13 @@ export default Vue.extend({
       color2: '',
       color3: '',
       price: null,
-      createdAt: ''
+      createdAt: '',
+      userPhoto: ''
     }
   },
   async mounted () {
-    const docRefId = new URL(location.href).searchParams.get('docRefId')
+    const path = location.pathname.split('/').filter(pathname => Boolean(pathname))
+    const docRefId = path[path.length - 1]
     if (!docRefId) { return }
     // ドキュメントIDを元にfirebaseからデータをstateにセット
     await this.$store.dispatch('post/init', db.collection('posts').doc(docRefId))
@@ -91,6 +95,7 @@ export default Vue.extend({
       this.gameDate = storedPosts.gameDate ? dayjs(storedPosts.gameDate.toDate()).format('YYYY年MM月DD日') : ''
       this.imagePath = storedPosts.imagePath || ''
       this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
+      this.userPhoto = storedPosts.user ? storedPosts.user.photo : guestUserImagePath
       this.price = storedPosts.price || null
       this.createdAt = storedPosts.createdAt ? dayjs(storedPosts.createdAt.toDate()).format('YYYY/MM/DD HH:mm') : ''
 
@@ -118,5 +123,17 @@ export default Vue.extend({
 }
 .mt-1rem {
   margin-top: 1rem;
+}
+.user {
+  height: 30px;
+  line-height: 30px;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+  &-content{
+    display: inline-block;
+    vertical-align: middle;
+  }
 }
 </style>

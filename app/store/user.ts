@@ -2,7 +2,8 @@ import firebase from 'firebase'
 import auth from '~/plugins/auth'
 import { firestoreAction } from 'vuexfire'
 import { db } from '~/plugins/firebase'
-import { toastSuccess, toastFail } from '~/utils/common'
+import { guestUserImagePath, toastSuccess, toastFail } from '~/utils/common'
+
 
 const userRef = db.collection('users')
 
@@ -17,12 +18,16 @@ export const state = () => ({
 
 export const getters = {
   userId: (state: any) => {
-    if(state.uid !== '') return state.uid
+    if(!state.uid) return state.uid
     return 'guestUser'
   },
   userName: (state: any) => {
     if(state.displayName !== '') return state.displayName
     return 'ゲスト'
+  },
+  userPhoto: (state: any) => {
+    if(state.photoURL !== null) return state.photoURL
+    return guestUserImagePath
   }
 }
 

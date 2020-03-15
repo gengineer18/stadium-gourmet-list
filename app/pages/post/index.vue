@@ -19,15 +19,11 @@
       />
     </div>
     <div class="form-image">
-      <div v-show="!postImage.path">
+      <div v-show="!resizedImg">
         <img src="~/assets/default-photo.png">
       </div>
-      <div v-show="postImage.path">
-        <canvas
-          ref="thumbnail"
-          :width="0"
-          :height="0"
-        />
+      <div v-show="resizedImg">
+        <img :src="resizedImg">
       </div>
       <label class="button is-sub is-small">
         <b-icon
@@ -36,14 +32,14 @@
         />
         写真をアップロード
         <input
-          ref="input"
+          ref="fileInput"
           type="file"
-          accept=".jpg, .png"
+          accept=".jpeg, .png"
           class="input-photo"
-          @change="resize"
+          @change="attachImg"
         >
       </label>
-      <span @click="reset">
+      <span @click="clearAttachImg">
         <b-button
           icon-left="close-circle"
           type="is-light"
@@ -140,16 +136,16 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import 'buefy'
+import loadImage from 'blueimp-load-image'
 import firebase, { db, storage } from '~/plugins/firebase'
 import FormInput from '@/components/Form/FormInput.vue'
 import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
-import { PostData } from '@/types/post'
-import { defaultImagePath } from '@/utils/common'
+import { defaultImagePath, toastSuccess, toastFail } from '@/utils/common'
 
 export default Vue.extend({
   components: {
@@ -173,25 +169,23 @@ export default Vue.extend({
       shop: '',
       comment: '',
       gameDate: null,
-      postImage: {
-        path: '',
-        width: 0,
-        height: 0
-      },
       imagePath: '',
       user: {
         id: '',
-        name: ''
+        name: '',
+        photo: ''
       },
       price: null,
-      isLoading: false
+      isLoading: false,
+      resizedImg: null,
+      blob: null
     }
   },
   computed: {
-    refs ():any {
+    refs () {
       return this.$refs
     },
-    clickable (): boolean {
+    clickable () {
       return !!this.gourmet && !!this.club && !!this.comment && !!this.$store.state.user.isAuth
     }
   },
@@ -204,8 +198,11 @@ export default Vue.extend({
           await firebase.auth().onAuthStateChanged((user) => {
             if (user) {
               this.isLoading = false
+              toastSuccess('ゲストパスを発効しました。')
             }
           })
+        }).catch((e) => {
+          toastFail('エラーが発生しました。')
         })
     },
     sendData () {
@@ -214,67 +211,68 @@ export default Vue.extend({
         cancelText: 'キャンセル',
         confirmText: 'OK',
         onConfirm: async () => {
-          const docId: string = await db.collection('posts').doc().id
-          const clubId: string = this.club.id
+          const docId = await db.collection('posts').doc().id
+          const clubId = this.club.id
           // データの登録
           this.upload(docId, clubId)
         }
       })
     },
-    resize (e: any) {
+    attachImg (e) {
       const file = e.target.files[0]
-      const image: HTMLImageElement = new Image()
-      const reader: FileReader = new FileReader()
-      reader.readAsDataURL(file)
-      reader.onload = (e: ProgressEvent<FileReader>) => {
-        if (e.target === null) { return }
-        if (typeof e.target.result === 'string') {
-          image.src = e.target.result
-          image.onload = () => {
-            this.postImage.path = image.width < 540 ? image.src : this.makeImage(image)
-            this.makeTumbnail(image)
-          }
+
+      loadImage.parseMetaData(file, (data) => {
+        const options = {
+          maxHeight: 300,
+          maxWidth: 300,
+          canvas: true
         }
+        if (data.exif) {
+          options.orientation = data.exif.get('Orientation')
+        }
+        this.displayImage(file, options)
+      })
+    },
+    displayImage (file, options) {
+      loadImage(
+        file,
+        (canvas) => {
+          const data = canvas.toDataURL(file.type)
+          // data_url形式をblob objectに変換
+          const blob = this.base64ToBlob(data, file.type)
+          // objectのURLを生成
+          const url = window.URL.createObjectURL(blob)
+          this.blob = blob
+          this.resizedImg = url
+        },
+        options
+      )
+    },
+    clearAttachImg () {
+      this.resizedImg = null
+      if (this.$refs.fileInput && this.$refs.fileInput.value !== undefined) {
+        this.$refs.fileInput.value = ''
+        window.URL.revokeObjectURL(this.resizedImg)
       }
     },
-    makeImage (image: HTMLImageElement): string {
-      const canvas: HTMLCanvasElement = document.createElement('canvas')
-      const ctx = canvas.getContext('2d')
-      const ratio: number = image.height / image.width
-      const width: number = 300
-      const height: number = width * ratio
-      canvas.width = width
-      canvas.height = height
-      if (ctx === null) { return '' }
-      ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
-      return canvas.toDataURL('image/png')
+    base64ToBlob (base64, fileType) {
+      const bin = atob(base64.replace(/^.*,/, ''))
+      const buffer = new Uint8Array(bin.length)
+      for (let i = 0; i < bin.length; i++) {
+        buffer[i] = bin.charCodeAt(i)
+      }
+      return new Blob([buffer.buffer], {
+        type: fileType || 'image/jpg'
+      })
     },
-    makeTumbnail (image: HTMLImageElement) {
-      const canvas: HTMLCanvasElement = this.refs.thumbnail
-      const ctx = canvas.getContext('2d')
-      const ratio: number = image.height / image.width
-      const width: number = 300
-      const height: number = width * ratio
-      canvas.height = height
-      canvas.width = width
-      if (ctx === null) { return '' }
-      ctx.drawImage(image, 0, 0, image.width, image.height, 0, 0, width, height)
-    },
-    reset () {
-      const canvas: HTMLCanvasElement = this.refs.thumbnail
-      this.postImage.path = ''
-      canvas.height = 0
-      canvas.width = 0
-      this.refs.input.value = ''
-    },
-    async upload (docId: string, clubId: string) {
-      if (this.postImage.path !== '') { // 画像があれば
-        const photoPath: string = this.postImage.path
+    async upload (docId, clubId) {
+      if (this.resizedImg) { // 画像があれば
+        const blob = this.blob
         const storageRef = storage.ref().child(`clubs/${clubId}/${docId}.jpg`)
-        storageRef.putString(photoPath, 'data_url').then((snapshot: any) => {
+        storageRef.put(blob).then((snapshot) => {
           storageRef.getDownloadURL().then(async (url) => {
             this.imagePath = url
-            const postData: PostData = {
+            const postData = {
               gourmet: this.gourmet,
               club: this.club,
               shop: this.shop,
@@ -283,17 +281,19 @@ export default Vue.extend({
               imagePath: this.imagePath,
               user: {
                 id: this.$store.getters['user/userId'],
-                name: this.$store.getters['user/userName']
+                name: this.$store.getters['user/userName'],
+                photo: this.$store.getters['user/userPhoto']
               },
               price: this.price
             }
+            await console.log('userphoto', postData.user.photo)
             await this.addDb(docId, clubId, postData)
-            await this.$router.push(`/post/complete?docRefId=${docId}`)
-            await this.reset()
+            await this.$router.push(`/post/complete/${docId}`)
+            await this.clearAttachImg()
           })
         })
       } else { // 画像の指定がない場合
-        const postData: PostData = {
+        const postData = {
           gourmet: this.gourmet,
           club: this.club,
           shop: this.shop,
@@ -302,15 +302,17 @@ export default Vue.extend({
           imagePath: defaultImagePath,
           user: {
             id: this.$store.getters['user/userId'],
-            name: this.$store.getters['user/userName']
+            name: this.$store.getters['user/userName'],
+            photo: this.$store.getters['user/userPhoto']
           },
           price: this.price
         }
+        await console.log('userphoto', postData.user.photo)
         await this.addDb(docId, clubId, postData)
-        await this.$router.push(`/post/complete?docRefId=${docId}`)
+        await this.$router.push(`/post/complete/${docId}`)
       }
     },
-    async addDb (docId: string, clubId: string, postData: PostData) {
+    async addDb (docId, clubId, postData) {
       await this.$store.dispatch('post/add', { postData, docId })
       await this.$store.dispatch('club/add', { postData, docId, clubId })
       if (this.$store.state.user.isAuth) {
