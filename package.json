@@ -27,6 +27,8 @@
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/google-analytics": "^2.2.3",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
+    "@types/blueimp-load-image": "^2.23.5",
+    "blueimp-load-image": "^2.26.0",
     "core-js": "2.6.11",
     "dayjs": "^1.8.20",
     "firebase": "^7.7.0",

@@ -10,17 +10,13 @@
       </template>
 
       <template slot="end">
-        <div v-if="!$store.state.user.isAuth">
-          <b-navbar-item tag="router-link" to="/signup">
-            <b-icon icon="account" />
-            ユーザー登録
-          </b-navbar-item>
-          <b-navbar-item tag="router-link" to="/login">
+        <div v-if="!$store.state.user.isAuth || $store.state.user.isAnonymous">
+          <b-navbar-item tag="router-link" to="/account/login">
             <b-icon icon="login" />
             ログイン
           </b-navbar-item>
         </div>
-        <div v-if="$store.state.user.isAuth">
+        <div v-if="!$store.state.user.isAnonymous && $store.state.user.isAuth">
           <b-navbar-item tag="div">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
             {{ $store.state.user.displayName }}

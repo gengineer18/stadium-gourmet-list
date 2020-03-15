@@ -2,38 +2,46 @@
   <section class="login-box">
     <div class="title-box has-text-centered">
       <h1 class="title is-4">
-        スタグル名鑑へようこそ！
+        ログイン
       </h1>
-      <h2 class="subtitle is-6">
-        新規登録(無料)して利用を開始しましょう。
-      </h2>
     </div>
     <div class="button-box">
       <span @click="loginTwitter">
         <button-login-twitter
           class="is-block button-margin"
-          usage="登録"
+          usage="ログイン"
         />
       </span>
       <span @click="loginFacebook">
         <button-login-facebook
           class="is-block button-margin"
-          usage="登録"
+          usage="ログイン"
         />
       </span>
       <span @click="loginGoogle">
         <button-login-google
           class="is-block button-margin"
-          usage="登録"
+          usage="ログイン"
         />
       </span>
     </div>
-    <div class="to-login-box has-text-centered">
-      スタグル名鑑 のアカウントを<br>持っている場合は
-      <nuxt-link to="/login">
-        ログイン
+    <div class="terms-text-box has-text-centered">
+      <span class="is-block">サインインすることにより、</span>
+      <span class="is-block">
+        <a href="/terms" target="_blank" class="link">
+          利用規約
+        </a>
+        および
+        <a href="/privacy" target="_blank" class="link">
+          プライバシーポリシー
+        </a>
+        に同意したとみなされます。
+      </span>
+    </div>
+    <div class="to-signup-box has-text-centered">
+      <nuxt-link to="/account/signup" class="link">
+        <strong>新規登録はこちら</strong>
       </nuxt-link>
-      から。
     </div>
   </section>
 </template>
@@ -50,30 +58,29 @@ export default Vue.extend({
     ButtonLoginFacebook,
     ButtonLoginGoogle
   },
-  data () {
-    return {
-      email: '',
-      password: ''
-    }
-  },
   methods: {
     async loginGoogle () {
       await this.$store.dispatch('user/loginGoogle')
-      await this.$router.push('/')
+      await this.routing()
     },
     async loginFacebook () {
       await this.$store.dispatch('user/loginFacebook')
-      await this.$router.push('/')
+      await this.routing()
     },
     async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
-      await this.$router.push('/')
+      await this.routing()
+    },
+    routing () {
+      this.$router.push('/')
     }
   }
 })
 </script>
 
 <style lang="scss">
+@import '~assets/css/buefy.scss';
+
 .login-box {
   width: 100%;
   max-width: 540px;
@@ -92,11 +99,20 @@ export default Vue.extend({
       margin-top: 1rem;
     }
   }
-
-  .to-login-box {
+  .terms-text-box {
     border-top: 1px solid #dddddd;
     margin-top: 1rem;
     padding-top: 1.3rem;
+    font-size: 0.7rem;
+    .link {
+      color: $sub;
+    }
+  }
+  .to-signup-box {
+    padding-top: 1.3rem;
+    .link {
+      color: $sub;
+    }
   }
 }
 </style>

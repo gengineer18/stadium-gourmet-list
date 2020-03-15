@@ -59,13 +59,14 @@ export default Vue.extend({
 .container {
   width: 100%;
   max-width: 960px;
-  margin: 32px auto 0;
+  margin: 2rem auto 0;
   .content-inner {
     width: 96%;
     max-width: 720px;
     margin: 0 auto;
   }
 }
+
 .pc-footer {
   margin-top: auto;
 }

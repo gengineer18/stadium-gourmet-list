@@ -1,6 +1,7 @@
 import { firestoreAction } from 'vuexfire'
 import firebase from '~/plugins/firebase'
 import { db } from '~/plugins/firebase'
+import { toastFail } from '~/utils/common'
 
 const clubRef = db.collection('clubs')
 
@@ -17,8 +18,10 @@ export const actions = {
     postData.createdAt = firebase.firestore.FieldValue.serverTimestamp()
     postData.updatedAt = firebase.firestore.FieldValue.serverTimestamp()
     clubRef.doc(clubId).collection('posts').doc(docId).set(postData)
-    .catch((error) => {
-      console.error('Error adding document: ', error)
+      .catch((error) => {
+        console.error('Error adding club doc: ', error.code)
+        toastFail('データベースへの登録に失敗しました。')
+        throw error;
     })
   })
 }

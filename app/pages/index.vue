@@ -1,8 +1,5 @@
 <template>
   <section>
-    <h1 class="title is-5">
-      タイムライン
-    </h1>
     <loading-mark v-if="isLoading" />
     <loading-failed v-if="!isLoading && storedPosts.length === 0" />
     <div v-if="!isLoading && storedPosts.length > 0">
@@ -20,8 +17,10 @@
                   :color3="getClubColor3(item.club.id)"
                   class="is-inline-block va-mid"
                 />
-                <span class="text-rem-8 va-mid">{{ getClubName(item.club.id) }}</span>
-                <p>{{ item.gourmet }}</p>
+                <span class="club-name va-mid">{{ getClubName(item.club.id) }}</span>
+                <p class="gourmet-name">
+                  {{ item.gourmet }}
+                </p>
               </div>
             </div>
           </li>
@@ -67,8 +66,8 @@ export default Vue.extend({
   },
   async mounted () {
     await this.$store.dispatch('post/init', db.collection('posts').orderBy('createdAt', 'desc'))
-    this.storedPosts = await this.$store.state.post.posts
-    this.isLoading = await false
+    this.storedPosts = this.$store.state.post.posts
+    this.isLoading = false
   },
   methods: {
     getClubConfig (clubId: string) {
@@ -96,12 +95,17 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+.card-width {
+  width: 216px;
+}
 .Thumbnail {
+  width: 192px;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 192px;
   object-fit: cover;
   object-position: 50% 0;
 }
+
 .menu-list {
   flex-wrap: wrap;
   align-content: flex-start;
@@ -109,10 +113,42 @@ export default Vue.extend({
 .va-mid {
   vertical-align: middle;
 }
-.card-width {
-  width: 216px;
-}
-.text-rem-8 {
+
+.club-name {
   font-size: 0.8rem;
+}
+.gourmet-name {
+  font-size: 1rem;
+}
+.card-header-title {
+  padding: 8px;
+}
+.card-content {
+  padding: 8px;
+}
+
+@media screen and (max-width: 480px){
+  .card-header-title {
+    padding: 4px;
+  }
+  .card-width {
+    width: calc((100vw / 2) - 36px);
+  }
+  .Thumbnail {
+    width: calc(100% - 30px);
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+  .club-name {
+    font-size: 0.65rem;
+  }
+  .gourmet-name {
+    font-size: 0.8rem;
+  }
+  .card-content {
+    padding: 4px;
+  }
 }
 </style>

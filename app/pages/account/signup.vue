@@ -2,35 +2,47 @@
   <section class="login-box">
     <div class="title-box has-text-centered">
       <h1 class="title is-4">
-        ログイン
+        スタグル名鑑へようこそ！
       </h1>
+      <h2 class="subtitle is-6">
+        新規登録(無料)して利用を開始しましょう。
+      </h2>
     </div>
     <div class="button-box">
       <span @click="loginTwitter">
         <button-login-twitter
           class="is-block button-margin"
-          usage="ログイン"
+          usage="登録"
         />
       </span>
       <span @click="loginFacebook">
         <button-login-facebook
           class="is-block button-margin"
-          usage="ログイン"
+          usage="登録"
         />
       </span>
       <span @click="loginGoogle">
         <button-login-google
           class="is-block button-margin"
-          usage="ログイン"
+          usage="登録"
         />
       </span>
     </div>
-    <div class="to-signup-box has-text-centered">
-      スタグル名鑑 のアカウントを<br>持っていない場合は
-      <nuxt-link to="/signup">
-        新規登録
+    <div class="terms-text-box has-text-centered">
+      サインインすることにより、
+      <a href="/terms" target="_blank" class="link">
+        利用規約
+      </a>
+      および
+      <a href="/privacy" target="_blank" class="link">
+        プライバシーポリシー
+      </a>
+      に同意したとみなされます。
+    </div>
+    <div class="to-login-box has-text-centered">
+      <nuxt-link to="/account/login" class="link">
+        <strong>ログインはこちら</strong>
       </nuxt-link>
-      から。
     </div>
   </section>
 </template>
@@ -50,21 +62,26 @@ export default Vue.extend({
   methods: {
     async loginGoogle () {
       await this.$store.dispatch('user/loginGoogle')
-      await this.$router.push('/')
+      await this.routing()
     },
     async loginFacebook () {
       await this.$store.dispatch('user/loginFacebook')
-      await this.$router.push('/')
+      await this.routing()
     },
     async loginTwitter () {
       await this.$store.dispatch('user/loginTwitter')
-      await this.$router.push('/')
+      await this.routing()
+    },
+    routing () {
+      this.$router.push('/')
     }
   }
 })
 </script>
 
 <style lang="scss">
+@import '~assets/css/buefy.scss';
+
 .login-box {
   width: 100%;
   max-width: 540px;
@@ -75,6 +92,9 @@ export default Vue.extend({
       margin: 1.3rem auto;
     }
   }
+  .term-box {
+    margin-top: 1rem;
+  }
   .button-box {
     width: 100%;
     max-width: 360px;
@@ -83,11 +103,20 @@ export default Vue.extend({
       margin-top: 1rem;
     }
   }
-
-  .to-signup-box {
+  .terms-text-box {
     border-top: 1px solid #dddddd;
     margin-top: 1rem;
     padding-top: 1.3rem;
+    font-size: 0.7rem;
+    .link {
+      color: $sub;
+    }
+  }
+  .to-login-box {
+    padding-top: 1.3rem;
+    .link {
+      color: $sub;
+    }
   }
 }
 </style>

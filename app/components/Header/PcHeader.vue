@@ -35,29 +35,18 @@
       </template>
 
       <template slot="end">
-        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
+        <b-navbar-item v-if="!$store.state.user.isAuth || $store.state.user.isAnonymous" tag="div">
           <b-button
             type="is-sub"
-            icon-left="account"
-            size="is-small"
-            tag="nuxt-link"
-            to="/signup"
-          >
-            <strong>ユーザー登録</strong>
-          </b-button>
-        </b-navbar-item>
-        <b-navbar-item v-if="!$store.state.user.isAuth" tag="div">
-          <b-button
-            type="is-white"
             icon-left="login"
             size="is-small"
             tag="nuxt-link"
-            to="/login"
+            to="/account/login"
           >
             <strong>ログイン</strong>
           </b-button>
         </b-navbar-item>
-        <b-dropdown v-if="$store.state.user.isAuth" area-role="list" class="navbar-item">
+        <b-dropdown v-if="!$store.state.user.isAnonymous && $store.state.user.isAuth" area-role="list" class="navbar-item">
           <a slot="trigger">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
             <span class="text-black">
