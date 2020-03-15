@@ -120,6 +120,12 @@ export default Vue.extend({
 .gourmet-name {
   font-size: 1rem;
 }
+.card-header-title {
+  padding: 8px;
+}
+.card-content {
+  padding: 8px;
+}
 
 @media screen and (max-width: 480px){
   .card-header-title {

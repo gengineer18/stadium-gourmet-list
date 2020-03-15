@@ -15,7 +15,9 @@
                 <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
               </header>
               <div class="card-content">
-                <p>{{ item.gourmet }}</p>
+                <p class="gourmet-name">
+                  {{ item.gourmet }}
+                </p>
               </div>
             </div>
           </li>
@@ -66,11 +68,11 @@ export default Vue.extend({
     const clubConfig = utilsGetClubConfig(this.$route.params.clubId)
     this.clubName = clubConfig.name
     this.color1 = clubConfig.color1
-    this.color2 = clubConfig.color2 ? clubConfig.color2 : ''
-    this.color3 = clubConfig.color3 ? clubConfig.color3 : ''
+    this.color2 = clubConfig.color2 || ''
+    this.color3 = clubConfig.color3 || ''
   },
   async mounted () {
-    await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts'))
+    await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts').orderBy('createdAt', 'desc'))
     this.storedClubs = await this.$store.state.club.clubs
     this.isLoading = await false
   }
@@ -79,8 +81,9 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .Thumbnail {
+  width: 192px;
   max-width: 100%;
-  max-height: 100%;
+  max-height: 192px;
   object-fit: cover;
   object-position: 50% 0;
 }
@@ -96,5 +99,33 @@ export default Vue.extend({
 }
 .text-rem-8 {
   font-size: 0.8rem;
+}
+.gourmet-name {
+  font-size: 1rem;
+}
+.card-content {
+  padding: 8px;
+}
+
+@media screen and (max-width: 480px){
+  .card-header-title {
+    padding: 4px;
+  }
+  .card-width {
+    width: calc((100vw / 2) - 36px);
+  }
+  .Thumbnail {
+    width: calc(100% - 30px);
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+    object-position: 50% 0;
+  }
+  .gourmet-name {
+    font-size: 0.8rem;
+  }
+  .card-content {
+    padding: 4px;
+  }
 }
 </style>
