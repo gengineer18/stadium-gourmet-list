@@ -84,9 +84,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vue-scrollto',
-    { src: '~/plugins/vue2-touch-events.ts', ssr: false },
-    { src: '~/plugins/vee-validate.js', ssr: true },
     { src: '~/plugins/vue-simple-spinner.js', ssr: false },
     '~/plugins/firebase',
     '~/plugins/auth',
