@@ -84,6 +84,10 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/vue-scrollto',
+    { src: '~/plugins/vue2-touch-events.ts', ssr: false },
+    { src: '~/plugins/vee-validate.js', ssr: true },
+    { src: '~/plugins/vue-simple-spinner.js', ssr: false },
     '~/plugins/firebase',
     '~/plugins/auth',
   ],
@@ -107,9 +111,9 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-user-agent',
-    ['@nuxtjs/google-analytics', 
+    ['@nuxtjs/google-analytics',
       {
-        id: 'UA-155565454-1', 
+        id: 'UA-155565454-1',
         debug: {
           enabled: process.env.NODE_ENV === 'production',    // default value is false
           trace: process.env.NODE_ENV === 'production',      // default value is false
