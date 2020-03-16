@@ -159,7 +159,12 @@
 
 <script>
 export default {
-  layout: 'terms'
+  layout: 'terms',
+  head () {
+    return {
+      title: '利用規約'
+    }
+  }
 }
 </script>
 

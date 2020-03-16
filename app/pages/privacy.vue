@@ -114,7 +114,12 @@
 
 <script>
 export default {
-  layout: 'terms'
+  layout: 'terms',
+  head () {
+    return {
+      title: 'プライバシーポリシー'
+    }
+  }
 }
 </script>
 

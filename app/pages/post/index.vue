@@ -320,6 +320,11 @@ export default Vue.extend({
         await this.$store.dispatch('user/add', { postData, docId, userId })
       }
     }
+  },
+  head () {
+    return {
+      title: '投稿する'
+    }
   }
 })
 </script>

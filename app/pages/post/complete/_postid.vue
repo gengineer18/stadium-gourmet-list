@@ -104,6 +104,11 @@ export default Vue.extend({
       this.color2 = clubConfig.color2 || ''
       this.color3 = clubConfig.color3 || ''
     }
+  },
+  head () {
+    return {
+      title: `${this.$data.gourmet}`
+    }
   }
 })
 </script>
