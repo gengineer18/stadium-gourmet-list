@@ -2,6 +2,7 @@
   <div>
     <vue-simple-spinner
       size="100"
+      line-size="10"
       message="NowLoading..."
       font-size="18"
       line-bg-color="#ccddcc"
