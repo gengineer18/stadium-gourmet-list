@@ -23,7 +23,7 @@ service cloud.firestore {
         allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/posts/$(postId)).data.user.id;
       }
       match /credentials/{userId} {
-        allow create
+        allow create;
         allow read, update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/credentials/$(userId)).data.userId;
       }
     }
