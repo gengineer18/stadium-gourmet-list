@@ -136,7 +136,6 @@ export const actions = {
     ref
       .get()
       .then(function(doc) {
-        console.log('doc',doc)
         if (!doc.exists) {
           // ユーザー登録がなければ初期化してユーザーコレクションに追加
           dispatch('userCreate', { user })
