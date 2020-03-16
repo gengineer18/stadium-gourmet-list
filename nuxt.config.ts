@@ -7,15 +7,66 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: 'スタグル名鑑',
+    titleTemplate: '%s | みんなでつくる Jリーグスタグル名鑑',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
-      { hid: 'robots', name: 'robots', content: 'noindex, nofollow' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'みんなでつくる Jリーグスタグル名鑑は、「スタジアムグルメを通じてさらにJリーグを盛り上げていく」ことをコンセプトとしたスタグル情報記録・共有Webサイトです。'
+      },
+      {
+        hid: 'og:site_name',
+        property: 'og:site_name',
+        content: 'みんなでつくる Jリーグスタグル名鑑'
+      },
+      { hid: 'og:type', property: 'og:type', content: 'website' },
+      {
+        hid: 'og:url',
+        property: 'og:url',
+        content: 'https://stgrmeikan.com'
+      },
+      {
+        hid: 'og:title',
+        property: 'og:title',
+        content: 'みんなでつくる Jリーグスタグル名鑑'
+      },
+      {
+        hid: 'og:description',
+        property: 'og:description',
+        content:
+          'みんなでつくる Jリーグスタグル名鑑は、「スタジアムグルメを通じてさらにJリーグを盛り上げていく」ことをコンセプトとしたスタグル情報記録・共有Webサイトです。'
+      },
+      {
+        hid: 'og:image',
+        property: 'og:image',
+        content: ''
+      },
+      {
+        hid: 'twitter:card',
+        name: 'twitter:card',
+        content: 'summary_large_image'
+      },
+      {
+        hid: 'twitter:site',
+        name: 'twitter:site',
+        content: '@stgrmeikan'
+      },
+      {
+        hid: 'twitter:creator',
+        name: 'twitter:creator',
+        content: '@stgrmeikan'
+      },
+      {
+        hid: 'twitter:image',
+        name: 'twitter:image',
+        content: ''
+      }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'apple-touch-icon', href: '' }
     ]
   },
   /*
@@ -33,9 +84,6 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
-    '~/plugins/vue-scrollto',
-    { src: '~/plugins/vue2-touch-events.ts', ssr: false },
-    { src: '~/plugins/vee-validate.js', ssr: true },
     '~/plugins/firebase',
     '~/plugins/auth',
   ],
@@ -59,11 +107,26 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     'nuxt-user-agent',
-    ['@nuxtjs/google-analytics', {id: 'UA-155565454-1'}]
+    ['@nuxtjs/google-analytics', 
+      {
+        id: 'UA-155565454-1', 
+        debug: {
+          enabled: process.env.NODE_ENV === 'production',    // default value is false
+          trace: process.env.NODE_ENV === 'production',      // default value is false
+          sendHitTask: process.env.NODE_ENV === 'production' // default value is false
+        }
+      }
+    ]
   ],
   manifest: {
-    name: 'スタグル名鑑',
-    lang: 'ja'
+    name: 'みんなでつくる Jリーグスタグル名鑑',
+    lang: 'ja',
+    theme_color: '#f6d04d',
+    background_color: '#ffffff',
+    display: 'standalone',
+    Scope: '/',
+    start_url: '/',
+    splash_pages: null
   },
   /*
   ** Axios module configuration
