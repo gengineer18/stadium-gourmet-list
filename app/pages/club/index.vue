@@ -33,6 +33,11 @@ export default Vue.extend({
       clubsChugokuShikoku: json[5].chugokuShikoku.list,
       clubsKyushuOkinawa: json[6].kyushuOkinawa.list
     }
+  },
+  head () {
+    return {
+      title: 'クラブから探す'
+    }
   }
 })
 </script>

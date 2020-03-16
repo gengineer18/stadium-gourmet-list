@@ -32,7 +32,12 @@
 
 <script>
 export default {
-  layout: 'about'
+  layout: 'about',
+  head () {
+    return {
+      title: '当サイトについて'
+    }
+  }
 }
 </script>
 

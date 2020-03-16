@@ -75,6 +75,11 @@ export default Vue.extend({
     routing () {
       this.$router.push('/')
     }
+  },
+  head () {
+    return {
+      title: '新規登録'
+    }
   }
 })
 </script>

@@ -75,6 +75,11 @@ export default Vue.extend({
     await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts').orderBy('createdAt', 'desc'))
     this.storedClubs = await this.$store.state.club.clubs
     this.isLoading = await false
+  },
+  head () {
+    return {
+      title: `${this.$data.clubName}`
+    }
   }
 })
 </script>

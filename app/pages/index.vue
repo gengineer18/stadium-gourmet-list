@@ -90,6 +90,11 @@ export default Vue.extend({
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color3 || ''
     }
+  },
+  head () {
+    return {
+      title: 'ホーム'
+    }
   }
 })
 </script>
