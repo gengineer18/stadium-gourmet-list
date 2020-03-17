@@ -286,7 +286,6 @@ export default Vue.extend({
               },
               price: this.price
             }
-            await console.log('userphoto', postData.user.photo)
             await this.addDb(docId, clubId, postData)
             await this.$router.push(`/post/complete/${docId}`)
             await this.clearAttachImg()
