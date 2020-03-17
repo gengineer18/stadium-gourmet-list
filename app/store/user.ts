@@ -8,6 +8,7 @@ import { guestUserImagePath, toastSuccess, toastFail } from '~/utils/common'
 const userRef = db.collection('users')
 
 export const state = () => ({
+  userPosts: [],
   isAuth: false,
   isAnonymous: true,
   uid: '',
@@ -18,7 +19,7 @@ export const state = () => ({
 
 export const getters = {
   userId: (state: any) => {
-    if(!state.uid) return state.uid
+    if(state.uid !== '') return state.uid
     return 'guestUser'
   },
   userName: (state: any) => {
@@ -59,6 +60,10 @@ export const mutations = {
 }
 
 export const actions = {
+  init: firestoreAction(({ bindFirestoreRef }, ref) => {
+    // return the promise returned by `bindFirestoreRef`
+    return bindFirestoreRef('userPosts', ref)
+  }),
   loginGoogle: async ({ dispatch }: any) => {
     const provider = new firebase.auth.GoogleAuthProvider()
     await dispatch('loginCommon', provider)
