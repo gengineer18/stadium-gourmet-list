@@ -22,8 +22,14 @@
       </ul>
     </div>
     <h3 class="is-size-6 mt-1rem user">
-      <img :src="userPhoto" class="user-content">
-      <span class="user-content">{{ userName }}</span>
+      <nuxt-link v-if="user.name !== 'ゲスト'" :to="`/user/${user.id}`" class="link">
+        <img :src="user.photo" class="user-content">
+        <span class="user-content">{{ user.name }}</span>
+      </nuxt-link>
+      <span v-if="user.name == 'ゲスト'">
+        <img :src="user.photo" class="user-content">
+        <span class="user-content">{{ user.name }}</span>
+      </span>
     </h3>
     <h3 v-if="price" class="is-size-6">
       価格：{{ price }}円
@@ -63,8 +69,11 @@ export default Vue.extend({
   data () {
     return {
       docRefId: '',
-      userName: '',
-      userPhoto: '',
+      user: {
+        id: '',
+        name: '',
+        photo: ''
+      },
       gourmet: '',
       clubId: '',
       clubName: '',
@@ -94,8 +103,9 @@ export default Vue.extend({
     const storedPosts = await this.$store.state.club.clubs
     if (storedPosts !== null) {
       this.docRefId = postId
-      this.userName = storedPosts.user ? storedPosts.user.name : 'ゲスト'
-      this.userPhoto = storedPosts.user ? storedPosts.user.photo : guestUserImagePath
+      this.user.id = storedPosts.user ? storedPosts.user.id : 'guestuser'
+      this.user.name = storedPosts.user ? storedPosts.user.name : 'ゲスト'
+      this.user.photo = storedPosts.user ? storedPosts.user.photo : guestUserImagePath
       this.gourmet = storedPosts.gourmet || ''
       this.clubId = storedPosts.club ? storedPosts.club.id : ''
       this.clubName = storedPosts.club ? storedPosts.club.name : ''
@@ -121,6 +131,8 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
+@import '~assets/css/buefy.scss';
+
 .share-list-item {
   display: inline-block;
   flex-grow: 1;
@@ -143,9 +155,15 @@ export default Vue.extend({
     width: 30px;
     height: 30px;
   }
-  &-content{
+  &-content {
     display: inline-block;
     vertical-align: middle;
+  }
+}
+.link {
+  color: $sub;
+  &:hover {
+    color: $sub;
   }
 }
 </style>
