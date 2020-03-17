@@ -6,7 +6,7 @@ service cloud.firestore {
     }
 
     match /posts/{postId} {
-      allow list;
+      allow get, list;
       allow create: if isAuth();
       allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/posts/$(postId)).data.user.id;
     }
@@ -23,8 +23,8 @@ service cloud.firestore {
         allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/posts/$(postId)).data.user.id;
       }
       match /credentials/{userId} {
-        allow create;
-        allow get, update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/credentials/$(userId)).data.userId;
+        allow create, get;
+        allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/credentials/$(userId)).data.userId;
       }
     }
   }
