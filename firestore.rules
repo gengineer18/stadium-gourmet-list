@@ -6,25 +6,25 @@ service cloud.firestore {
     }
 
     match /posts/{postId} {
-      allow read;
+      allow list;
       allow create: if isAuth();
       allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/posts/$(postId)).data.user.id;
     }
     match /clubs/{clubId}/posts/{postId} {
-      allow read;
+      allow get, list;
       allow create: if isAuth();
       allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/clubs/$(clubId)/posts/$(postId)).data.user.id;
     }
     match /users/{userId} {
-      allow read, create;
+      allow get, create;
       match /posts/{postId} {
-        allow read;
+        allow get;
         allow create: if isAuth();
         allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/posts/$(postId)).data.user.id;
       }
       match /credentials/{userId} {
         allow create;
-        allow read, update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/credentials/$(userId)).data.userId;
+        allow get, update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/credentials/$(userId)).data.userId;
       }
     }
   }
