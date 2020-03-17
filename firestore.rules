@@ -18,7 +18,7 @@ service cloud.firestore {
     match /users/{userId} {
       allow get, create;
       match /posts/{postId} {
-        allow get;
+        allow get, list;
         allow create: if isAuth();
         allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/posts/$(postId)).data.user.id;
       }
