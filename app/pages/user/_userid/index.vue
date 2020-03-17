@@ -113,7 +113,7 @@ export default Vue.extend({
   },
   head () {
     return {
-      title: 'ユーザーページ'
+      title: `${this.$data.user.name}`
     }
   }
 })
