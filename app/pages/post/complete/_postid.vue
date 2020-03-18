@@ -53,6 +53,7 @@ import { guestUserImagePath } from '~/utils/common'
 dayjs.locale('ja')
 
 export default Vue.extend({
+  middleware: 'redirectSSR',
   components: {
     MarkCircle,
     ButtonShareTwitter,
