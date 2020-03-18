@@ -54,6 +54,7 @@ import ButtonLoginFacebook from '@/components/Button/ButtonLoginFacebook.vue'
 import ButtonLoginGoogle from '@/components/Button/ButtonLoginGoogle.vue'
 
 export default Vue.extend({
+  middleware: 'redirectSSR',
   components: {
     ButtonLoginTwitter,
     ButtonLoginFacebook,
