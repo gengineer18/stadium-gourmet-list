@@ -35,7 +35,7 @@
       </template>
 
       <template slot="end">
-        <b-navbar-item v-if="!$store.state.user.isAuth || $store.state.user.isAnonymous" tag="div">
+        <b-navbar-item v-if="showLogin" tag="div">
           <b-button
             type="is-sub"
             icon-left="login"
@@ -46,7 +46,7 @@
             <strong>ログイン</strong>
           </b-button>
         </b-navbar-item>
-        <b-dropdown v-if="!$store.state.user.isAnonymous && $store.state.user.isAuth" area-role="list" class="navbar-item">
+        <b-dropdown v-if="!showLogin" area-role="list" class="navbar-item">
           <a slot="trigger">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
             <span class="text-black">
@@ -67,6 +67,11 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  computed: {
+    showLogin (): boolean {
+      return !this.$store.state.user.isAuth || this.$store.state.user.isAnonymous
+    }
+  },
   created () {
     this.$store.dispatch('user/checkAuth')
   },
