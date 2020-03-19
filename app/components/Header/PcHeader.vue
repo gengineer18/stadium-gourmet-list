@@ -4,7 +4,7 @@
       <template slot="brand">
         <b-navbar-item tag="div" class="align-center">
           <nuxt-link to="/">
-            <span class="text-black">みんなでつくる Jリーグスタグル名鑑</span>
+            <img src="~assets/logo.png" alt="logo">
           </nuxt-link>
         </b-navbar-item>
       </template>

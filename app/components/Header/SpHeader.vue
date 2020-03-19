@@ -2,9 +2,9 @@
   <section class="background-primary">
     <b-navbar type="is-primary" class="max-width" close-on-click="true">
       <template slot="brand">
-        <b-navbar-item tag="div" class="align-center is-black">
+        <b-navbar-item tag="div" style="padding-top:4px;">
           <nuxt-link to="/">
-            <span class="text-black">みんなでつくる Jリーグスタグル名鑑</span>
+            <img src="~assets/logo.png" alt="logo">
           </nuxt-link>
         </b-navbar-item>
       </template>
