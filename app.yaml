@@ -11,13 +11,17 @@ handlers:
   - url: /_nuxt
     static_dir: .nuxt/dist/client
 
-  - url: /(.*\.(gif|png|jpg|ico|txt|json))$
-    static_files: static/\1
-    upload: app/static/.*\.(gif|png|jpg|ico|txt)$
+  - url: /(.*\.(gif|png|jpg|txt|json))$
+    static_files: app/static/\1
+    upload: app/static/.*\.(gif|png|jpg|txt|json)$
 
   - url: /sw.js
     static_files: app/static/sw.js
     upload: app/static/sw.js
+
+  - url: /favicon.ico
+    static_files: app/static/favicon.ico
+    upload: app/static/favicon.ico
 
   - url: /.*
     script: auto
