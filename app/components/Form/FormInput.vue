@@ -39,7 +39,8 @@ export default Vue.extend({
     },
     message: {
       type: String,
-      required: false
+      required: false,
+      default: ''
     }
   },
   data () {
