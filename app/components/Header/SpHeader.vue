@@ -10,19 +10,30 @@
       </template>
 
       <template slot="end">
-        <div v-if="!$store.state.user.isAuth || $store.state.user.isAnonymous">
-          <b-navbar-item tag="router-link" to="/account/login">
+        <div>
+          <b-navbar-item v-if="showLogin" tag="router-link" to="/account/login">
             <b-icon icon="login" />
             ログイン
           </b-navbar-item>
-        </div>
-        <div v-if="!$store.state.user.isAnonymous && $store.state.user.isAuth">
-          <b-navbar-item tag="div">
+          <b-navbar-item v-if="!showLogin" tag="div">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
             {{ $store.state.user.displayName }}
           </b-navbar-item>
           <hr class="dropdown-divider">
-          <b-navbar-item tag="div" @click="logout">
+          <b-navbar-item tag="router-link" to="/about">
+            About
+          </b-navbar-item>
+          <b-navbar-item tag="a" href="/terms" target="_blank">
+            利用規約
+          </b-navbar-item>
+          <b-navbar-item tag="a" href="/privacy" target="_blank">
+            プライバシー
+          </b-navbar-item>
+          <b-navbar-item tag="a" href="https://forms.gle/o9Bd2j7eFToEBX2RA" target="_blank">
+            ご意見
+          </b-navbar-item>
+          <hr v-if="!showLogin" class="dropdown-divider">
+          <b-navbar-item v-if="!showLogin" tag="div" @click="logout">
             <b-icon icon="logout" />
             ログアウト
           </b-navbar-item>
@@ -35,6 +46,11 @@
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
+  computed: {
+    showLogin (): boolean {
+      return !this.$store.state.user.isAuth || this.$store.state.user.isAnonymous
+    }
+  },
   created () {
     this.$store.dispatch('user/checkAuth')
   },
