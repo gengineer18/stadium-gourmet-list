@@ -41,12 +41,12 @@ export default {
       {
         hid: 'og:image',
         property: 'og:image',
-        content: ''
+        content: 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fogp.png?alt=media&token=5ee41d9e-38b7-44ab-9c91-0671ff7122fc'
       },
       {
         hid: 'twitter:card',
         name: 'twitter:card',
-        content: 'summary_large_image'
+        content: 'summary'
       },
       {
         hid: 'twitter:site',
@@ -61,7 +61,7 @@ export default {
       {
         hid: 'twitter:image',
         name: 'twitter:image',
-        content: ''
+        content: 'https://firebasestorage.googleapis.com/v0/b/stadium-gourmet-list.appspot.com/o/assets%2Fogp.png?alt=media&token=5ee41d9e-38b7-44ab-9c91-0671ff7122fc'
       }
     ],
     link: [
