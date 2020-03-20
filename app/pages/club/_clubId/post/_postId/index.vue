@@ -19,6 +19,9 @@
         <li class="share-list-item">
           <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
         </li>
+        <li class="share-list-item">
+          <button-share-line :club-id="clubId" :doc-ref-id="docRefId" />
+        </li>
       </ul>
     </div>
     <h3 class="is-size-6 mt-1rem user">
@@ -56,6 +59,7 @@ import { defaultImagePath } from '@/utils/common'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
 import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
+import ButtonShareLine from '@/components/Button/ButtonShareLine.vue'
 import { guestUserImagePath } from '~/utils/common'
 
 dayjs.locale('ja')
@@ -64,7 +68,8 @@ export default Vue.extend({
   components: {
     MarkCircle,
     ButtonShareTwitter,
-    ButtonShareFacebook
+    ButtonShareFacebook,
+    ButtonShareLine
   },
   data () {
     return {
@@ -136,11 +141,8 @@ export default Vue.extend({
 .share-list-item {
   display: inline-block;
   flex-grow: 1;
-  width: 60px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  margin-right: 0.5rem;
+  line-height: 32px;
+  margin-right: 0.3rem;
 }
 .mb-1rem {
   margin-bottom: 1rem;
