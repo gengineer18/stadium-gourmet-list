@@ -35,8 +35,25 @@
         <h2 class="title is-6">
           退会する
         </h2>
-        <p>退会処理を行うと二度と元に戻すことはできません。</p>
-        <b-button type="is-danger">
+        <p class="is-size-7 mb-1">
+          退会処理を行うと二度と元に戻すことはできません。<br>
+          退会処理に進むためにはユーザーID&nbsp;
+          <span class="has-text-weight-semibold has-text-danger">{{ uid }}</span>
+          &nbsp;を入力してください。
+        </p>
+        <form-input v-model="inputUserId" label="ユーザーID" />
+        <b-button
+          v-if="!isCorrectUserId"
+          type="is-danger"
+          disabled
+        >
+          退会処理へ進む
+        </b-button>
+        <b-button
+          v-if="isCorrectUserId"
+          type="is-danger"
+          @click="deleteUser"
+        >
           退会処理へ進む
         </b-button>
       </div>
@@ -58,9 +75,18 @@ export default Vue.extend({
   },
   data () {
     return {
+      inputUserId: '',
+      uid: '',
       displayName: '',
       photoURL: '',
       loading: false
+    }
+  },
+  computed: {
+    isCorrectUserId () {
+      const user = firebase.auth().currentUser
+      if (!user) { return false }
+      return user.uid === this.$data.inputUserId
     }
   },
   created () {
@@ -69,12 +95,13 @@ export default Vue.extend({
   mounted () {
     const user = firebase.auth().currentUser
     if (user != null) {
+      this.uid = user.uid || ''
       this.displayName = user.displayName || ''
       this.photoURL = user.photoURL || ''
     }
   },
   methods: {
-    updateName () {
+    updateName (): void {
       this.loading = true
       const user = firebase.auth().currentUser
       if (user === null) {
@@ -98,6 +125,18 @@ export default Vue.extend({
           this.loading = false
           toastFail('ユーザーデータの更新に失敗しました。')
         })
+    },
+    deleteUser (): void {
+      this.$buefy.dialog.confirm({
+        message: '本当に退会してよろしいですか?',
+        cancelText: 'キャンセル',
+        confirmText: '退会する',
+        title: 'Jリーグ スタグル名鑑から退会する',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: async () => {
+        }
+      })
     }
   }
 })
