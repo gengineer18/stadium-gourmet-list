@@ -1,6 +1,6 @@
 <template>
-  <a :href="facebookURL" target="_blank" rel="nofollow">
-    <img src="~assets/img/sns/facebook.png" class="share-button">
+  <a :href="lineURL" target="_blank" rel="nofollow">
+    <img src="~assets/img/sns/line.png" class="share-button">
   </a>
 </template>
 
@@ -18,9 +18,9 @@ export default Vue.extend({
     }
   },
   computed: {
-    facebookURL (): string {
+    lineURL (): string {
       const url = `https://stgrmeikan.com/club/${this.clubId}/post/${this.docRefId}`
-      return `https://www.facebook.com/sharer/sharer.php?u=${url}`
+      return `https://timeline.line.me/social-plugin/share?url=${url}`
     }
   }
 })

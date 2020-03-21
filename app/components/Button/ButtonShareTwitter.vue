@@ -1,13 +1,7 @@
 <template>
-  <b-button
-    type="is-twitter"
-    icon-left="twitter"
-    tag="a"
-    :href="twitterURL"
-    target="_blank"
-    rel="nofollow"
-    class="share-button"
-  />
+  <a :href="twitterURL" target="_blank" rel="nofollow">
+    <img src="~assets/img/sns/twitter.png" class="share-button">
+  </a>
 </template>
 
 <script lang="ts">
@@ -48,7 +42,7 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .share-button {
-  width: 60px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
 }
 </style>

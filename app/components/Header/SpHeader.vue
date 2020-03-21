@@ -4,7 +4,7 @@
       <template slot="brand">
         <b-navbar-item tag="div" style="padding-top:4px;">
           <nuxt-link to="/">
-            <img src="~assets/logo.png" alt="logo">
+            <img src="~assets/img/logo.png" alt="logo">
           </nuxt-link>
         </b-navbar-item>
       </template>

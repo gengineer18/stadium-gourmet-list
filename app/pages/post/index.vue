@@ -20,7 +20,7 @@
     </div>
     <div class="form-image">
       <div v-show="!resizedImg">
-        <img src="~/assets/default-photo.png">
+        <img src="~/assets/img/default-photo.png">
       </div>
       <div v-show="resizedImg">
         <img :src="resizedImg">
