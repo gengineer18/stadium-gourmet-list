@@ -111,11 +111,11 @@ export default {
     ['@nuxtjs/google-analytics',
       {
         id: 'UA-155565454-1',
-        debug: {
-          enabled: process.env.NODE_ENV !== 'production',    // default value is false
-          trace: process.env.NODE_ENV !== 'production',      // default value is false
-          sendHitTask: process.env.NODE_ENV !== 'production' // default value is false
-        }
+        // debug: {
+        //   enabled: process.env.NODE_ENV !== 'production',    // default value is false
+        //   trace: process.env.NODE_ENV !== 'production',      // default value is false
+        //   sendHitTask: process.env.NODE_ENV !== 'production' // default value is false
+        // }
       }
     ]
   ],
