@@ -49,6 +49,7 @@ import Vue from 'vue'
 import firebase from '~/plugins/firebase'
 import FormInput from '@/components/Form/FormInput.vue'
 import LoadingMark from '@/components/Loading/LoadingMark.vue'
+import { toastFail } from '@/utils/common'
 
 export default Vue.extend({
   components: {
@@ -77,20 +78,25 @@ export default Vue.extend({
       this.loading = true
       const user = firebase.auth().currentUser
       if (user === null) {
-        console.error('ユーザーデータが取得できませんでした')
+        this.loading = false
+        toastFail('ユーザーデータが取得できませんでした。')
         return
       }
       user.updateProfile({
         displayName: this.displayName
       })
         .then(() => {
-          const href = window.location.href
-          window.location.href = href
+          const data = { displayName: this.displayName }
+          this.$store.dispatch('user/updateCredential', { updateData: data, userId: user.uid })
+            .then(() => {
+              const href = window.location.href
+              window.location.href = href
+            })
         })
         .catch((error) => {
-        // An error happened.
           console.error(error)
           this.loading = false
+          toastFail('ユーザーデータの更新に失敗しました。')
         })
     }
   }

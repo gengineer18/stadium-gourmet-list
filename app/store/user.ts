@@ -115,6 +115,21 @@ export const actions = {
         throw error;
     })
   }),
+  updateCredential: firestoreAction((context, { updateData, userId }) => {
+    userRef.doc(userId).collection('credentials').doc(userId).set(updateData, { merge: true })
+      .catch((error) => {
+        console.error('Error adding user doc: ', error.code)
+        toastFail('データベースの更新に失敗しました。')
+        throw error;
+      })
+    const updatedAt = { updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
+    userRef.doc(userId).set(updatedAt, { merge: true })
+      .catch((error) => {
+        console.error('update Error adding user doc: ', error.code)
+        toastFail('データベースの更新に失敗しました。')
+        throw error;
+      })
+  }),
   userCreate: firestoreAction((context, { user }) => {
     const dataCredential = {
       userId: user.uid,
