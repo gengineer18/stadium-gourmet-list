@@ -20,7 +20,9 @@
     "deploy:dev": "yarn switch:dev && gcloud app deploy",
     "deploy:prod": "yarn switch:prod && gcloud app deploy && yarn switch:dev",
     "firestore:dev": "firebase use stadium-gourmet-list-dev && firebase deploy --only firestore:rules",
-    "firestore:prod": "firebase use stadium-gourmet-list && firebase deploy --only firestore:rules && firebase use stadium-gourmet-list-dev"
+    "firestore:prod": "firebase use stadium-gourmet-list && firebase deploy --only firestore:rules && firebase use stadium-gourmet-list-dev",
+    "functions:dev": "firebase use stadium-gourmet-list-dev && firebase deploy --only functions",
+    "functions:prod": "firebase use stadium-gourmet-list && firebase deploy --only functions && firebase use stadium-gourmet-list-dev"
   },
   "dependencies": {
     "@nuxt/typescript-build": "^0.5.6",
