@@ -135,6 +135,22 @@ export default Vue.extend({
         type: 'is-danger',
         hasIcon: true,
         onConfirm: async () => {
+          this.loading = true
+          const user = await firebase.auth().currentUser
+          if (user === null) {
+            this.loading = false
+            toastFail('ユーザーデータが取得できませんでした。')
+            return
+          }
+          const uid = user.uid
+          await user.delete().then(() => {
+            this.$store.dispatch('user/deleteUser', { userId: uid })
+            window.location.href = '/'
+          }).catch((error) => {
+            console.error(error)
+            this.loading = false
+            toastFail('ユーザーデータの更新に失敗しました。')
+          })
         }
       })
     }
