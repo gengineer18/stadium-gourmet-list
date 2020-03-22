@@ -101,15 +101,15 @@ export default Vue.extend({
     }
   },
   methods: {
-    updateName (): void {
+    async updateName (): Promise<void> {
       this.loading = true
-      const user = firebase.auth().currentUser
+      const user = await firebase.auth().currentUser
       if (user === null) {
         this.loading = false
         toastFail('ユーザーデータが取得できませんでした。')
         return
       }
-      user.updateProfile({
+      await user.updateProfile({
         displayName: this.displayName
       })
         .then(() => {
