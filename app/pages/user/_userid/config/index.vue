@@ -144,12 +144,17 @@ export default Vue.extend({
           }
           const uid = user.uid
           await user.delete().then(() => {
-            this.$store.dispatch('user/deleteUser', { userId: uid })
-            window.location.href = '/'
+            this.$store.dispatch('user/deleteUser', { userId: uid }).then(() => {
+              window.location.href = '/'
+            })
           }).catch((error) => {
             console.error(error)
+            if (error.code === 'auth/requires-recent-login') {
+              this.loading = false
+              toastFail('ユーザーデータの削除に失敗しました。再度ログインし直してください。')
+            }
             this.loading = false
-            toastFail('ユーザーデータの更新に失敗しました。')
+            toastFail('ユーザーデータの削除に失敗しました。')
           })
         }
       })
