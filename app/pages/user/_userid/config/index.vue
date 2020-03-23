@@ -136,6 +136,7 @@ export default Vue.extend({
         hasIcon: true,
         onConfirm: async () => {
           this.loading = true
+          let isDeleted = false
           const user = await firebase.auth().currentUser
           if (user === null) {
             this.loading = false
@@ -143,19 +144,25 @@ export default Vue.extend({
             return
           }
           const uid = user.uid
-          await user.delete().then(() => {
-            this.$store.dispatch('user/deleteUser', { userId: uid }).then(() => {
-              window.location.href = '/'
+          await user.delete()
+            .then(() => {
+              this.$store.dispatch('user/deleteUser', { userId: uid })
+              isDeleted = true
             })
-          }).catch((error) => {
-            console.error(error)
-            if (error.code === 'auth/requires-recent-login') {
+            .catch((error) => {
+              console.error(error)
+              if (error.code === 'auth/requires-recent-login') {
+                this.loading = false
+                toastFail('ユーザーデータの削除に失敗しました。再度ログインし直してください。')
+              }
               this.loading = false
-              toastFail('ユーザーデータの削除に失敗しました。再度ログインし直してください。')
-            }
-            this.loading = false
-            toastFail('ユーザーデータの削除に失敗しました。')
-          })
+              toastFail('ユーザーデータの削除に失敗しました。')
+            })
+            .then(() => {
+              if (isDeleted) {
+                window.location.href = '/'
+              }
+            })
         }
       })
     }
