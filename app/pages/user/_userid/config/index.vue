@@ -26,7 +26,7 @@
         <h2 class="title is-6">
           アイコンを変更する
         </h2>
-        <img :src="photoURL" class="is-block mb-1">
+        <img :src="photoURL" class="is-block mb-1 user-image">
         <b-button type="is-sub">
           アイコンの変更へ進む
         </b-button>
@@ -182,4 +182,10 @@ export default Vue.extend({
 .mb-1 {
   margin-bottom: 1rem;
 }
+
+.user-image {
+  max-width: 50px;
+  max-height: 50px;
+}
+
 </style>
