@@ -54,6 +54,10 @@
               <b-icon icon="menu-down" style="vertical-align: middle;" />
             </span>
           </a>
+          <b-dropdown-item area-role="menuitem" :focusable="false" @click="goUserConfig">
+            <b-icon icon="account" />
+            設定
+          </b-dropdown-item>
           <b-dropdown-item area-role="menuitem" :focusable="false" @click="logout">
             <b-icon icon="logout" />
             ログアウト
@@ -82,6 +86,9 @@ export default Vue.extend({
     logout () {
       this.$store.dispatch('user/logout')
       this.$router.push('/')
+    },
+    goUserConfig () {
+      this.$router.push(`/user/${this.$store.state.user.uid}/config`)
     }
   }
 })

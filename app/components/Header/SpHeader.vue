@@ -19,6 +19,10 @@
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
             {{ $store.state.user.displayName }}
           </b-navbar-item>
+          <b-navbar-item v-if="!showLogin" tag="router-link" :to="userPageUrl">
+            <b-icon icon="account" />
+            設定
+          </b-navbar-item>
           <hr class="dropdown-divider">
           <b-navbar-item tag="router-link" to="/about">
             About
@@ -49,6 +53,9 @@ export default Vue.extend({
   computed: {
     showLogin (): boolean {
       return !this.$store.state.user.isAuth || this.$store.state.user.isAnonymous
+    },
+    userPageUrl () {
+      return `/user/${this.$store.state.user.uid}/config`
     }
   },
   created () {

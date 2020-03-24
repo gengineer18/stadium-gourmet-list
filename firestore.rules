@@ -4,6 +4,9 @@ service cloud.firestore {
     function isAuth () {
       return request.auth != null
     }
+    function isUser (userId) {
+      return request.auth.uid == userId;
+    }
 
     match /posts/{postId} {
       allow get, list;
@@ -17,14 +20,15 @@ service cloud.firestore {
     }
     match /users/{userId} {
       allow get, create;
+      allow update: if request.auth.uid == userId
       match /posts/{postId} {
         allow get, list;
         allow create: if isAuth();
-        allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/posts/$(postId)).data.user.id;
+        allow update, delete: if request.auth.uid == userId;
       }
       match /credentials/{userId} {
         allow create, get;
-        allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/users/$(userId)/credentials/$(userId)).data.userId;
+        allow update, delete: if request.auth.uid == userId;
       }
     }
   }
