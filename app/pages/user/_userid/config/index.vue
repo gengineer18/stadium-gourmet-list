@@ -22,21 +22,13 @@
           変更する
         </b-button>
       </div>
-      <div class="box">
-        <h2 class="title is-6">
-          アイコンを変更する
-        </h2>
-        <img :src="photoURL" class="is-block mb-1 user-image">
-        <b-button type="is-sub">
-          アイコンの変更へ進む
-        </b-button>
-      </div>
       <div class="box box-danger">
         <h2 class="title is-6">
           退会する
         </h2>
         <p class="is-size-7 mb-1">
           退会処理を行うと二度と元に戻すことはできません。<br>
+          また、退会処理を行っても投稿済みのデータは削除されません。<br>
           退会処理に進むためにはユーザーID&nbsp;
           <span class="has-text-weight-semibold has-text-danger">{{ uid }}</span>
           &nbsp;を入力してください。
@@ -78,7 +70,6 @@ export default Vue.extend({
       inputUserId: '',
       uid: '',
       displayName: '',
-      photoURL: '',
       loading: false
     }
   },
@@ -97,7 +88,6 @@ export default Vue.extend({
     if (user != null) {
       this.uid = user.uid || ''
       this.displayName = user.displayName || ''
-      this.photoURL = user.photoURL || ''
     }
   },
   methods: {
