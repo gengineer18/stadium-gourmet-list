@@ -35,17 +35,13 @@ exports.updateUserName = functions.firestore
     return 0
   });
 
-  exports.deleteUser = functions.firestore
-  .document('users/{userId}/credentials/{credentialId}')
-  .onUpdate(async (change: any, context: any) => {
-    const afterCredential = change.after.data();
-    const beforeCredential = change.before.data();
-    if (beforeCredential.isDelete || !afterCredential.isDelete) {
-      console.info('no delete', afterCredential.isDelete)
-      return 0
-    }
+exports.deleteUser = functions.auth
+  .user()
+  .onDelete(async (userRecord: any, _context: any) => {
+    console.log(`user ${userRecord.uid} deleted.`)
+    userRef.doc(userRecord.uid).collection('credentials').doc(userRecord.uid).set({ isDelete: true }, { merge: true })
     let batch = db.batch()
-    const snapshots = await postColGroup.where('user.id', '==', `${afterCredential.userId}`).get()
+    const snapshots = await postColGroup.where('user.id', '==', `${userRecord.uid}`).get()
     await snapshots.docs.map((doc: any, index: any) => {
       //500件毎にcommitしてbatchインスタンスを初期化
       if ((index + 1) % 500 === 0) {
