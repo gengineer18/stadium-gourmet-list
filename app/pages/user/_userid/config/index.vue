@@ -144,6 +144,7 @@ export default Vue.extend({
               if (error.code === 'auth/requires-recent-login') {
                 this.loading = false
                 toastFail('ユーザーデータの削除に失敗しました。再度ログインし直してください。')
+                return
               }
               this.loading = false
               toastFail('ユーザーデータの削除に失敗しました。')
