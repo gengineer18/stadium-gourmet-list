@@ -23,7 +23,18 @@ export const actions = {
         toastFail('データベースへの登録に失敗しました。')
         throw error;
     })
-  })
+  }),
+  delete: firestoreAction((context, { clubId, postId }) => {
+    const deleteData = { isDelete: true, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
+    console.log('clubId', clubId)
+    console.log('postId', postId)
+    clubRef.doc(clubId).collection('posts').doc(postId).set(deleteData, { merge: true })
+      .catch((error: any) => {
+        console.error('Error adding user doc: ', error.code)
+        toastFail('データベースの更新に失敗しました。')
+        throw error;
+      })
+  }),
 }
 
 export const getters = {
