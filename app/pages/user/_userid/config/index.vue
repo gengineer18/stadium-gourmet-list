@@ -3,8 +3,8 @@
     <h1 class="title is-5">
       ユーザー情報設定
     </h1>
-    <loading-mark v-if="loading" />
-    <div v-if="!loading">
+    <loading-mark v-if="isLoading" />
+    <div v-if="!isLoading">
       <div class="box">
         <h2 class="title is-6">
           名前を変更する
@@ -70,7 +70,7 @@ export default Vue.extend({
       inputUserId: '',
       uid: '',
       displayName: '',
-      loading: false
+      isLoading: false
     }
   },
   computed: {
@@ -92,10 +92,10 @@ export default Vue.extend({
   },
   methods: {
     async updateName (): Promise<void> {
-      this.loading = true
+      this.isLoading = true
       const user = await firebase.auth().currentUser
       if (user === null) {
-        this.loading = false
+        this.isLoading = false
         toastFail('ユーザーデータが取得できませんでした。')
         return
       }
@@ -112,7 +112,7 @@ export default Vue.extend({
         })
         .catch((error) => {
           console.error(error)
-          this.loading = false
+          this.isLoading = false
           toastFail('ユーザーデータの更新に失敗しました。')
         })
     },
@@ -125,11 +125,11 @@ export default Vue.extend({
         type: 'is-danger',
         hasIcon: true,
         onConfirm: async () => {
-          this.loading = true
+          this.isLoading = true
           let isDeleted = false
           const user = await firebase.auth().currentUser
           if (user === null) {
-            this.loading = false
+            this.isLoading = false
             toastFail('ユーザーデータが取得できませんでした。')
             return
           }
@@ -142,11 +142,11 @@ export default Vue.extend({
             .catch((error) => {
               console.error(error)
               if (error.code === 'auth/requires-recent-login') {
-                this.loading = false
+                this.isLoading = false
                 toastFail('ユーザーデータの削除に失敗しました。再度ログインし直してください。')
                 return
               }
-              this.loading = false
+              this.isLoading = false
               toastFail('ユーザーデータの削除に失敗しました。')
             })
             .then(() => {
