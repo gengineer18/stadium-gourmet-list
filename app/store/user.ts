@@ -180,5 +180,14 @@ export const actions = {
       .catch(error => {
         console.error('getInitializeUser', error)
       })
-  })
+  }),
+  deletePost: firestoreAction((context, { postId, userId }) => {
+    const deleteData = { isDeleted: true, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
+    userRef.doc(userId).collection('posts').doc(postId).set(deleteData, { merge: true })
+      .catch((error: any) => {
+        console.error('Error adding user doc: ', error.code)
+        toastFail('データベースの更新に失敗しました。')
+        throw error;
+      })
+  }),
 }

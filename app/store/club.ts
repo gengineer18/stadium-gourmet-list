@@ -9,6 +9,11 @@ export const state = () => {
   clubs: []
 }
 
+export const getters = {
+  getClubs: (state: any) => state.clubs
+}
+
+
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }, ref) => {
     // return the promise returned by `bindFirestoreRef`
@@ -24,10 +29,8 @@ export const actions = {
         throw error;
     })
   }),
-  delete: firestoreAction((context, { clubId, postId }) => {
-    const deleteData = { isDelete: true, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
-    console.log('clubId', clubId)
-    console.log('postId', postId)
+  deletePost: firestoreAction((context, { postId, clubId }) => {
+    const deleteData = { isDeleted: true, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
     clubRef.doc(clubId).collection('posts').doc(postId).set(deleteData, { merge: true })
       .catch((error: any) => {
         console.error('Error adding user doc: ', error.code)
@@ -35,8 +38,4 @@ export const actions = {
         throw error;
       })
   }),
-}
-
-export const getters = {
-  getClubs: (state: any) => state.clubs
 }

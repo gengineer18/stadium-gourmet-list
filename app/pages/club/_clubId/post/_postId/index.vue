@@ -125,6 +125,11 @@ export default Vue.extend({
     await this.$store.dispatch('club/init', db.collection('clubs').doc(clubId).collection('posts').doc(postId))
     const storedPosts = await this.$store.state.club.clubs
     if (storedPosts !== null) {
+      if (storedPosts.isDeleted) {
+        toastFail('この投稿は削除されています。')
+        this.$router.push('/')
+        return
+      }
       this.docRefId = postId
       this.user.id = storedPosts.user ? storedPosts.user.id : 'guestuser'
       this.user.name = storedPosts.user ? storedPosts.user.name : 'ゲスト'
@@ -155,9 +160,13 @@ export default Vue.extend({
         title: '投稿を削除する',
         type: 'is-danger',
         hasIcon: true,
-        onConfirm: async () => {
+        onConfirm: () => {
           const params = this.$route.params
-          await this.$store.dispatch('club/delete', { clubId: params.clubId, postId: params.postId })
+          Promise.all([
+            this.$store.dispatch('post/deletePost', { postId: params.postId }),
+            this.$store.dispatch('club/deletePost', { postId: params.postId, clubId: params.clubId }),
+            this.$store.dispatch('user/deletePost', { postId: params.postId, userId: this.user.id })
+          ])
             .then(() => {
               toastSuccess('投稿を削除しました。')
               this.$router.push('/')
