@@ -8,20 +8,22 @@
     <loading-failed v-if="!isLoading && storedClubs.length === 0" />
     <div v-if="!isLoading && storedClubs.length > 0">
       <ul class="menu-list is-flex has-text-centered">
-        <nuxt-link v-for="item in storedClubs" :key="item.id" :to="getMenuPath(item.id)">
-          <li>
-            <div class="card card-width">
-              <header class="card-header has-text-centered">
-                <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
-              </header>
-              <div class="card-content">
-                <p class="gourmet-name">
-                  {{ item.gourmet }}
-                </p>
+        <template v-for="item in storedClubs">
+          <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.id)">
+            <li>
+              <div class="card card-width">
+                <header class="card-header has-text-centered">
+                  <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+                </header>
+                <div class="card-content">
+                  <p class="gourmet-name">
+                    {{ item.gourmet }}
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
-        </nuxt-link>
+            </li>
+          </nuxt-link>
+        </template>
       </ul>
     </div>
   </section>
