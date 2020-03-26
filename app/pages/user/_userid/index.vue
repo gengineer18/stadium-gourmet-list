@@ -8,27 +8,29 @@
     <loading-failed v-if="!isLoading && storedPosts.length === 0" />
     <div v-if="!isLoading && storedPosts.length > 0">
       <ul class="menu-list is-flex has-text-centered">
-        <nuxt-link v-for="item in storedPosts" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
-          <li>
-            <div class="card card-width">
-              <header class="card-header has-text-centered">
-                <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
-              </header>
-              <div class="card-content">
-                <mark-circle
-                  :color1="getClubColor1(item.club.id)"
-                  :color2="getClubColor2(item.club.id)"
-                  :color3="getClubColor3(item.club.id)"
-                  class="is-inline-block va-mid"
-                />
-                <span class="club-name va-mid">{{ getClubName(item.club.id) }}</span>
-                <p class="gourmet-name">
-                  {{ item.gourmet }}
-                </p>
+        <template v-for="item in storedPosts">
+          <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
+            <li>
+              <div class="card card-width">
+                <header class="card-header has-text-centered">
+                  <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+                </header>
+                <div class="card-content">
+                  <mark-circle
+                    :color1="getClubColor1(item.club.id)"
+                    :color2="getClubColor2(item.club.id)"
+                    :color3="getClubColor3(item.club.id)"
+                    class="is-inline-block va-mid"
+                  />
+                  <span class="club-name va-mid">{{ getClubName(item.club.id) }}</span>
+                  <p class="gourmet-name">
+                    {{ item.gourmet }}
+                  </p>
+                </div>
               </div>
-            </div>
-          </li>
-        </nuxt-link>
+            </li>
+          </nuxt-link>
+        </template>
       </ul>
     </div>
   </section>

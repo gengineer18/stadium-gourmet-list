@@ -9,6 +9,11 @@ export const state = () => {
   posts: []
 }
 
+export const getters = {
+  getPosts: (state: any) => state.posts
+}
+
+
 export const actions = {
   init: firestoreAction(({ bindFirestoreRef }, ref) => {
     // return the promise returned by `bindFirestoreRef`
@@ -23,9 +28,14 @@ export const actions = {
         toastFail('データベースへの登録に失敗しました。')
         throw error;
     })
-  })
-}
-
-export const getters = {
-  getPosts: (state: any) => state.posts
+  }),
+  deletePost: firestoreAction((context, { postId }) => {
+    const deleteData = { isDeleted: true, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
+    postRef.doc(postId).set(deleteData, { merge: true })
+      .catch((error: any) => {
+        console.error('Error adding user doc: ', error.code)
+        toastFail('データベースの更新に失敗しました。')
+        throw error;
+      })
+  }),
 }

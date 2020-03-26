@@ -1,51 +1,62 @@
 <template>
   <section>
-    <h2 class="title is-5">
-      <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
-      {{ clubName }}
-    </h2>
-    <h3 class="subtitle is-4">
-      {{ gourmet }}
-    </h3>
-    <img :src="getImagePath(imagePath)">
-    <p class="is-size-6 has-text-grey-light mb-1rem">
-      {{ createdAt }}
-    </p>
-    <div>
-      <ul>
-        <li class="share-list-item">
-          <button-share-twitter :club-id="clubId" :doc-ref-id="docRefId" :gourmet="gourmet" :comment="comment" />
-        </li>
-        <li class="share-list-item">
-          <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
-        </li>
-        <li class="share-list-item">
-          <button-share-line :club-id="clubId" :doc-ref-id="docRefId" />
-        </li>
-      </ul>
+    <loading-mark v-if="isLoading" />
+    <div v-if="!isLoading">
+      <h2 class="title is-5">
+        <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
+        {{ clubName }}
+      </h2>
+      <h3 class="subtitle is-4">
+        {{ gourmet }}
+      </h3>
+      <img :src="getImagePath(imagePath)">
+      <p class="is-size-6 has-text-grey-light mb-1rem">
+        {{ createdAt }}
+      </p>
+      <div>
+        <ul>
+          <li class="share-list-item">
+            <button-share-twitter :club-id="clubId" :doc-ref-id="docRefId" :gourmet="gourmet" :comment="comment" />
+          </li>
+          <li class="share-list-item">
+            <button-share-facebook :club-id="clubId" :doc-ref-id="docRefId" />
+          </li>
+          <li class="share-list-item">
+            <button-share-line :club-id="clubId" :doc-ref-id="docRefId" />
+          </li>
+        </ul>
+      </div>
+      <h3 class="is-size-6 mt-1rem user">
+        <nuxt-link v-if="user.name !== 'ゲスト'" :to="`/user/${user.id}`" class="link">
+          <img :src="user.photo" class="user-content">
+          <span class="user-content">{{ user.name }}</span>
+        </nuxt-link>
+        <span v-if="user.name == 'ゲスト'">
+          <img :src="user.photo" class="user-content">
+          <span class="user-content">{{ user.name }}</span>
+        </span>
+      </h3>
+      <h3 v-if="price" class="is-size-6">
+        価格：{{ price }}円
+      </h3>
+      <h3 v-if="shop" class="is-size-6">
+        店舗名：{{ shop }}
+      </h3>
+      <h3 v-if="gameDate" class="is-size-6">
+        観戦日：{{ gameDate }}
+      </h3>
+      <h3 v-if="comment" class="is-size-6">
+        寸評：{{ comment }}
+      </h3>
+      <b-button
+        v-if="showDeleteButton"
+        type="is-danger"
+        icon-left="delete"
+        class="delete-button mt-1rem"
+        rounded
+        @click="deletePost()"
+      />
     </div>
-    <h3 class="is-size-6 mt-1rem user">
-      <nuxt-link v-if="user.name !== 'ゲスト'" :to="`/user/${user.id}`" class="link">
-        <img :src="user.photo" class="user-content">
-        <span class="user-content">{{ user.name }}</span>
-      </nuxt-link>
-      <span v-if="user.name == 'ゲスト'">
-        <img :src="user.photo" class="user-content">
-        <span class="user-content">{{ user.name }}</span>
-      </span>
-    </h3>
-    <h3 v-if="price" class="is-size-6">
-      価格：{{ price }}円
-    </h3>
-    <h3 v-if="shop" class="is-size-6">
-      店舗名：{{ shop }}
-    </h3>
-    <h3 v-if="gameDate" class="is-size-6">
-      観戦日：{{ gameDate }}
-    </h3>
-    <h3 v-if="comment" class="is-size-6">
-      寸評：{{ comment }}
-    </h3>
   </section>
 </template>
 
@@ -55,12 +66,13 @@ import dayjs from 'dayjs'
 import { db } from '~/plugins/firebase.js'
 import 'dayjs/locale/ja'
 import utilsGetClubConfig from '@/utils/getClubConfig'
-import { defaultImagePath } from '@/utils/common'
+import { defaultImagePath, toastSuccess } from '@/utils/common'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import ButtonShareTwitter from '@/components/Button/ButtonShareTwitter.vue'
 import ButtonShareFacebook from '@/components/Button/ButtonShareFacebook.vue'
 import ButtonShareLine from '@/components/Button/ButtonShareLine.vue'
-import { guestUserImagePath } from '~/utils/common'
+import LoadingMark from '@/components/Loading/LoadingMark.vue'
+import { guestUserImagePath, toastFail } from '~/utils/common'
 
 dayjs.locale('ja')
 
@@ -69,10 +81,12 @@ export default Vue.extend({
     MarkCircle,
     ButtonShareTwitter,
     ButtonShareFacebook,
-    ButtonShareLine
+    ButtonShareLine,
+    LoadingMark
   },
   data () {
     return {
+      isLoading: false,
       docRefId: '',
       user: {
         id: '',
@@ -98,15 +112,24 @@ export default Vue.extend({
       return (imagePath: string): string => {
         return imagePath || defaultImagePath
       }
+    },
+    showDeleteButton (): boolean {
+      return this.$store.state.user.uid === this.user.id
     }
   },
-  async created () {
+  async mounted () {
+    this.isLoading = true
     const params = this.$route.params
     const postId = params.postId
     const clubId = params.clubId
     await this.$store.dispatch('club/init', db.collection('clubs').doc(clubId).collection('posts').doc(postId))
     const storedPosts = await this.$store.state.club.clubs
     if (storedPosts !== null) {
+      if (storedPosts.isDeleted) {
+        toastFail('この投稿は削除されています。')
+        this.$router.push('/')
+        return
+      }
       this.docRefId = postId
       this.user.id = storedPosts.user ? storedPosts.user.id : 'guestuser'
       this.user.name = storedPosts.user ? storedPosts.user.name : 'ゲスト'
@@ -125,6 +148,35 @@ export default Vue.extend({
       this.color1 = clubConfig.color1
       this.color2 = clubConfig.color2 || ''
       this.color3 = clubConfig.color3 || ''
+      this.isLoading = await false
+    }
+  },
+  methods: {
+    deletePost (): void {
+      this.$buefy.dialog.confirm({
+        message: '本当に削除してよろしいですか?',
+        cancelText: 'キャンセル',
+        confirmText: '削除する',
+        title: '投稿を削除する',
+        type: 'is-danger',
+        hasIcon: true,
+        onConfirm: () => {
+          const params = this.$route.params
+          Promise.all([
+            this.$store.dispatch('post/deletePost', { postId: params.postId }),
+            this.$store.dispatch('club/deletePost', { postId: params.postId, clubId: params.clubId }),
+            this.$store.dispatch('user/deletePost', { postId: params.postId, userId: this.user.id })
+          ])
+            .then(() => {
+              toastSuccess('投稿を削除しました。')
+              this.$router.push('/')
+            })
+            .catch((error: any) => {
+              console.error(error)
+              toastFail('ユーザーデータの更新に失敗しました。')
+            })
+        }
+      })
     }
   },
   head () {
