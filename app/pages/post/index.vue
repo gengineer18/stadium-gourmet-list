@@ -273,6 +273,7 @@ export default Vue.extend({
           storageRef.getDownloadURL().then(async (url) => {
             this.imagePath = url
             const postData = {
+              postId: docId,
               gourmet: this.gourmet,
               club: this.club,
               shop: this.shop,
@@ -293,6 +294,7 @@ export default Vue.extend({
         })
       } else { // 画像の指定がない場合
         const postData = {
+          postId: docId,
           gourmet: this.gourmet,
           club: this.club,
           shop: this.shop,
@@ -311,8 +313,6 @@ export default Vue.extend({
       }
     },
     async addDb (docId, clubId, postData) {
-      await this.$store.dispatch('post/add', { postData, docId })
-      await this.$store.dispatch('club/add', { postData, docId, clubId })
       if (this.$store.state.user.isAuth) {
         const userId = this.$store.state.user.uid
         await this.$store.dispatch('user/add', { postData, docId, userId })
