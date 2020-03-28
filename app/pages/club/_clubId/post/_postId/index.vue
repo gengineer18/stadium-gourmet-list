@@ -63,7 +63,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import dayjs from 'dayjs'
-import { db } from '~/plugins/firebase.js'
 import 'dayjs/locale/ja'
 import utilsGetClubConfig from '@/utils/getClubConfig'
 import { defaultImagePath, toastSuccess } from '@/utils/common'
@@ -121,9 +120,8 @@ export default Vue.extend({
     this.isLoading = true
     const params = this.$route.params
     const postId = params.postId
-    const clubId = params.clubId
-    await this.$store.dispatch('club/init', db.collection('clubs').doc(clubId).collection('posts').doc(postId))
-    const storedPosts = await this.$store.state.club.clubs
+    await this.$store.dispatch('club/initPost', { docRefId: postId })
+    const storedPosts = await this.$store.state.club.postData
     if (storedPosts !== null) {
       if (storedPosts.isDeleted) {
         toastFail('この投稿は削除されています。')
