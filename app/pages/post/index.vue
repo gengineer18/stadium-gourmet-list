@@ -145,7 +145,7 @@ import FormInput from '@/components/Form/FormInput.vue'
 import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
-import { defaultImagePath, toastSuccess, toastFail } from '@/utils/common'
+import { defaultImagePath, toastFail } from '@/utils/common'
 
 export default Vue.extend({
   components: {
@@ -198,7 +198,6 @@ export default Vue.extend({
           await firebase.auth().onAuthStateChanged((user) => {
             if (user) {
               this.isLoading = false
-              toastSuccess('ゲストパスを発効しました。')
             }
           })
         }).catch((e) => {
