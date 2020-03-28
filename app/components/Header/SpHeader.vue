@@ -15,12 +15,12 @@
             <b-icon icon="login" />
             ログイン
           </b-navbar-item>
-          <b-navbar-item v-if="!showLogin" tag="div">
+          <b-navbar-item v-if="!showLogin" tag="router-link" :to="userPageUrl">
             <img :src="$store.state.user.photoURL" style="vertical-align: middle;">
             {{ $store.state.user.displayName }}
           </b-navbar-item>
-          <b-navbar-item v-if="!showLogin" tag="router-link" :to="userPageUrl">
-            <b-icon icon="account" />
+          <b-navbar-item v-if="!showLogin" tag="router-link" :to="userConfigUrl">
+            <b-icon icon="wrench" />
             設定
           </b-navbar-item>
           <hr class="dropdown-divider">
@@ -55,6 +55,9 @@ export default Vue.extend({
       return !this.$store.state.user.isAuth || this.$store.state.user.isAnonymous
     },
     userPageUrl () {
+      return `/user/${this.$store.state.user.uid}`
+    },
+    userConfigUrl () {
       return `/user/${this.$store.state.user.uid}/config`
     }
   },
