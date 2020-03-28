@@ -44,7 +44,6 @@
 <script lang="ts">
 import Vue from 'vue'
 import dayjs from 'dayjs'
-import { db } from '~/plugins/firebase.js'
 import { CompletePost } from '@/types/post'
 import 'dayjs/locale/ja'
 import utilsGetClubConfig from '@/utils/getClubConfig'
@@ -88,9 +87,10 @@ export default Vue.extend({
     const docRefId = path[path.length - 1]
     if (!docRefId) { return }
     // ドキュメントIDを元にfirebaseからデータをstateにセット
-    await this.$store.dispatch('post/init', db.collection('posts').doc(docRefId))
+    // await this.$store.dispatch('post/init', db.collection('posts').doc(docRefId))
+    await this.$store.dispatch('club/initPost', { docRefId })
     // storeからデータ読み込み
-    const storedPosts = await this.$store.state.post.posts
+    const storedPosts = await this.$store.state.club.postData
     if (storedPosts !== null) {
       this.docRefId = docRefId
       this.gourmet = storedPosts.gourmet || ''

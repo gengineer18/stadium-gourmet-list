@@ -78,7 +78,6 @@ export const actions = {
   initPost: async ({ commit }: any, { docRefId }: any) => {
     const postData = await db.collectionGroup('posts').where('postId', '==', docRefId).get()
     await postData.docs.map((doc) => {
-      console.info('document ID:', doc.data())
       commit('postData', { data: doc.data() })
     })
   },
