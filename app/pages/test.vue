@@ -18,12 +18,13 @@ export default Vue.extend({
     }
   },
   mounted () {
-    const snapshots = db.collectionGroup('posts').where('club.id', '==', 'reds')
+    const snapshots = db.collectionGroup('posts').where('postId', '==', 'RR5sFRFCn6omas4lyvx4')
     snapshots.get()
       .then((querySnapshot: any) => {
-        querySnapshot.forEach((doc: any) => {
-          console.log(doc.data())
-        })
+        querySnapshot.doc.data()
+        // querySnapshot.forEach((doc: any) => {
+        //   console.log(doc.data())
+        // })
       })
   }
 })
