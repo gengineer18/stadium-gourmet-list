@@ -5,9 +5,7 @@ admin.initializeApp(functions.config().firebase)
 // データベースの参照を作成
 const db = admin.firestore()
 
-const postRef = db.collection('posts')
 const userRef = db.collection('users')
-const clubRef = db.collection('clubs')
 const postColGroup = db.collectionGroup('posts')
 
 exports.updateUserName = functions.firestore
