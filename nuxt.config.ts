@@ -117,6 +117,14 @@ export default {
         //   sendHitTask: process.env.NODE_ENV !== 'production' // default value is false
         // }
       }
+    ],
+    ['@nuxtjs/google-adsense',
+      {
+        id: 'ca-pub-7736086061521671',
+        pageLevelAds: true,
+        analyticsUacct: 'UA-155565454-1',
+        analyticsDomainName: 'stgrmeikan.com'
+      }
     ]
   ],
   manifest: {
