@@ -145,7 +145,7 @@ import FormInput from '@/components/Form/FormInput.vue'
 import FormPulldown from '@/components/Form/FormPulldown.vue'
 import FormTextArea from '@/components/Form/FormTextArea.vue'
 import FormDate from '@/components/Form/FormDate.vue'
-import { defaultImagePath, toastSuccess, toastFail } from '@/utils/common'
+import { defaultImagePath, toastFail } from '@/utils/common'
 
 export default Vue.extend({
   components: {
@@ -198,7 +198,6 @@ export default Vue.extend({
           await firebase.auth().onAuthStateChanged((user) => {
             if (user) {
               this.isLoading = false
-              toastSuccess('ゲストパスを発効しました。')
             }
           })
         }).catch((e) => {
@@ -211,7 +210,8 @@ export default Vue.extend({
         cancelText: 'キャンセル',
         confirmText: 'OK',
         onConfirm: async () => {
-          const docId = await db.collection('posts').doc().id
+          const userId = this.$store.state.user.uid
+          const docId = await db.collection('users').doc(userId).collection('posts').doc().id
           const clubId = this.club.id
           // データの登録
           this.upload(docId, clubId)
@@ -273,6 +273,7 @@ export default Vue.extend({
           storageRef.getDownloadURL().then(async (url) => {
             this.imagePath = url
             const postData = {
+              postId: docId,
               gourmet: this.gourmet,
               club: this.club,
               shop: this.shop,
@@ -293,6 +294,7 @@ export default Vue.extend({
         })
       } else { // 画像の指定がない場合
         const postData = {
+          postId: docId,
           gourmet: this.gourmet,
           club: this.club,
           shop: this.shop,
@@ -311,8 +313,6 @@ export default Vue.extend({
       }
     },
     async addDb (docId, clubId, postData) {
-      await this.$store.dispatch('post/add', { postData, docId })
-      await this.$store.dispatch('club/add', { postData, docId, clubId })
       if (this.$store.state.user.isAuth) {
         const userId = this.$store.state.user.uid
         await this.$store.dispatch('user/add', { postData, docId, userId })

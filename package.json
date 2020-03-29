@@ -21,6 +21,8 @@
     "deploy:prod": "yarn switch:prod && gcloud app deploy && yarn switch:dev",
     "firestore:dev": "firebase use stadium-gourmet-list-dev && firebase deploy --only firestore:rules",
     "firestore:prod": "firebase use stadium-gourmet-list && firebase deploy --only firestore:rules && firebase use stadium-gourmet-list-dev",
+    "index:dev": "firebase use stadium-gourmet-list-dev && firebase deploy --only firestore:indexes",
+    "index:prod": "firebase use stadium-gourmet-list && firebase deploy --only firestore:indexes && firebase use stadium-gourmet-list-dev",
     "functions:dev": "firebase use stadium-gourmet-list-dev && firebase deploy --only functions",
     "functions:prod": "firebase use stadium-gourmet-list && firebase deploy --only functions && firebase use stadium-gourmet-list-dev"
   },

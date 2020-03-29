@@ -74,7 +74,7 @@ export default Vue.extend({
     this.color3 = clubConfig.color3 || ''
   },
   async mounted () {
-    await this.$store.dispatch('club/init', db.collection('clubs').doc(this.$route.params.clubId).collection('posts').orderBy('createdAt', 'desc'))
+    await this.$store.dispatch('club/init', db.collectionGroup('posts').where('club.id', '==', this.$route.params.clubId).orderBy('createdAt', 'desc'))
     this.storedClubs = await this.$store.state.club.clubs
     this.isLoading = await false
   },

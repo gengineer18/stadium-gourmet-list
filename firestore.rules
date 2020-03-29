@@ -8,28 +8,21 @@ service cloud.firestore {
       return request.auth.uid == userId;
     }
 
-    match /posts/{postId} {
-      allow get, list;
-      allow create: if isAuth();
-      allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/posts/$(postId)).data.user.id;
-    }
-    match /clubs/{clubId}/posts/{postId} {
-      allow get, list;
-      allow create: if isAuth();
-      allow update, delete: if request.auth.uid == get(/databases/$(database)/documents/clubs/$(clubId)/posts/$(postId)).data.user.id;
-    }
     match /users/{userId} {
       allow get, create;
       allow update: if request.auth.uid == userId
       match /posts/{postId} {
         allow get, list;
         allow create: if isAuth();
-        allow update, delete: if request.auth.uid == userId;
+        allow update, delete: if isUser(userId);
       }
       match /credentials/{userId} {
         allow create, get;
-        allow update, delete: if request.auth.uid == userId;
+        allow update, delete: if isUser(userId);
       }
+    }
+    match /{path=**}/posts/{post} {
+      allow get, list;
     }
   }
 }

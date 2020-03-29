@@ -5,9 +5,7 @@ admin.initializeApp(functions.config().firebase)
 // データベースの参照を作成
 const db = admin.firestore()
 
-const postRef = db.collection('posts')
 const userRef = db.collection('users')
-const clubRef = db.collection('clubs')
 const postColGroup = db.collectionGroup('posts')
 
 exports.updateUserName = functions.firestore
@@ -39,7 +37,7 @@ exports.deleteUser = functions.auth
   .user()
   .onDelete(async (userRecord: any, _context: any) => {
     console.log(`user ${userRecord.uid} deleted.`)
-    userRef.doc(userRecord.uid).collection('credentials').doc(userRecord.uid).set({ isDelete: true }, { merge: true })
+    userRef.doc(userRecord.uid).collection('credentials').doc(userRecord.uid).set({ isDeleted: true }, { merge: true })
     let batch = db.batch()
     const snapshots = await postColGroup.where('user.id', '==', `${userRecord.uid}`).get()
     await snapshots.docs.map((doc: any, index: any) => {
@@ -49,7 +47,7 @@ exports.deleteUser = functions.auth
         batch = db.batch() //新たにインスタンスを生成。
       }
       console.info('document ID:',doc.id)
-      batch.update(doc.ref, { 'user.isDelete': true })
+      batch.update(doc.ref, { isDeleted: true, 'user.isDeleted': true })
     })
     // 最終コミット
     await batch.commit()
