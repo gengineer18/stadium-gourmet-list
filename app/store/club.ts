@@ -5,6 +5,7 @@ export const state = () => ({
   clubs: [],
   postData: {
     postId: '',
+    gourmet: '',
     comment: '',
     gameDate: null,
     imagePath: '',
@@ -32,6 +33,7 @@ export const getters = {
 export const mutations = {
   postData(state: any, { data }: any) {
     state.postData.postId = data.postId
+    state.postData.gourmet = data.gourmet
     state.postData.comment = data.comment
     state.postData.gameDate = data.gameDate
     state.postData.imagePath = data.imagePath
