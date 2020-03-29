@@ -1,12 +1,19 @@
 <template>
   <section>
     <loading-mark v-if="isLoading" />
-    <h1 v-if="!isLoading" class="title is-5 user">
-      <img :src="user.photoUrl" class="user-content">
-      <span class="user-content">{{ user.name }}</span>
-    </h1>
-    <loading-failed v-if="!isLoading && storedPosts.length === 0" />
+    <div v-if="!isLoading && (storedPosts.length === 0 || isDeleted)">
+      <p>このユーザーは存在しないか、一度も投稿をしていません。</p>
+      <p>
+        <nuxt-link to="/">
+          トップに戻る
+        </nuxt-link>
+      </p>
+    </div>
     <div v-if="!isLoading && storedPosts.length > 0">
+      <h1 class="title is-5 user">
+        <img :src="user.photoUrl" class="user-content">
+        <span class="user-content">{{ user.name }}</span>
+      </h1>
       <ul class="menu-list is-flex has-text-centered">
         <template v-for="item in storedPosts">
           <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
@@ -43,13 +50,11 @@ import utilsGetClubConfig from '~/utils/getClubConfig'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import { defaultImagePath, guestUserImagePath } from '~/utils/common'
 import LoadingMark from '@/components/Loading/LoadingMark.vue'
-import LoadingFailed from '@/components/Loading/LoadingFailed.vue'
 
 export default Vue.extend({
   components: {
     MarkCircle,
-    LoadingMark,
-    LoadingFailed
+    LoadingMark
   },
   data () {
     return {
@@ -58,7 +63,8 @@ export default Vue.extend({
       user: {
         id: '',
         name: '',
-        photoUrl: ''
+        photoUrl: '',
+        isDeleted: false
       }
     }
   },
@@ -80,6 +86,10 @@ export default Vue.extend({
     }
   },
   async mounted () {
+    if (!this.$route.params.userid) {
+      this.isLoading = false
+      return false
+    }
     await this.$store.dispatch('user/init', db.collection('users').doc(this.$route.params.userid).collection('posts').orderBy('createdAt', 'desc'))
     const getDoc = await db.collection('users').doc(this.$route.params.userid).collection('credentials').doc(this.$route.params.userid).get()
     const userdata = getDoc.data()
@@ -87,6 +97,7 @@ export default Vue.extend({
       this.user.id = userdata.userId
       this.user.name = userdata.displayName || 'ゲスト'
       this.user.photoUrl = userdata.photoURL || guestUserImagePath
+      this.user.isDeleted = userdata.isDeleted || false
     }
     this.storedPosts = this.$store.state.user.userPosts
     this.isLoading = false
