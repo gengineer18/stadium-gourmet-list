@@ -210,7 +210,8 @@ export default Vue.extend({
         cancelText: 'キャンセル',
         confirmText: 'OK',
         onConfirm: async () => {
-          const docId = await db.collection('posts').doc().id
+          const userId = this.$store.state.user.uid
+          const docId = await db.collection('users').doc(userId).collection('posts').doc().id
           const clubId = this.club.id
           // データの登録
           this.upload(docId, clubId)
