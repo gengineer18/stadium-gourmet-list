@@ -1,7 +1,15 @@
 <template>
   <section>
     <loading-mark v-if="isLoading" />
-    <div v-if="!isLoading">
+    <div v-if="!isLoading && !gourmet">
+      <p>この投稿は存在しません。</p>
+      <p>
+        <nuxt-link to="/">
+          トップに戻る
+        </nuxt-link>
+      </p>
+    </div>
+    <div v-if="!isLoading && gourmet">
       <h2 class="title is-5">
         <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
         {{ clubName }}
@@ -85,7 +93,7 @@ export default Vue.extend({
   },
   data () {
     return {
-      isLoading: false,
+      isLoading: true,
       docRefId: '',
       user: {
         id: '',
@@ -117,9 +125,12 @@ export default Vue.extend({
     }
   },
   async mounted () {
-    this.isLoading = true
     const params = this.$route.params
     const postId = params.postId
+    if (!postId) {
+      this.isLoading = false
+      return false
+    }
     await this.$store.dispatch('club/initPost', { docRefId: postId })
     const storedPosts = await this.$store.state.club.postData
     if (storedPosts !== null) {

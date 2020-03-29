@@ -61,6 +61,7 @@ import LoadingMark from '@/components/Loading/LoadingMark.vue'
 import { toastFail } from '@/utils/common'
 
 export default Vue.extend({
+  middleware: 'checkPath',
   components: {
     FormInput,
     LoadingMark

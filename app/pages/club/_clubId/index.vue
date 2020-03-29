@@ -1,12 +1,12 @@
 <template>
   <section>
-    <h1 class="title is-5">
-      <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
-      {{ clubName }}
-    </h1>
     <loading-mark v-if="isLoading" />
     <loading-failed v-if="!isLoading && storedClubs.length === 0" />
     <div v-if="!isLoading && storedClubs.length > 0">
+      <h1 class="title is-5">
+        <mark-circle :color1="color1" :color2="color2" :color3="color3" class="is-inline-block" />
+        {{ clubName }}
+      </h1>
       <ul class="menu-list is-flex has-text-centered">
         <template v-for="item in storedClubs">
           <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.id)">
