@@ -6,9 +6,12 @@ admin.initializeApp(functions.config().firebase)
 const db = admin.firestore()
 
 const userRef = db.collection('users')
+const clubRef = db.collection('clubs')
 const postColGroup = db.collectionGroup('posts')
 
-exports.updateUserName = functions.firestore
+exports.updateUserName = functions
+  .region('asia-northeast1')
+  .firestore
   .document('users/{userId}/credentials/{credentialId}')
   .onUpdate(async (change: any, context: any) => {
     const afterCredential = change.after.data();
@@ -33,7 +36,9 @@ exports.updateUserName = functions.firestore
     return 0
   });
 
-exports.deleteUser = functions.auth
+exports.deleteUser = functions
+  .region('asia-northeast1')
+  .auth
   .user()
   .onDelete(async (userRecord: any, _context: any) => {
     console.log(`user ${userRecord.uid} deleted.`)
@@ -51,5 +56,24 @@ exports.deleteUser = functions.auth
     })
     // 最終コミット
     await batch.commit()
+    return 0
+  });
+
+exports.createClubPost = functions
+  .region('asia-northeast1')
+  .firestore
+  .document('users/{userId}/posts/{postId}')
+  .onCreate(async (snap: any, context: any) => {
+    const clubId = snap.data().club.id
+    const userId = snap.data().user.id
+    const userSnapshot = await userRef.doc(userId).collection('clubs').doc(clubId).get()
+    const userData = userSnapshot.data()
+    const userPostCount = userData ? userData.count + 1 : 1
+    userRef.doc(userId).collection('clubs').doc(clubId).set({ count: userPostCount }, { merge: true })
+
+    const clubSnapshot = await clubRef.doc(clubId).get()
+    const clubData = clubSnapshot.data()
+    const clubPostCount = clubData ? clubData.count + 1 : 1
+    clubRef.doc(clubId).set({ count: clubPostCount }, { merge: true })
     return 0
   });
