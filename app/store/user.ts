@@ -67,7 +67,7 @@ export const actions = {
   }),
   count: firestoreAction(({ bindFirestoreRef }, { userId }) => {
     // return the promise returned by `bindFirestoreRef`
-    return bindFirestoreRef('count', db.collection('users').doc(userId).collection('clubs'))
+    return bindFirestoreRef('count', db.collection('users').doc(userId).collection('clubs').orderBy('count', 'desc'))
   }),
   loginGoogle: async ({ dispatch }: any) => {
     const provider = new firebase.auth.GoogleAuthProvider()

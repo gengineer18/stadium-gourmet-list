@@ -113,7 +113,9 @@ export default Vue.extend({
         datasets: [
           {
             data,
-            backgroundColor
+            backgroundColor,
+            borderColor: '#EEE',
+            borderWidth: 1
           }
         ]
       }
@@ -203,7 +205,7 @@ export default Vue.extend({
 }
 .pie-chart {
   max-width: 200px;
-  margin:  10px auto;
+  margin: 10px auto;
 }
 
 @media screen and (max-width: 480px){

@@ -12,7 +12,10 @@ export default ({
   data () {
     return {
       options: {
-        responsive: true
+        responsive: true,
+        legend: {
+          display: false
+        }
       }
     }
   },
@@ -21,7 +24,3 @@ export default ({
   }
 })
 </script>
-
-<style lang="scss" scoped>
-
-</style>
