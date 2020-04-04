@@ -1698,6 +1698,13 @@
     "@types/long" "*"
     "@types/node" "*"
 
+"@types/chart.js@^2.9.18":
+  version "2.9.18"
+  resolved "https://registry.yarnpkg.com/@types/chart.js/-/chart.js-2.9.18.tgz#169e3c939facbfc7883223c2ebd5b0f88ab0a3f3"
+  integrity sha512-D7oaYQqYGdfoa1Wv9doxQJ9Sv/W7jfbiXMT/wVRiM0AsPJsHWLRn7U46xhDkPRGmLCpQGlN2oZYBIwEpMMleog==
+  dependencies:
+    moment "^2.10.2"
+
 "@types/clean-css@*":
   version "4.2.1"
   resolved "https://registry.yarnpkg.com/@types/clean-css/-/clean-css-4.2.1.tgz#cb0134241ec5e6ede1b5344bc829668fd9871a8d"

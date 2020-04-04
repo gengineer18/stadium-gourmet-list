@@ -13,14 +13,10 @@
       <h1 class="title is-5 user">
         <img :src="user.photoUrl" class="user-content">
         <span class="user-content">{{ user.name }}</span>
-        <span class="user-content">{{ getPostCount }}件</span>
       </h1>
-      <h2 v-for="item in counter" :key="item.id">
-        <template v-if="item.count !== 0">
-          <span class="user-content">{{ getClubName(item.id) }}</span>
-          <span class="user-content">{{ item.count }}件</span>
-        </template>
-      </h2>
+      <div class="pie-chart">
+        <pie-chart :graph="setGraph" />
+      </div>
       <ul class="menu-list is-flex has-text-centered">
         <template v-for="item in storedPosts">
           <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
@@ -50,39 +46,22 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import { db } from '~/plugins/firebase'
 import utilsGetClubConfig from '~/utils/getClubConfig'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import { defaultImagePath, guestUserImagePath } from '~/utils/common'
 import LoadingMark from '@/components/Loading/LoadingMark.vue'
-
-type User = {
-  id: string,
-  name: string,
-  photoUrl: string,
-  isDeleted: boolean
-}
-
-type Counter = {
-  id: string,
-  count: number
-}
-
-type UserPosts = {
-  storedPosts: Array<any>,
-  counter: Array<Counter>,
-  isLoading: boolean,
-  user: User
-}
+import PieChart from '@/components/Chart/PieChart.vue'
 
 export default Vue.extend({
   components: {
     MarkCircle,
-    LoadingMark
+    LoadingMark,
+    PieChart
   },
-  data (): UserPosts {
+  data () {
     return {
       storedPosts: [],
       counter: [],
@@ -97,16 +76,16 @@ export default Vue.extend({
   },
   computed: {
     getMenuPath () {
-      return (clubId: string, menuId: string): string => {
+      return (clubId, menuId) => {
         return `/club/${clubId}/post/${menuId}`
       }
     },
     getImagePath () {
-      return (imagePath: string): string => {
+      return (imagePath) => {
         return imagePath || defaultImagePath
       }
     },
-    getPostCount (): number {
+    getPostCount () {
       let postLength = this.storedPosts.length
       let deletedCount = 0
       this.storedPosts.forEach((post) => {
@@ -116,6 +95,29 @@ export default Vue.extend({
       })
       postLength = postLength - deletedCount
       return postLength
+    },
+    setGraph () {
+      const labels = []
+      const data = []
+      const backgroundColor = []
+      this.counter.forEach((item) => {
+        if (item.count !== 0) {
+          const clubId = item.id
+          labels.push(this.getClubName(clubId))
+          data.push(item.count)
+          backgroundColor.push(this.getClubColor1(clubId))
+        }
+      })
+      const graph = {
+        labels,
+        datasets: [
+          {
+            data,
+            backgroundColor
+          }
+        ]
+      }
+      return graph
     }
   },
   async mounted () {
@@ -138,23 +140,23 @@ export default Vue.extend({
     this.counter = this.$store.state.user.count
   },
   methods: {
-    getClubConfig (clubId: string) {
+    getClubConfig (clubId) {
       const clubConfig = utilsGetClubConfig(clubId)
       return clubConfig
     },
-    getClubName (clubId: string): string {
+    getClubName (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.name
     },
-    getClubColor1 (clubId: string): string {
+    getClubColor1 (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color1
     },
-    getClubColor2 (clubId: string): string {
+    getClubColor2 (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color2 || ''
     },
-    getClubColor3 (clubId: string): string {
+    getClubColor3 (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color3 || ''
     }
@@ -198,6 +200,10 @@ export default Vue.extend({
 }
 .card-content {
   padding: 8px;
+}
+.pie-chart {
+  max-width: 200px;
+  margin:  10px auto;
 }
 
 @media screen and (max-width: 480px){
