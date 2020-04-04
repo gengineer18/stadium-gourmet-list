@@ -13,7 +13,14 @@
       <h1 class="title is-5 user">
         <img :src="user.photoUrl" class="user-content">
         <span class="user-content">{{ user.name }}</span>
+        <span class="user-content">{{ getPostCount }}件</span>
       </h1>
+      <h2 v-for="item in counter" :key="item.id">
+        <template v-if="item.count !== 0">
+          <span class="user-content">{{ getClubName(item.id) }}</span>
+          <span class="user-content">{{ item.count }}件</span>
+        </template>
+      </h2>
       <ul class="menu-list is-flex has-text-centered">
         <template v-for="item in storedPosts">
           <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
@@ -51,14 +58,34 @@ import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import { defaultImagePath, guestUserImagePath } from '~/utils/common'
 import LoadingMark from '@/components/Loading/LoadingMark.vue'
 
+type User = {
+  id: string,
+  name: string,
+  photoUrl: string,
+  isDeleted: boolean
+}
+
+type Counter = {
+  id: string,
+  count: number
+}
+
+type UserPosts = {
+  storedPosts: Array<any>,
+  counter: Array<Counter>,
+  isLoading: boolean,
+  user: User
+}
+
 export default Vue.extend({
   components: {
     MarkCircle,
     LoadingMark
   },
-  data () {
+  data (): UserPosts {
     return {
       storedPosts: [],
+      counter: [],
       isLoading: true,
       user: {
         id: '',
@@ -79,10 +106,16 @@ export default Vue.extend({
         return imagePath || defaultImagePath
       }
     },
-    getUserData () {
-      return (userId: string): string => {
-        return 'test'
-      }
+    getPostCount (): number {
+      let postLength = this.storedPosts.length
+      let deletedCount = 0
+      this.storedPosts.forEach((post) => {
+        if (post.isDeleted) {
+          deletedCount++
+        }
+      })
+      postLength = postLength - deletedCount
+      return postLength
     }
   },
   async mounted () {
@@ -91,6 +124,7 @@ export default Vue.extend({
       return false
     }
     await this.$store.dispatch('user/init', db.collection('users').doc(this.$route.params.userid).collection('posts').orderBy('createdAt', 'desc'))
+    await this.$store.dispatch('user/count', { userId: this.$route.params.userid })
     const getDoc = await db.collection('users').doc(this.$route.params.userid).collection('credentials').doc(this.$route.params.userid).get()
     const userdata = getDoc.data()
     if (userdata) {
@@ -101,6 +135,7 @@ export default Vue.extend({
     }
     this.storedPosts = this.$store.state.user.userPosts
     this.isLoading = false
+    this.counter = this.$store.state.user.count
   },
   methods: {
     getClubConfig (clubId: string) {
