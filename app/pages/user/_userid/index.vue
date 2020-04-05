@@ -14,27 +14,45 @@
         <img :src="user.photoUrl" class="user-content">
         <span class="user-content">{{ user.name }}</span>
       </h1>
-      <div class="pie-chart">
-        <pie-chart :graph="setGraph" />
+      <div class="pie">
+        <div class="pie-container">
+          <div class="pie-chart">
+            <pie-chart :graph="setGraph" />
+          </div>
+          <div class="pie-legend">
+            <template v-for="countItem in counter">
+              <div v-if="countItem.count !== 0" :key="countItem.id">
+                <mark-circle
+                  :color1="getClubColor1(countItem.id)"
+                  :color2="getClubColor2(countItem.id)"
+                  :color3="getClubColor3(countItem.id)"
+                  class="is-inline-block va-mid"
+                />
+                <span class="is-inline-block va-mid">{{ getClubName(countItem.id) }}</span>
+                <span class="is-inline-block va-mid">{{ countItem.count }}件</span>
+              </div>
+            </template>
+          </div>
+        </div>
       </div>
       <ul class="menu-list is-flex has-text-centered">
-        <template v-for="item in storedPosts">
-          <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
+        <template v-for="postItem in storedPosts">
+          <nuxt-link v-if="!postItem.isDeleted" :key="postItem.id" :to="getMenuPath(postItem.club.id, postItem.id)">
             <li>
               <div class="card card-width">
                 <header class="card-header has-text-centered">
-                  <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+                  <img :src="getImagePath(postItem.imagePath)" class="Thumbnail card-header-title">
                 </header>
                 <div class="card-content">
                   <mark-circle
-                    :color1="getClubColor1(item.club.id)"
-                    :color2="getClubColor2(item.club.id)"
-                    :color3="getClubColor3(item.club.id)"
+                    :color1="getClubColor1(postItem.club.id)"
+                    :color2="getClubColor2(postItem.club.id)"
+                    :color3="getClubColor3(postItem.club.id)"
                     class="is-inline-block va-mid"
                   />
-                  <span class="club-name va-mid">{{ getClubName(item.club.id) }}</span>
+                  <span class="club-name va-mid">{{ getClubName(postItem.club.id) }}</span>
                   <p class="gourmet-name">
-                    {{ item.gourmet }}
+                    {{ postItem.gourmet }}
                   </p>
                 </div>
               </div>
@@ -203,9 +221,24 @@ export default Vue.extend({
 .card-content {
   padding: 8px;
 }
-.pie-chart {
-  max-width: 200px;
+.pie {
+  width: 560px;
   margin: 10px auto;
+  &-container {
+    display: grid;
+    grid-template-rows: 240px;
+    grid-template-columns: 240px 320px;
+  }
+  &-chart {
+    max-width: 216px;
+    margin: 10px auto;
+    grid-row: 1;
+    grid-column: 1;
+  }
+  &-legend {
+    grid-row: 1;
+    grid-column: 2;
+  }
 }
 
 @media screen and (max-width: 480px){
