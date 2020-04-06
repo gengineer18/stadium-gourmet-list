@@ -19,7 +19,7 @@
           <div class="pie-chart">
             <pie-chart :graph="setGraph" />
           </div>
-          <div class="pie-legend">
+          <div v-if="$ua.deviceType() === 'pc'" class="pie-legend">
             <template v-for="countItem in counter">
               <div v-if="countItem.count !== 0" :key="countItem.id">
                 <mark-circle
@@ -28,11 +28,14 @@
                   :color3="getClubColor3(countItem.id)"
                   class="is-inline-block va-mid"
                 />
-                <span class="is-inline-block va-mid">{{ getClubName(countItem.id) }}</span>
-                <span class="is-inline-block va-mid">{{ countItem.count }}件</span>
+                <span class="is-inline-block va-mid club-name">{{ getClubName(countItem.id) }}</span>
+                <span class="is-inline-block va-mid club-name">{{ countItem.count }}件</span>
               </div>
             </template>
           </div>
+        </div>
+        <div v-if="$ua.deviceType() !== 'pc'" class="pie-announce-sp">
+          円グラフをタップすることで、各クラブ別の投稿件数が確認できます。
         </div>
       </div>
       <ul class="menu-list is-flex has-text-centered">
@@ -225,19 +228,12 @@ export default Vue.extend({
   width: 560px;
   margin: 10px auto;
   &-container {
-    display: grid;
-    grid-template-rows: 240px;
-    grid-template-columns: 240px 320px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
   }
   &-chart {
     max-width: 216px;
-    margin: 10px auto;
-    grid-row: 1;
-    grid-column: 1;
-  }
-  &-legend {
-    grid-row: 1;
-    grid-column: 2;
   }
 }
 
@@ -263,6 +259,22 @@ export default Vue.extend({
   }
   .card-content {
     padding: 4px;
+  }
+  .pie {
+    width: 320px;
+    margin: 10px auto;
+    &-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    &-chart {
+      max-width: 216px;
+    }
+    &-announce-sp {
+      margin-top: 1rem;
+      font-size: .5rem;
+    }
   }
 }
 
