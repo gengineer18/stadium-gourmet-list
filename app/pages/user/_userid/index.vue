@@ -14,24 +14,48 @@
         <img :src="user.photoUrl" class="user-content">
         <span class="user-content">{{ user.name }}</span>
       </h1>
+      <div class="pie">
+        <div class="pie-container">
+          <div class="pie-chart">
+            <pie-chart :graph="setGraph" />
+          </div>
+          <div v-if="$ua.deviceType() === 'pc'" class="pie-legend">
+            <template v-for="countItem in counter">
+              <div v-if="countItem.count !== 0" :key="countItem.id">
+                <mark-circle
+                  :color1="getClubColor1(countItem.id)"
+                  :color2="getClubColor2(countItem.id)"
+                  :color3="getClubColor3(countItem.id)"
+                  class="is-inline-block va-mid"
+                />
+                <span class="is-inline-block va-mid club-name">{{ getClubName(countItem.id) }}</span>
+                <span class="is-inline-block va-mid club-name">{{ countItem.count }}件</span>
+              </div>
+            </template>
+          </div>
+        </div>
+        <div v-if="$ua.deviceType() !== 'pc'" class="pie-announce-sp">
+          円グラフをタップすることで、各クラブ別の投稿件数が確認できます。
+        </div>
+      </div>
       <ul class="menu-list is-flex has-text-centered">
-        <template v-for="item in storedPosts">
-          <nuxt-link v-if="!item.isDeleted" :key="item.id" :to="getMenuPath(item.club.id, item.id)">
+        <template v-for="postItem in storedPosts">
+          <nuxt-link v-if="!postItem.isDeleted" :key="postItem.id" :to="getMenuPath(postItem.club.id, postItem.id)">
             <li>
               <div class="card card-width">
                 <header class="card-header has-text-centered">
-                  <img :src="getImagePath(item.imagePath)" class="Thumbnail card-header-title">
+                  <img :src="getImagePath(postItem.imagePath)" class="Thumbnail card-header-title">
                 </header>
                 <div class="card-content">
                   <mark-circle
-                    :color1="getClubColor1(item.club.id)"
-                    :color2="getClubColor2(item.club.id)"
-                    :color3="getClubColor3(item.club.id)"
+                    :color1="getClubColor1(postItem.club.id)"
+                    :color2="getClubColor2(postItem.club.id)"
+                    :color3="getClubColor3(postItem.club.id)"
                     class="is-inline-block va-mid"
                   />
-                  <span class="club-name va-mid">{{ getClubName(item.club.id) }}</span>
+                  <span class="club-name va-mid">{{ getClubName(postItem.club.id) }}</span>
                   <p class="gourmet-name">
-                    {{ item.gourmet }}
+                    {{ postItem.gourmet }}
                   </p>
                 </div>
               </div>
@@ -43,22 +67,25 @@
   </section>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue'
 import { db } from '~/plugins/firebase'
 import utilsGetClubConfig from '~/utils/getClubConfig'
 import MarkCircle from '@/components/Mark/MarkCircle.vue'
 import { defaultImagePath, guestUserImagePath } from '~/utils/common'
 import LoadingMark from '@/components/Loading/LoadingMark.vue'
+import PieChart from '@/components/Chart/PieChart.vue'
 
 export default Vue.extend({
   components: {
     MarkCircle,
-    LoadingMark
+    LoadingMark,
+    PieChart
   },
   data () {
     return {
       storedPosts: [],
+      counter: [],
       isLoading: true,
       user: {
         id: '',
@@ -70,19 +97,50 @@ export default Vue.extend({
   },
   computed: {
     getMenuPath () {
-      return (clubId: string, menuId: string): string => {
+      return (clubId, menuId) => {
         return `/club/${clubId}/post/${menuId}`
       }
     },
     getImagePath () {
-      return (imagePath: string): string => {
+      return (imagePath) => {
         return imagePath || defaultImagePath
       }
     },
-    getUserData () {
-      return (userId: string): string => {
-        return 'test'
+    getPostCount () {
+      let postLength = this.storedPosts.length
+      let deletedCount = 0
+      this.storedPosts.forEach((post) => {
+        if (post.isDeleted) {
+          deletedCount++
+        }
+      })
+      postLength = postLength - deletedCount
+      return postLength
+    },
+    setGraph () {
+      const labels = []
+      const data = []
+      const backgroundColor = []
+      this.counter.forEach((item) => {
+        if (item.count !== 0) {
+          const clubId = item.id
+          labels.push(this.getClubName(clubId))
+          data.push(item.count)
+          backgroundColor.push(this.getClubColor1(clubId))
+        }
+      })
+      const graph = {
+        labels,
+        datasets: [
+          {
+            data,
+            backgroundColor,
+            borderColor: '#EEE',
+            borderWidth: 1
+          }
+        ]
       }
+      return graph
     }
   },
   async mounted () {
@@ -91,6 +149,7 @@ export default Vue.extend({
       return false
     }
     await this.$store.dispatch('user/init', db.collection('users').doc(this.$route.params.userid).collection('posts').orderBy('createdAt', 'desc'))
+    await this.$store.dispatch('user/count', { userId: this.$route.params.userid })
     const getDoc = await db.collection('users').doc(this.$route.params.userid).collection('credentials').doc(this.$route.params.userid).get()
     const userdata = getDoc.data()
     if (userdata) {
@@ -101,25 +160,26 @@ export default Vue.extend({
     }
     this.storedPosts = this.$store.state.user.userPosts
     this.isLoading = false
+    this.counter = this.$store.state.user.count
   },
   methods: {
-    getClubConfig (clubId: string) {
+    getClubConfig (clubId) {
       const clubConfig = utilsGetClubConfig(clubId)
       return clubConfig
     },
-    getClubName (clubId: string): string {
+    getClubName (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.name
     },
-    getClubColor1 (clubId: string): string {
+    getClubColor1 (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color1
     },
-    getClubColor2 (clubId: string): string {
+    getClubColor2 (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color2 || ''
     },
-    getClubColor3 (clubId: string): string {
+    getClubColor3 (clubId) {
       const clubConfig = this.getClubConfig(clubId)
       return clubConfig.color3 || ''
     }
@@ -164,6 +224,18 @@ export default Vue.extend({
 .card-content {
   padding: 8px;
 }
+.pie {
+  width: 560px;
+  margin: 10px auto;
+  &-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  &-chart {
+    max-width: 216px;
+  }
+}
 
 @media screen and (max-width: 480px){
   .card-header-title {
@@ -187,6 +259,22 @@ export default Vue.extend({
   }
   .card-content {
     padding: 4px;
+  }
+  .pie {
+    width: 320px;
+    margin: 10px auto;
+    &-container {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    &-chart {
+      max-width: 216px;
+    }
+    &-announce-sp {
+      margin-top: 1rem;
+      font-size: .5rem;
+    }
   }
 }
 

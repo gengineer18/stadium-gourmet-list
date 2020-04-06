@@ -9,6 +9,7 @@ const userRef = db.collection('users')
 
 export const state = () => ({
   userPosts: [],
+  count: [],
   isAuth: false,
   isAnonymous: true,
   uid: '',
@@ -63,6 +64,10 @@ export const actions = {
   init: firestoreAction(({ bindFirestoreRef }, ref) => {
     // return the promise returned by `bindFirestoreRef`
     return bindFirestoreRef('userPosts', ref)
+  }),
+  count: firestoreAction(({ bindFirestoreRef }, { userId }) => {
+    // return the promise returned by `bindFirestoreRef`
+    return bindFirestoreRef('count', db.collection('users').doc(userId).collection('clubs').orderBy('count', 'desc'))
   }),
   loginGoogle: async ({ dispatch }: any) => {
     const provider = new firebase.auth.GoogleAuthProvider()
