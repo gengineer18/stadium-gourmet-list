@@ -34,8 +34,8 @@
             </template>
           </div>
         </div>
-        <div v-if="$ua.deviceType() !== 'pc'" class="pie-announce-sp">
-          円グラフをタップすることで、各クラブ別の投稿件数が確認できます。
+        <div v-if="$ua.deviceType() !== 'pc'" class="pie-announce-sp has-text-centered">
+          円グラフをタップすることで、<br>各クラブ別の投稿件数が確認できます。
         </div>
       </div>
       <ul class="menu-list is-flex has-text-centered">
@@ -273,7 +273,7 @@ export default Vue.extend({
     }
     &-announce-sp {
       margin-top: 1rem;
-      font-size: .5rem;
+      font-size: .8rem;
     }
   }
 }
