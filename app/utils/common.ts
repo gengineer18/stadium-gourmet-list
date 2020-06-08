@@ -6,14 +6,14 @@ export const guestUserImagePath = 'https://firebasestorage.googleapis.com/v0/b/s
 
 export const toastSuccess = (message: string) => {
   Toast.open({
-    message: message,
+    message,
     type: 'is-success'
   })
 }
 
 export const toastFail = (message: string) => {
   Toast.open({
-    message: message,
+    message,
     type: 'is-danger'
   })
 }

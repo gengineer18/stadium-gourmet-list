@@ -1,9 +1,8 @@
 import firebase from 'firebase'
-import auth from '~/plugins/auth'
 import { firestoreAction } from 'vuexfire'
+import auth from '~/plugins/auth'
 import { db } from '~/plugins/firebase'
 import { guestUserImagePath, toastSuccess, toastFail } from '~/utils/common'
-
 
 const userRef = db.collection('users')
 
@@ -15,26 +14,26 @@ export const state = () => ({
   uid: '',
   displayName: '',
   photoURL: '',
-  email: '',
+  email: ''
 })
 
 export const getters = {
   userId: (state: any) => {
-    if(state.uid !== '') return state.uid
+    if (state.uid !== '') { return state.uid }
     return 'guestUser'
   },
   userName: (state: any) => {
-    if(state.displayName !== '') return state.displayName
+    if (state.displayName !== '') { return state.displayName }
     return 'ゲスト'
   },
   userPhoto: (state: any) => {
-    if(state.photoURL !== null) return state.photoURL
+    if (state.photoURL !== null) { return state.photoURL }
     return guestUserImagePath
   }
 }
 
 export const mutations = {
-  setLoginState(state: any, user: any) {
+  setLoginState (state: any, user: any) {
     state.isAuth = true
     state.isAnonymous = user.isAnonymous
     state.uid = user.uid
@@ -42,7 +41,7 @@ export const mutations = {
     state.email = user.email
     state.photoURL = user.photoURL
   },
-  setLogoutState(state: any) {
+  setLogoutState (state: any) {
     state.isAuth = false
     state.isAnonymous = true
     state.uid = ''
@@ -50,7 +49,7 @@ export const mutations = {
     state.photoURL = ''
     state.email = ''
   },
-  loginAnonymous(state: any, user: any) {
+  loginAnonymous (state: any, user: any) {
     state.isAuth = true
     state.isAnonymous = true
     state.uid = user.uid
@@ -92,8 +91,8 @@ export const actions = {
         dispatch('getInitializeUser', { user: res.user })
         commit('setLoginState', res.user)
       })
-      .catch(error => {
-        if(error.code === 'auth/popup-blocked') return
+      .catch((error) => {
+        if (error.code === 'auth/popup-blocked') { return }
         console.error('loginCommon', error.code)
       })
   },
@@ -104,8 +103,8 @@ export const actions = {
   },
   checkAuth: async ({ commit }: any) => {
     await auth()
-      .then(user => {
-        if (!!user) {
+      .then((user) => {
+        if (user) {
           commit('setLoginState', user)
         }
       })
@@ -117,22 +116,22 @@ export const actions = {
       .catch((error) => {
         console.error('Error adding user doc: ', error.code)
         toastFail('データベースへの登録に失敗しました。')
-        throw error;
-    })
+        throw error
+      })
   }),
   updateCredential: firestoreAction((context, { updateData, userId }) => {
     userRef.doc(userId).collection('credentials').doc(userId).set(updateData, { merge: true })
       .catch((error) => {
         console.error('Error adding user doc: ', error.code)
         toastFail('データベースの更新に失敗しました。')
-        throw error;
+        throw error
       })
     const updatedAt = { updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
     userRef.doc(userId).set(updatedAt, { merge: true })
       .catch((error) => {
         console.error('update Error adding user doc: ', error.code)
         toastFail('データベースの更新に失敗しました。')
-        throw error;
+        throw error
       })
   }),
   deleteUser: firestoreAction((context, { userId }) => {
@@ -141,14 +140,14 @@ export const actions = {
       .catch((error) => {
         console.error('update Error adding user doc: ', error.code)
         toastFail('データベースの更新に失敗しました。')
-        throw error;
+        throw error
       })
     const isDeleted = { isDeleted: true }
     userRef.doc(userId).collection('credentials').doc(userId).set(isDeleted, { merge: true })
       .catch((error) => {
         console.error('Error adding user doc: ', error.code)
         toastFail('データベースの更新に失敗しました。')
-        throw error;
+        throw error
       })
   }),
   userCreate: firestoreAction((context, { user }) => {
@@ -171,28 +170,28 @@ export const actions = {
         console.error('Error adding document: ', error)
       })
   }),
-  getInitializeUser: (({ dispatch }: any, { user }: any) => {
+  getInitializeUser: ({ dispatch }: any, { user }: any) => {
     // return the promise returned by `bindFirestoreRef`
     const ref = userRef.doc(user.uid)
     ref
       .get()
-      .then(function(doc) {
+      .then(function (doc) {
         if (!doc.exists) {
           // ユーザー登録がなければ初期化してユーザーコレクションに追加
           dispatch('userCreate', { user })
         }
       })
-      .catch(error => {
+      .catch((error) => {
         console.error('getInitializeUser', error)
       })
-  }),
+  },
   deletePost: firestoreAction((context, { postId, userId }) => {
     const deleteData = { isDeleted: true, updatedAt: firebase.firestore.FieldValue.serverTimestamp() }
     userRef.doc(userId).collection('posts').doc(postId).set(deleteData, { merge: true })
       .catch((error: any) => {
         console.error('Error adding user doc: ', error.code)
         toastFail('データベースの更新に失敗しました。')
-        throw error;
+        throw error
       })
-  }),
+  })
 }

@@ -31,7 +31,7 @@ export const getters = {
 }
 
 export const mutations = {
-  postData(state: any, { data }: any) {
+  postData (state: any, { data }: any) {
     state.postData.postId = data.postId
     state.postData.gourmet = data.gourmet
     state.postData.comment = data.comment
@@ -60,5 +60,5 @@ export const actions = {
     await postData.docs.map((doc) => {
       commit('postData', { data: doc.data() })
     })
-  },
+  }
 }

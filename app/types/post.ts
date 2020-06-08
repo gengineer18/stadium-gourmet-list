@@ -1,3 +1,14 @@
+export type Club = {
+  id: string,
+  name: string,
+}
+
+export type Image = {
+  path: string,
+  width: number,
+  height: number,
+}
+
 export type NewPost = {
   gourmet: string,
   club: Club,
@@ -7,10 +18,10 @@ export type NewPost = {
   postImage: Image,
   imagePath: string,
   user: {
-    id: string
-    name: string
-  }
-  price: number | null
+    id: string,
+    name: string,
+  },
+  price: number | null,
 }
 
 export type PostData = {
@@ -18,13 +29,13 @@ export type PostData = {
   club: Club,
   shop: string,
   comment: string,
-  gameDate: Date | null
+  gameDate: Date | null,
   imagePath: string,
   user: {
-    id: string
-    name: string
-  }
-  price: number | null
+    id: string,
+    name: string,
+  },
+  price: number | null,
 }
 
 export type CompletePost = {
@@ -35,23 +46,12 @@ export type CompletePost = {
   shop: string,
   comment: string,
   gameDate: string,
-  imagePath: string
-  userName: string
-  color1: string
-  color2: string
-  color3: string
-  price: number | null
-  createdAt: string
-  userPhoto: string
-}
-
-export type Club = {
-  id: string,
-  name: string
-}
-
-export type Image = {
-  path: string
-  width: number
-  height: number
+  imagePath: string,
+  userName: string,
+  color1: string,
+  color2: string,
+  color3: string,
+  price: number | null,
+  createdAt: string,
+  userPhoto: string,
 }

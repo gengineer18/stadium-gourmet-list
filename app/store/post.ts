@@ -1,8 +1,8 @@
 import { firestoreAction } from 'vuexfire'
 
-export const state = () => {
+export const state = () => ({
   posts: []
-}
+})
 
 export const getters = {
   getPosts: (state: any) => state.posts

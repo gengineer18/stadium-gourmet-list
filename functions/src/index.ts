@@ -14,27 +14,27 @@ exports.updateUserName = functions
   .firestore
   .document('users/{userId}/credentials/{credentialId}')
   .onUpdate(async (change: any, context: any) => {
-    const afterCredential = change.after.data();
-    const beforeCredential = change.before.data();
+    const afterCredential = change.after.data()
+    const beforeCredential = change.before.data()
     if (afterCredential.displayName === beforeCredential.displayName) {
       console.info('no change:', afterCredential.userId)
-      return 0;
+      return 0
     }
     let batch = db.batch()
     const snapshots = await postColGroup.where('user.id', '==', `${afterCredential.userId}`).get()
     await snapshots.docs.map((doc: any, index: any) => {
-      //500件毎にcommitしてbatchインスタンスを初期化
+      // 500件毎にcommitしてbatchインスタンスを初期化
       if ((index + 1) % 500 === 0) {
-        batch.commit() //新しいインスタンス
-        batch = db.batch() //新たにインスタンスを生成。
+        batch.commit() // 新しいインスタンス
+        batch = db.batch() // 新たにインスタンスを生成。
       }
-      console.info('document ID:',doc.id)
+      console.info('document ID:', doc.id)
       batch.update(doc.ref, { 'user.name': afterCredential.displayName })
     })
     // 最終コミット
     await batch.commit()
     return 0
-  });
+  })
 
 exports.deleteUser = functions
   .region('asia-northeast1')
@@ -46,18 +46,18 @@ exports.deleteUser = functions
     let batch = db.batch()
     const snapshots = await postColGroup.where('user.id', '==', `${userRecord.uid}`).get()
     await snapshots.docs.map((doc: any, index: any) => {
-      //500件毎にcommitしてbatchインスタンスを初期化
+      // 500件毎にcommitしてbatchインスタンスを初期化
       if ((index + 1) % 500 === 0) {
-        batch.commit() //新しいインスタンス
-        batch = db.batch() //新たにインスタンスを生成。
+        batch.commit() // 新しいインスタンス
+        batch = db.batch() // 新たにインスタンスを生成。
       }
-      console.info('document ID:',doc.id)
+      console.info('document ID:', doc.id)
       batch.update(doc.ref, { isDeleted: true, 'user.isDeleted': true })
     })
     // 最終コミット
     await batch.commit()
     return 0
-  });
+  })
 
 exports.createClubPost = functions
   .region('asia-northeast1')
@@ -76,25 +76,25 @@ exports.createClubPost = functions
     const clubPostCount = clubData ? clubData.count + 1 : 1
     clubRef.doc(clubId).set({ count: clubPostCount }, { merge: true })
     return 0
-  });
+  })
 
 exports.deleteClubPost = functions
   .region('asia-northeast1')
   .firestore
   .document('users/{userId}/posts/{postId}')
   .onUpdate(async (change: any, context: any) => {
-    const afterCredential = change.after.data();
-    const beforeCredential = change.before.data();
+    const afterCredential = change.after.data()
+    const beforeCredential = change.before.data()
     if (afterCredential.isDeleted === beforeCredential.isDeleted) {
       console.info('no change:', afterCredential.userId)
-      return 0;
+      return 0
     }
     const clubId = afterCredential.club.id
     const userId = afterCredential.user.id
     const userSnapshot = await userRef.doc(userId).collection('clubs').doc(clubId).get()
     const userData = userSnapshot.data()
     let userPostCount = userData ? userData.count - 1 : 0
-    if ( userPostCount < 0 ) {
+    if (userPostCount < 0) {
       userPostCount = 0
     }
     userRef.doc(userId).collection('clubs').doc(clubId).set({ count: userPostCount }, { merge: true })
@@ -102,9 +102,9 @@ exports.deleteClubPost = functions
     const clubSnapshot = await clubRef.doc(clubId).get()
     const clubData = clubSnapshot.data()
     let clubPostCount = clubData ? clubData.count - 1 : 0
-    if ( clubPostCount < 0 ) {
+    if (clubPostCount < 0) {
       clubPostCount = 0
     }
     clubRef.doc(clubId).set({ count: clubPostCount }, { merge: true })
     return 0
-  });
+  })

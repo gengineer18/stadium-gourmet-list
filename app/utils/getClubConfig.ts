@@ -1,11 +1,11 @@
 type ClubConfig = {
-  name: string
-  color1: string
-  color2?: string
-  color3?: string
+  name: string,
+  color1: string,
+  color2?: string,
+  color3?: string,
 }
 
-export default function getClubConfig(clubId: string): ClubConfig {
+export default function getClubConfig (clubId: string): ClubConfig {
   let clubConfig: ClubConfig = {
     name: '',
     color1: ''
@@ -15,392 +15,392 @@ export default function getClubConfig(clubId: string): ClubConfig {
       clubConfig = {
         name: '北海道コンサドーレ札幌',
         color1: '#D7000F',
-        color2: '#000000',
+        color2: '#000000'
       }
-      break;
+      break
     case 'vanraure':
       clubConfig = {
         name: 'ヴァンラーレ八戸',
-        color1: '#008836',
+        color1: '#008836'
       }
-      break;
+      break
     case 'grulla':
       clubConfig = {
         name: 'いわてグルージャ盛岡',
         color1: '#FFFFFF',
-        color2: '#000000',
+        color2: '#000000'
       }
-      break;
+      break
     case 'vegalta':
       clubConfig = {
         name: 'ベガルタ仙台',
-        color1: '#FCC800',
+        color1: '#FCC800'
       }
-      break;
+      break
     case 'blaublitz':
       clubConfig = {
         name: 'ブラウブリッツ秋田',
-        color1: '#005BAB',
+        color1: '#005BAB'
       }
-      break;
+      break
     case 'montedio':
       clubConfig = {
         name: 'モンテディオ山形',
         color1: '#004099',
-        color2: '#FFFFFF',
+        color2: '#FFFFFF'
       }
-      break;
+      break
     case 'fukushima':
       clubConfig = {
         name: '福島ユナイテッドFC',
         color1: '#E60012',
-        color2: '#211612',
+        color2: '#211612'
       }
-      break;
+      break
     case 'antlers':
       clubConfig = {
         name: '鹿島アントラーズ',
-        color1: '#B8183F',
+        color1: '#B8183F'
       }
-      break;
+      break
     case 'hollyhock':
       clubConfig = {
         name: '水戸ホーリーホック',
-        color1: '#1C2088',
+        color1: '#1C2088'
       }
-      break;
+      break
     case 'tochigisc':
       clubConfig = {
         name: '栃木SC',
-        color1: '#FFEA02',
+        color1: '#FFEA02'
       }
-      break;
+      break
     case 'thespa':
       clubConfig = {
         name: 'ザスパクサツ群馬',
         color1: '#00063A',
-        color2: '#FDD448',
+        color2: '#FDD448'
       }
-      break;
+      break
     case 'reds':
       clubConfig = {
         name: '浦和レッズ',
-        color1: '#E6002D',
+        color1: '#E6002D'
       }
-      break;
+      break
     case 'ardija':
       clubConfig = {
         name: '大宮アルディージャ',
-        color1: '#ED6C00',
+        color1: '#ED6C00'
       }
-      break;
+      break
     case 'jef':
       clubConfig = {
         name: 'ジェフユナイテッド千葉',
         color1: '#FFE100',
-        color2: '#009260',
+        color2: '#009260'
       }
-      break;
+      break
     case 'reysol':
       clubConfig = {
         name: '柏レイソル',
-        color1: '#FFE850',
+        color1: '#FFE850'
       }
-      break;
+      break
     case 'fctokyo':
       clubConfig = {
         name: 'FC東京',
         color1: '#0B2F8E',
-        color2: '#E5002C',
+        color2: '#E5002C'
       }
-      break;
+      break
     case 'fctokyou23':
       clubConfig = {
         name: 'FC東京 U-23',
         color1: '#0B2F8E',
-        color2: '#E5002C',
+        color2: '#E5002C'
       }
-      break;
+      break
     case 'verdy':
       clubConfig = {
         name: '東京ヴェルディ',
-        color1: '#006937',
+        color1: '#006937'
       }
-      break;
+      break
     case 'zelvia':
       clubConfig = {
         name: 'FC町田ゼルビア',
         color1: '#0054A7',
-        color2: '#BEAF71',
+        color2: '#BEAF71'
       }
-      break;
+      break
     case 'frontale':
       clubConfig = {
         name: '川崎フロンターレ',
         color1: '#20AEF4',
-        color2: '#212121',
+        color2: '#212121'
       }
-      break;
+      break
     case 'fmarinos':
       clubConfig = {
         name: '横浜F・マリノス',
         color1: '#003F98',
         color2: '#FFFFFF',
-        color3: '#E6002D',
+        color3: '#E6002D'
       }
-      break;
+      break
     case 'yokohamafc':
       clubConfig = {
         name: '横浜FC',
-        color1: '#00A0E9',
+        color1: '#00A0E9'
       }
-      break;
+      break
     case 'yscc':
       clubConfig = {
         name: 'Y.S.C.C.横浜',
         color1: '#005BAB',
-        color2: '#EE7A00',
+        color2: '#EE7A00'
       }
-      break;
+      break
     case 'scsagamihara':
       clubConfig = {
         name: 'SC相模原',
         color1: '#2E8D47',
-        color2: '#373333',
+        color2: '#373333'
       }
-      break;
+      break
     case 'bellmare':
       clubConfig = {
         name: '湘南ベルマーレ',
         color1: '#6FBA2B',
-        color2: '#004081',
+        color2: '#004081'
       }
-      break;
+      break
     case 'ventforet':
       clubConfig = {
         name: 'ヴァンフォーレ甲府',
         color1: '#0060B5',
-        color2: '#CA1944',
+        color2: '#CA1944'
       }
-      break;
+      break
     case 'parceiro':
       clubConfig = {
         name: 'AC長野パルセイロ',
         color1: '#DA7600',
-        color2: '#1A2260',
+        color2: '#1A2260'
       }
-      break;
+      break
     case 'yamaga':
       clubConfig = {
         name: '松本山雅FC',
         color1: '#007343',
-        color2: '#003E20',
+        color2: '#003E20'
       }
-      break;
+      break
     case 'albirex':
       clubConfig = {
         name: 'アルビレックス新潟',
         color1: '#E95405',
-        color2: '#004099',
+        color2: '#004099'
       }
-      break;
+      break
     case 'kataller':
       clubConfig = {
         name: 'カターレ富山',
         color1: '#0D267E',
-        color2: '#9B0337',
+        color2: '#9B0337'
       }
-      break;
+      break
     case 'zweigen':
       clubConfig = {
         name: 'ツエーゲン金沢',
         color1: '#D70C1E',
-        color2: '#000000',
+        color2: '#000000'
       }
-      break;
+      break
     case 'spulse':
       clubConfig = {
         name: '清水エスパルス',
-        color1: '#FF8706',
+        color1: '#FF8706'
       }
-      break;
+      break
     case 'jubilo':
       clubConfig = {
         name: 'ジュビロ磐田',
-        color1: '#7399D1',
+        color1: '#7399D1'
       }
-      break;
+      break
     case 'fujiedamyfc':
       clubConfig = {
         name: '藤枝MYFC',
-        color1: '#803376',
+        color1: '#803376'
       }
-      break;
+      break
     case 'azulclaro':
       clubConfig = {
         name: 'アスルクラロ沼津',
         color1: '#00A0E9',
-        color2: '#122A88',
+        color2: '#122A88'
       }
-      break;
+      break
     case 'grampus':
       clubConfig = {
         name: '名古屋グランパス',
         color1: '#D70C17',
-        color2: '#F39800',
+        color2: '#F39800'
       }
-      break;
+      break
     case 'fcgifu':
       clubConfig = {
         name: 'FC岐阜',
         color1: '#016427',
-        color2: '#45B158',
+        color2: '#45B158'
       }
-      break;
+      break
     case 'sanga':
       clubConfig = {
         name: '京都サンガF.C.',
-        color1: '#842178',
+        color1: '#842178'
       }
-      break;
+      break
     case 'gamba':
       clubConfig = {
         name: 'ガンバ大阪',
         color1: '#013981',
-        color2: '#000000',
+        color2: '#000000'
       }
-      break;
+      break
     case 'gambau23':
       clubConfig = {
         name: 'ガンバ大阪 U-23',
         color1: '#013981',
-        color2: '#000000',
+        color2: '#000000'
       }
-      break;
+      break
     case 'cerezo':
       clubConfig = {
         name: 'セレッソ大阪',
-        color1: '#DA005C',
+        color1: '#DA005C'
       }
-      break;
+      break
     case 'cerezou23':
       clubConfig = {
         name: 'セレッソ大阪 U-23',
-        color1: '#DA005C',
+        color1: '#DA005C'
       }
-      break;
+      break
     case 'vissel':
       clubConfig = {
         name: 'ヴィッセル神戸',
-        color1: '#9B001F',
+        color1: '#9B001F'
       }
-      break;
+      break
     case 'gainare':
       clubConfig = {
         name: 'ガイナーレ鳥取',
         color1: '#6DBA3C',
-        color2: '#023458',
+        color2: '#023458'
       }
-      break;
+      break
     case 'fagiano':
       clubConfig = {
         name: 'ファジアーノ岡山',
         color1: '#B6003D',
-        color2: '#1D2368',
+        color2: '#1D2368'
       }
-      break;
+      break
     case 'sanfrecce':
       clubConfig = {
         name: 'サンフレッチェ広島',
-        color1: '#51308F',
+        color1: '#51308F'
       }
-      break;
+      break
     case 'renofa':
       clubConfig = {
         name: 'レノファ山口FC',
-        color1: '#EB5C00',
+        color1: '#EB5C00'
       }
-      break;
+      break
     case 'vortis':
       clubConfig = {
         name: '徳島ヴォルティス',
         color1: '#0A308F',
-        color2: '#6BB131',
+        color2: '#6BB131'
       }
-      break;
+      break
     case 'kamatamare':
       clubConfig = {
         name: 'カマタマーレ讃岐',
         color1: '#65AADD',
-        color2: '#004471',
+        color2: '#004471'
       }
-      break;
+      break
     case 'ehimefc':
       clubConfig = {
         name: '愛媛FC',
-        color1: '#FF951B',
+        color1: '#FF951B'
       }
-      break;
+      break
     case 'fcimabari':
       clubConfig = {
         name: 'FC今治',
         color1: '#161B60',
-        color2: '#FFF102',
+        color2: '#FFF102'
       }
-      break;
+      break
     case 'avispa':
       clubConfig = {
         name: 'アビスパ福岡',
         color1: '#17284C',
-        color2: '#9C9E9E',
+        color2: '#9C9E9E'
       }
-      break;
+      break
     case 'giravanz':
       clubConfig = {
         name: 'ギラヴァンツ北九州',
         color1: '#FFF102',
-        color2: '#E60012',
+        color2: '#E60012'
       }
-      break;
+      break
     case 'sagan':
       clubConfig = {
         name: 'サガン鳥栖',
         color1: '#2096F3',
-        color2: '#E95598',
+        color2: '#E95598'
       }
-      break;
+      break
     case 'v-varen':
       clubConfig = {
         name: 'V・ファーレン長崎',
         color1: '#F39800',
-        color2: '#005BAC',
+        color2: '#005BAC'
       }
-      break;
+      break
     case 'roasso':
       clubConfig = {
         name: 'ロアッソ熊本',
-        color1: '#B71915',
+        color1: '#B71915'
       }
-      break;
+      break
     case 'trinita':
       clubConfig = {
         name: '大分トリニータ',
-        color1: '#13098B',
+        color1: '#13098B'
       }
-      break;
+      break
     case 'kagoshima':
       clubConfig = {
         name: '鹿児島ユナイテッドFC',
-        color1: '#16335C',
+        color1: '#16335C'
       }
-      break;
+      break
     case 'fcryukyu':
       clubConfig = {
         name: 'FC琉球',
         color1: '#BE003B',
-        color2: '#E0CD76',
+        color2: '#E0CD76'
       }
-      break;
+      break
     default:
       clubConfig = {
         name: '',
