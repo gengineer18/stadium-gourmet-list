@@ -86,7 +86,7 @@ export default {
   plugins: [
     { src: '~/plugins/vue-simple-spinner.js', ssr: false },
     '~/plugins/firebase',
-    '~/plugins/auth',
+    '~/plugins/auth'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -110,7 +110,7 @@ export default {
     'nuxt-user-agent',
     ['@nuxtjs/google-analytics',
       {
-        id: 'UA-155565454-1',
+        id: 'UA-155565454-1'
         // debug: {
         //   enabled: process.env.NODE_ENV !== 'production',    // default value is false
         //   trace: process.env.NODE_ENV !== 'production',      // default value is false
@@ -152,6 +152,19 @@ export default {
     ** You can extend webpack config here
     */
     extend (config: any, ctx: any) {
+    },
+    babel: {
+      presets ({ isServer }: any) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            {
+              buildTerget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
     },
     transpile: [
       'vee-validate/dist/rules'
